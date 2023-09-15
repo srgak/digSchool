@@ -1,0 +1,50 @@
+<h1 class="title-page">Пожалуйста, авторизуйтесь</h1>
+<form 
+  class="form"
+  [formGroup]="form"
+  (submit)="sendForm()"
+>
+  <mat-form-field
+    class="form__field"
+  >
+    <mat-label>Логин</mat-label>
+    <input
+      type="text"
+      matInput
+      placeholder="srgak"
+      formControlName="login"
+    >
+    <mat-error 
+      *ngIf="form.get('login')!.hasError('required')"
+    >Обязательное поле</mat-error>
+  </mat-form-field>
+  <mat-form-field
+    class="form__field"
+  >
+    <mat-label>Пароль</mat-label>
+    <input
+      type="password"
+      matInput
+      placeholder="На горшке сидел король"
+      formControlName="password"
+    >
+    <mat-error 
+      *ngIf="form.get('password')!.hasError('required')"
+    >Обязательное поле</mat-error>
+  </mat-form-field>
+  <div class="form__submit">
+    <button
+      mat-button
+      color="accent"
+      type="submit"
+    >Продолжить</button>
+    <button
+      mat-button
+      color="primary"
+      type="button"
+      (click)="showModalAuth()"
+    >
+      Не могу войти
+    </button>
+  </div>
+</form>
