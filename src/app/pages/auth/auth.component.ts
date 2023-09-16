@@ -1,8 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { catchError, throwError } from 'rxjs';
+import { pageName } from 'src/app/helpers/routes';
 import { AuthService } from 'src/app/services/bd/auth/auth.service';
 import { UserResponse } from 'src/app/services/bd/types';
+import { NavigationService } from 'src/app/services/navigation/navigation.service';
 
 @Component({
   templateUrl: './auth.component.html',
@@ -16,7 +18,8 @@ export class AuthComponent {
   });
 
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private navigation: NavigationService
   ) {}
 
   public sendForm() {
@@ -27,8 +30,8 @@ export class AuthComponent {
             return throwError(() => error);
           })
         )
-        .subscribe(response => {
-          //todo перейти на основную страницу
+        .subscribe(() => {
+          this.navigation.goTo(pageName.main);
         });
     } else {
       this.form.markAllAsTouched();
