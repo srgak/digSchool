@@ -47,4 +47,8 @@
       Не могу войти
     </button>
   </div>
+  <mat-error
+    class="form__error"
+    *ngIf="form.hasError('incorrect')"
+  >Неправильное имя пользователя или пароль. Попробуйте снова.</mat-error>
 </form>

@@ -19,6 +19,7 @@ const routes: Routes = [
     pathMatch: 'full',
     loadChildren: () => import('./pages/main/main.module').then(m => m.MainModule),
     title: 'Главная панель',
+    //todo реализовать guard на проверку авторизации
     // canActivate: []
   }
 ];

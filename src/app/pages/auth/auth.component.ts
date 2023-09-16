@@ -27,10 +27,12 @@ export class AuthComponent {
       this.authService.DBChecker.checkItem(this.form.value)
         .pipe(
           catchError((error: UserResponse) => {
+            this.form.setErrors({incorrect: true});
             return throwError(() => error);
           })
         )
         .subscribe(() => {
+          //todo оставить пометку, что пользователь авторизован
           this.navigation.goTo(pageName.main);
         });
     } else {
