@@ -1,11 +1,12 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { catchError, throwError } from 'rxjs';
+import { ResponseDB } from 'src/app/helpers/interfaces/db';
 import { pageName } from 'src/app/helpers/routes';
 import { AuthService } from 'src/app/services/db/auth/auth.service';
-import { UserResponse } from 'src/app/helpers/types';
-import { NavigationService } from 'src/app/services/navigation/navigation.service';
 import { AuthFlagService } from 'src/app/services/storage/auth-flag/auth-flag.service';
+import { UserIdService } from 'src/app/services/storage/user-id/user-id.service';
 
 @Component({
   templateUrl: './auth.component.html',
@@ -20,22 +21,24 @@ export class AuthComponent {
 
   constructor(
     private authService: AuthService,
-    private navigation: NavigationService,
-    private authFlag: AuthFlagService
+    private router: Router,
+    private authFlag: AuthFlagService,
+    private userId: UserIdService
   ) {}
 
   public sendForm() {
     if(this.form.valid) {
       this.authService.DBChecker.checkItem(this.form.value)
         .pipe(
-          catchError((error: UserResponse) => {
+          catchError((error: ResponseDB) => {
             this.form.setErrors({incorrect: true});
             return throwError(() => error);
           })
         )
-        .subscribe(() => {
-          this.authFlag.isAuth = true;
-          this.navigation.goTo(pageName.main);
+        .subscribe(data => {
+          this.authFlag.prop = true;
+          this.userId.prop = data.id;
+          this.router.navigateByUrl(pageName.main);
         });
     } else {
       this.form.markAllAsTouched();

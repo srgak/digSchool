@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
-import { User } from '../../../helpers/types';
 import { AuthDB, AuthDBCheck } from './auth-db';
+import { UserDB } from 'src/app/helpers/interfaces/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  public storage: User[] = [
+  public storage: UserDB[] = [
     {
       login: 'srgak',
-      password: 'doshik'
+      password: 'doshik',
+      id: 1
     }
   ];
   public DB: AuthDB = new AuthDB(this.storage);

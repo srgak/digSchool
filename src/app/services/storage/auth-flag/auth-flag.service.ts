@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
+import { StorageProperty } from 'src/app/helpers/interfaces/storage';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthFlagService {
-  get isAuth(): boolean {
+export class AuthFlagService implements StorageProperty {
+  get prop(): boolean {
     return !!JSON.parse(localStorage.getItem('isAuth') || 'false');
   }
-  set isAuth(flag: boolean) {
-    localStorage.setItem('isAuth', JSON.stringify(flag));
+  set prop(value: boolean) {
+    localStorage.setItem('isAuth', JSON.stringify(value));
   }
 }

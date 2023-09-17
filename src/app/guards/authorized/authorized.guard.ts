@@ -11,7 +11,7 @@ class AuthorizedGuard {
     private authFlag: AuthFlagService
   ) {}
   canActivate(): boolean {
-    return this.authFlag.isAuth;
+    return this.authFlag.prop;
   }
 }
 
