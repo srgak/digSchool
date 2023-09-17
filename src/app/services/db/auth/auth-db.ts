@@ -1,6 +1,6 @@
 import { Observable } from "rxjs";
 import { DB, DBCheck } from "../db";
-import { User, UserResponse } from "../types";
+import { User, UserResponse } from "../../../helpers/types";
 
 export class AuthDB extends DB {
   public override storage: User[];

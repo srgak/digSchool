@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { User } from '../types';
-import { AuthDB, AuthDBCheck } from './authDB';
+import { User } from '../../../helpers/types';
+import { AuthDB, AuthDBCheck } from './auth-db';
 
 @Injectable({
   providedIn: 'root'

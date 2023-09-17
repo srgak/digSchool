@@ -2,9 +2,10 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { catchError, throwError } from 'rxjs';
 import { pageName } from 'src/app/helpers/routes';
-import { AuthService } from 'src/app/services/bd/auth/auth.service';
-import { UserResponse } from 'src/app/services/bd/types';
+import { AuthService } from 'src/app/services/db/auth/auth.service';
+import { UserResponse } from 'src/app/helpers/types';
 import { NavigationService } from 'src/app/services/navigation/navigation.service';
+import { AuthFlagService } from 'src/app/services/storage/auth-flag/auth-flag.service';
 
 @Component({
   templateUrl: './auth.component.html',
@@ -19,7 +20,8 @@ export class AuthComponent {
 
   constructor(
     private authService: AuthService,
-    private navigation: NavigationService
+    private navigation: NavigationService,
+    private authFlag: AuthFlagService
   ) {}
 
   public sendForm() {
@@ -32,7 +34,7 @@ export class AuthComponent {
           })
         )
         .subscribe(() => {
-          //todo оставить пометку, что пользователь авторизован
+          this.authFlag.isAuth = true;
           this.navigation.goTo(pageName.main);
         });
     } else {
