@@ -1,0 +1,8 @@
+<button 
+  class="menu-button"
+  type="button"
+  (click)="toggleMenu()"
+>+</button>
+<ng-container *ngIf="isOpen">
+  <app-menu-list></app-menu-list>
+</ng-container>

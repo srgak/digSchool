@@ -1,4 +1,4 @@
 export const enum pageName {
-  auth = 'auth',
-  main = 'dashboard'
+  Auth = 'auth',
+  Main = 'dashboard'
 }

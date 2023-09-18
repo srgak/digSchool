@@ -3,10 +3,17 @@ import { ResponseDB } from "./db";
 interface UserId {
   id: number;
 }
-interface UserData {
+interface UserAuth {
   login: string;
   password: string;
 }
-export interface UserForm extends UserData {}
-export interface UserDB extends UserId, UserData {}
-export interface UserResponseSuccess extends ResponseDB, UserId {}
+export interface UserAuthForm extends UserAuth {}
+export interface UserAuthDB extends UserId, UserAuth {}
+export interface UserAuthResponse extends ResponseDB, UserId {}
+
+export interface UserData extends UserId {
+  firstName: string;
+  lastName: string;
+  patronymic: string;
+  role: string;
+}

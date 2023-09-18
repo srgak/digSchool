@@ -7,17 +7,17 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: pageName.main
+    redirectTo: pageName.Main
   },
   {
-    path: pageName.auth,
+    path: pageName.Auth,
     pathMatch: 'full',
     loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule),
     title: 'Авторизация',
     canActivate: [canDeactivateAuth]
   },
   {
-    path: pageName.main,
+    path: pageName.Main,
     pathMatch: 'full',
     loadChildren: () => import('./pages/main/main.module').then(m => m.MainModule),
     title: 'Главная панель',

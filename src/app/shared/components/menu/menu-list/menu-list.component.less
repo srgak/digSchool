@@ -1,0 +1,36 @@
+:host {
+  @apply
+    absolute
+    w-full;
+  bottom: calc(100% + 20px);
+}
+.menu-list {
+  @apply
+    border
+    border-active-5
+    rounded
+    w-full
+    p-10
+    flex
+    justify-center
+    gap-x-20
+    m-auto;
+    max-width: calc(100% - 20px);
+  &__link {
+    @apply
+      inline-block
+      w-50
+      h-50
+      rounded-circle
+      bg-active-3
+      hover_bg-active-1;
+  }
+}
+
+@screen mobile {
+  .menu-list {
+    @apply
+      mobile_gap-y-20
+      mobile_flex-col;
+  }
+}

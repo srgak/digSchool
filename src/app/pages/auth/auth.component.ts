@@ -38,7 +38,7 @@ export class AuthComponent {
         .subscribe(data => {
           this.authFlag.prop = true;
           this.userId.prop = data.id;
-          this.router.navigateByUrl(pageName.main);
+          this.router.navigateByUrl(pageName.Main);
         });
     } else {
       this.form.markAllAsTouched();

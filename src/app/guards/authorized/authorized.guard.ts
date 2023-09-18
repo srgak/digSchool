@@ -17,13 +17,13 @@ class AuthorizedGuard {
 
 export const canActivateAuth: CanActivateFn = (): boolean => {
   if(!inject(AuthorizedGuard).canActivate()) {
-    inject(Router).navigateByUrl(pageName.auth);
+    inject(Router).navigateByUrl(pageName.Auth);
   }
   return true;
 }
 export const canDeactivateAuth: CanActivateFn = (): boolean => {
   if(inject(AuthorizedGuard).canActivate()) {
-    inject(Router).navigateByUrl(pageName.main);
+    inject(Router).navigateByUrl(pageName.Main);
   }
   return true;
 }

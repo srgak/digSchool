@@ -1,0 +1,18 @@
+<ul class="menu-list">
+  <li
+    class="menu-list__item"
+    *ngFor="let item of menuData"
+    >
+    <a
+      [appMenuLink]="item"
+      [routerLink]="item.link"
+    ></a>
+  </li>
+  <li
+    class="menu-list__item"
+  >
+    <button
+      [appMenuLogout]="menuLogout"
+    ></button>
+  </li>
+</ul>
