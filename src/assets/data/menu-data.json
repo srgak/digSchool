@@ -1,0 +1,38 @@
+{
+  "admin": [
+    {
+      "name": "Главная",
+      "link": "dashboard",
+      "img": ""
+    },
+    {
+      "name": "Панель управления пользователями",
+      "link": "auth",
+      "img": ""
+    }
+  ],
+  "pupil": [
+    {
+      "name": "Главная",
+      "link": "dashboard",
+      "img": ""
+    },
+    {
+      "name": "Дневник",
+      "link": "",
+      "img": ""
+    }
+  ],
+  "teacher": [
+    {
+      "name": "Главная",
+      "link": "dashboard",
+      "img": ""
+    },
+    {
+      "name": "Журнал",
+      "link": "",
+      "img": ""
+    }
+  ]
+}

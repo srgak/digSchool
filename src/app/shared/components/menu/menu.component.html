@@ -4,5 +4,5 @@
   (click)="toggleMenu()"
 >+</button>
 <ng-container *ngIf="isOpen">
-  <app-menu-list></app-menu-list>
+  <app-menu-list [menuData]="menuList"></app-menu-list>
 </ng-container>

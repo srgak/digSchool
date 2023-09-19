@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { pageName } from './helpers/routes';
 import { canActivateAuth, canDeactivateAuth } from './guards/authorized/authorized.guard';
+import { userDataResolver } from './resolvers/user-data';
 
 const routes: Routes = [
   {
@@ -21,7 +22,10 @@ const routes: Routes = [
     pathMatch: 'full',
     loadChildren: () => import('./pages/main/main.module').then(m => m.MainModule),
     title: 'Главная панель',
-    canActivate: [canActivateAuth]
+    canActivate: [canActivateAuth],
+    resolve: [
+      userDataResolver
+    ]
   }
 ];
 

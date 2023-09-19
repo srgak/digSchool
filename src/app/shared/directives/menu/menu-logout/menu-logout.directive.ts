@@ -10,8 +10,7 @@ import { MenuItem } from 'src/app/helpers/interfaces/menu';
 export class MenuLogoutDirective extends MenuButton implements OnInit {
   @Input('uiMenuLogout') override data!: MenuItem;
   @HostListener('click') onClick(): void {
-    this.authFlag.prop = false;
-    localStorage.removeItem('id');
+    localStorage.clear();
     this.router.navigateByUrl(this.data.link);
   }
   constructor(

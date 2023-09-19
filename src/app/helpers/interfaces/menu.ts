@@ -4,3 +4,6 @@ export type MenuItem = {
   img: string;
 };
 export type MenuData = MenuItem[];
+export type MenuSettings = {
+  [role: string]: MenuData;
+}

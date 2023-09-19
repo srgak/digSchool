@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { catchError, throwError } from 'rxjs';
 import { ResponseDB } from 'src/app/helpers/interfaces/db';
+import { UserAuthResponse } from 'src/app/helpers/interfaces/user';
 import { pageName } from 'src/app/helpers/routes';
 import { AuthService } from 'src/app/services/db/auth/auth.service';
 import { AuthFlagService } from 'src/app/services/storage/auth-flag/auth-flag.service';
@@ -20,7 +21,7 @@ export class AuthComponent {
   });
 
   constructor(
-    private authService: AuthService,
+    private authData: AuthService,
     private router: Router,
     private authFlag: AuthFlagService,
     private userId: UserIdService
@@ -28,7 +29,7 @@ export class AuthComponent {
 
   public sendForm() {
     if(this.form.valid) {
-      this.authService.DBChecker.checkItem(this.form.value)
+      this.authData.DBChecker.checkItem(this.form.value)
         .pipe(
           catchError((error: ResponseDB) => {
             this.form.setErrors({incorrect: true});
@@ -36,8 +37,7 @@ export class AuthComponent {
           })
         )
         .subscribe(data => {
-          this.authFlag.prop = true;
-          this.userId.prop = data.id;
+          this.saveData(data);
           this.router.navigateByUrl(pageName.Main);
         });
     } else {
@@ -47,5 +47,10 @@ export class AuthComponent {
 
   public showModalAuth() {
     //todo показать модалку с информацией 
+  }
+
+  private saveData(data: UserAuthResponse): void {
+    this.authFlag.prop = true;
+    this.userId.prop = data.id;
   }
 }
