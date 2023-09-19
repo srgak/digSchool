@@ -59,6 +59,7 @@ module.exports = {
       'active-5': '#8FBBC4'
     },
     fontSize: {
+      '14': '14px',
       '16': '16px',
       '18': '18px',
       '24': '24px',
@@ -67,7 +68,8 @@ module.exports = {
     borderRadius: {
       'none': '0',
       DEFAULT: '20px',
-      'circle': '50%'
+      'circle': '50%',
+      '10': '10px'
     },
     extend: {},
   },

@@ -4,15 +4,17 @@
     *ngFor="let item of menuData"
     >
     <a
-      [appMenuLink]="item"
+      [uiMenuLink]="item"
       [routerLink]="item.link"
+      [uiTooltip]="item.name"
     ></a>
   </li>
   <li
     class="menu-list__item"
   >
     <button
-      [appMenuLogout]="menuLogout"
+      [uiMenuLogout]="menuLogout"
+      [uiTooltip]="menuLogout.name"
     ></button>
   </li>
 </ul>

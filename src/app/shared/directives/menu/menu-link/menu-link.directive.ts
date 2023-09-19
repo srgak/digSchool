@@ -3,10 +3,10 @@ import { MenuButton } from '../menu-button';
 import { MenuItem } from 'src/app/helpers/interfaces/menu';
 
 @Directive({
-  selector: '[appMenuLink]'
+  selector: '[uiMenuLink]'
 })
 export class MenuLinkDirective extends MenuButton implements OnInit {
-  @Input('appMenuLink') public override data!: MenuItem;
+  @Input('uiMenuLink') public override data!: MenuItem;
   constructor() {
     super();
   }

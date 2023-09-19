@@ -7,7 +7,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MenuComponent {
-  public isOpen: boolean = true;
+  public isOpen: boolean = false;
   public toggleMenu(): void {
     this.isOpen = !this.isOpen;
   }

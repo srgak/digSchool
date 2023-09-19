@@ -5,10 +5,10 @@ import { AuthFlagService } from 'src/app/services/storage/auth-flag/auth-flag.se
 import { MenuItem } from 'src/app/helpers/interfaces/menu';
 
 @Directive({
-  selector: '[appMenuLogout]'
+  selector: '[uiMenuLogout]'
 })
 export class MenuLogoutDirective extends MenuButton implements OnInit {
-  @Input('appMenuLogout') override data!: MenuItem;
+  @Input('uiMenuLogout') override data!: MenuItem;
   @HostListener('click') onClick(): void {
     this.authFlag.prop = false;
     localStorage.removeItem('id');
