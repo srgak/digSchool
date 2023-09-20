@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Inject, Input, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription, map } from 'rxjs';
 import { MenuData, MenuSettings } from 'src/app/helpers/interfaces/menu';
 import { SETTINGS_MENU_TOKEN } from 'src/app/helpers/tokens';
