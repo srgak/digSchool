@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ControlPanelComponent } from './control-panel.component';
 import { ControlPanelRoutingModule } from './control-panel-routing';
 import { MaterialModule } from 'src/app/modules/material/material.module';
+import { ComponentsModule } from 'src/app/shared/components/components.module';
 
 
 
@@ -11,7 +12,8 @@ import { MaterialModule } from 'src/app/modules/material/material.module';
   imports: [
     CommonModule,
     ControlPanelRoutingModule,
-    MaterialModule
+    MaterialModule,
+    ComponentsModule
   ]
 })
 export class ControlPanelModule { }
