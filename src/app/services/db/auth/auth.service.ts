@@ -6,7 +6,7 @@ import { UserAuthDB } from 'src/app/helpers/interfaces/user';
   providedIn: 'root'
 })
 export class AuthService {
-  public storage: UserAuthDB[] = [
+  private storage: UserAuthDB[] = [
     {
       login: 'srgak',
       password: 'doshik',

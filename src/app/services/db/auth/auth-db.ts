@@ -3,7 +3,7 @@ import { DB, DBCheck } from "../db";
 import { UserAuthDB, UserAuthForm, UserAuthResponse } from "src/app/helpers/interfaces/user";
 
 export class AuthDB extends DB {
-  public override storage: UserAuthDB[];
+  private storage: UserAuthDB[];
   constructor(storage: UserAuthDB[]) {
     super();
     this.storage = storage;
@@ -25,7 +25,7 @@ export class AuthDB extends DB {
 }
 
 export class AuthDBCheck extends DBCheck {
-  public override storage: UserAuthDB[];
+  private storage: UserAuthDB[];
   constructor(storage: UserAuthDB[]) {
     super();
     this.storage = storage;

@@ -1,9 +1,9 @@
-import { Directive, ElementRef, HostListener, Input, OnInit, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, HostListener, Input, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 
 @Directive({
   selector: '[uiTooltip]'
 })
-export class TooltipDirective implements OnInit {
+export class TooltipDirective implements OnInit, OnDestroy {
   @Input('uiTooltip') public tooltip!: string;
   @HostListener('mouseover') private onMouseIn(): void {
     const tooltipPosition = this.element.getBoundingClientRect();
@@ -25,5 +25,8 @@ export class TooltipDirective implements OnInit {
   }
   ngOnInit(): void {
     this.r2.setProperty(this.tooltipBlock, 'innerHTML', this.tooltip);
+  }
+  ngOnDestroy(): void {
+    this.onMouseLeave();
   }
 }

@@ -2,7 +2,7 @@ import { UserData } from "src/app/helpers/interfaces/user";
 import { DB } from "../db";
 
 export class UserDB extends DB {
-  public override storage: UserData[];
+  private storage: UserData[];
   constructor(storage: UserData[]) {
     super();
     this.storage = storage;

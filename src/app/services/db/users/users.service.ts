@@ -6,7 +6,7 @@ import { UserDB } from './user-db';
   providedIn: 'root'
 })
 export class UsersService {
-  public storage: UserData[] = [
+  private storage: UserData[] = [
     {
       firstName: 'Админ',
       lastName: 'Админов',
