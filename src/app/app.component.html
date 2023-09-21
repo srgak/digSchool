@@ -4,3 +4,8 @@
 <app-menu
   *ngIf="authFlag.prop"
 ></app-menu>
+<app-modal
+  *ngIf="modal.isOpen"
+  [componentData]="modal.currenctModal"
+  (onClose)="modal.isOpen = false"
+  ></app-modal>

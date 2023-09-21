@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { MenuModule } from './shared/components/menu/menu.module';
+import { ModalModule } from './shared/components/modal/modal.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { MenuModule } from './shared/components/menu/menu.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MenuModule
+    MenuModule,
+    ModalModule
   ],
   providers: [],
   bootstrap: [AppComponent]

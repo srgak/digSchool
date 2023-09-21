@@ -6,6 +6,7 @@ import { ResponseDB } from 'src/app/helpers/interfaces/db';
 import { UserAuthResponse } from 'src/app/helpers/interfaces/user';
 import { pageName } from 'src/app/helpers/routes';
 import { AuthService } from 'src/app/services/db/auth/auth.service';
+import { ModalService } from 'src/app/services/modal/modal.service';
 import { AuthFlagService } from 'src/app/services/storage/auth-flag/auth-flag.service';
 import { UserIdService } from 'src/app/services/storage/user-id/user-id.service';
 
@@ -24,7 +25,8 @@ export class AuthComponent {
     private authData: AuthService,
     private router: Router,
     private authFlag: AuthFlagService,
-    private userId: UserIdService
+    private userId: UserIdService,
+    public modal: ModalService
   ) {}
 
   public sendForm() {

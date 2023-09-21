@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthFlagService } from './services/storage/auth-flag/auth-flag.service';
+import { ModalService } from './services/modal/modal.service';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,7 @@ import { AuthFlagService } from './services/storage/auth-flag/auth-flag.service'
 })
 export class AppComponent {
   constructor(
-    public authFlag: AuthFlagService
+    public authFlag: AuthFlagService,
+    public modal: ModalService
   ) {}
 }
