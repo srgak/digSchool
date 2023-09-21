@@ -29,7 +29,6 @@ const routes: Routes = [
   },
   {
     path: pageName.ControlPanel,
-    pathMatch: 'full',
     loadChildren: () => import('./pages/control-panel/control-panel.module').then(m => m.ControlPanelModule),
     canActivate: [canActivateAuth]
   }
