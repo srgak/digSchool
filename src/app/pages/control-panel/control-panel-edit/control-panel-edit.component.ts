@@ -10,6 +10,7 @@ import { Subscription, map } from 'rxjs';
 import { RoleData } from 'src/app/helpers/interfaces/user';
 import { pageName } from 'src/app/helpers/routes';
 import { UsersService } from 'src/app/services/db/users/users.service';
+import { ShowFieldModule } from 'src/app/shared/directives/show-field/show-field.module';
 
 @Component({
   selector: 'app-control-panel-edit',
@@ -23,7 +24,8 @@ import { UsersService } from 'src/app/services/db/users/users.service';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    MatButtonModule
+    MatButtonModule,
+    ShowFieldModule
   ]
 })
 export class ControlPanelEditComponent implements OnInit, OnDestroy {
@@ -32,7 +34,8 @@ export class ControlPanelEditComponent implements OnInit, OnDestroy {
     firstName: new FormControl(null, [Validators.required]),
     lastName: new FormControl(null, [Validators.required]),
     patronymic: new FormControl(null, [Validators.required]),
-    role: new FormControl(null, [Validators.required])
+    role: new FormControl(null, [Validators.required]),
+    class: new FormControl(null) //todo создать отдельную форму для заполнения класса
   });
   private subs: Subscription = new Subscription();
 
@@ -50,6 +53,7 @@ export class ControlPanelEditComponent implements OnInit, OnDestroy {
       value: 'teacher'
     }
   ];
+  public roleNameList: string[] = ['pupil'];
   constructor(
     public activatedRoute: ActivatedRoute,
     private userData: UsersService,
@@ -73,6 +77,11 @@ export class ControlPanelEditComponent implements OnInit, OnDestroy {
         )
         .subscribe(user => {
           this.form.patchValue(user);
+          Object.keys(this.form.controls).forEach(name => {
+            if(!this.form.get(name)?.value) {
+              this.form.get(name)?.disable();
+            }
+          });
         })
     );
   }

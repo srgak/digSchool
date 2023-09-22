@@ -19,10 +19,13 @@ export class UsersService {
       lastName: 'Иванов',
       patronymic: 'Иванович',
       role: 'pupil',
-      id: 2
+      id: 2,
+      class: {
+        number: 5,
+        letter: 'Б'
+      }
     }
   ];
-  public currentUser?: UserData;
   public DB: UserDB = new UserDB(this._storage);
   public get storage(): UserData[] {
     return this._storage;
