@@ -17,3 +17,8 @@ export interface UserData extends UserId {
   patronymic: string;
   role: string;
 }
+
+export interface RoleData {
+  name: string;
+  value: string;
+}

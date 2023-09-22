@@ -1,6 +1,68 @@
-<pre>
-  {{(activatedRoute.data | async)!['0']| json}}
-</pre>
-
-<!-- todo форма для изменения данных -->
+<form
+  class="form"
+  [formGroup]="form"
+  (submit)="onSubmit()"
+>
+  <mat-form-field class="form__field">
+    <mat-label>Имя</mat-label>
+    <input
+      type="text"
+      matInput
+      formControlName="firstName"
+    >
+    <mat-error
+      *ngIf="form.get('firstName')?.hasError('required')"
+    >
+      Обязательное поле
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="form__field">
+    <mat-label>Фамилия</mat-label>
+    <input 
+      matInput
+      formControlName="lastName"
+    >
+    <mat-error
+      *ngIf="form.get('lastName')?.hasError('required')"
+    >
+      Обязательное поле
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="form__field">
+    <mat-label>Отчество</mat-label>
+    <input 
+      matInput
+      formControlName="patronymic"
+    >
+    <mat-error
+      *ngIf="form.get('patronymic')?.hasError('required')"
+    >
+      Обязательное поле
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="form__field">
+    <mat-label>Роль</mat-label>
+    <mat-select formControlName="role">
+      <mat-option 
+        *ngFor="let item of roles" 
+        [value]="item.value"
+      >
+        {{item.name}}
+      </mat-option>
+    </mat-select>
+    <mat-error
+      *ngIf="form.get('role')?.hasError('required')"
+    >
+      Обязательное поле
+    </mat-error>
+  </mat-form-field>
+  <div class="form__submit">
+    <button
+      mat-button
+      color="accent"
+      type="submit"
+    >Изменить</button>
+  </div>
+</form>
+{{form.get('role')?.value}}
 <!-- todo кнопка для удаления -->

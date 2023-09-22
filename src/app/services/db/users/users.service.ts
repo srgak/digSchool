@@ -15,8 +15,8 @@ export class UsersService {
       id: 1
     },
     {
-      firstName: 'Иванов',
-      lastName: 'Иван',
+      firstName: 'Иван',
+      lastName: 'Иванов',
       patronymic: 'Иванович',
       role: 'pupil',
       id: 2

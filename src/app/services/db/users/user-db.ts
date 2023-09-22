@@ -17,8 +17,8 @@ export class UserDB extends DB {
     const index = this.storage.findIndex(user => user.id === id);
     this.storage.splice(index, 1);
   }
-  public override put(id: number, data: UserData): void {
-    const index = this.storage.findIndex(user => user.id === id);
+  public override put(data: UserData): void {
+    const index = this.storage.findIndex(user => user.id === data.id);
     this.storage.splice(index, 1, data);
   }
 }
