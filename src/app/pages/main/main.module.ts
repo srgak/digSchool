@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MainComponent } from './main.component';
 import { MainRoutingModule } from './main-routing.module';
-import { ComponentsModule } from 'src/app/shared/components/components.module';
 
 
 
@@ -10,8 +9,7 @@ import { ComponentsModule } from 'src/app/shared/components/components.module';
   declarations: [MainComponent],
   imports: [
     CommonModule,
-    MainRoutingModule,
-    ComponentsModule
+    MainRoutingModule
   ]
 })
 export class MainModule { }

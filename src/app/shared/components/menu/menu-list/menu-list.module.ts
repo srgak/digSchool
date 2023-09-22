@@ -2,7 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MenuListComponent } from './menu-list.component';
 import { RouterModule } from '@angular/router';
-import { DirectivesModule } from 'src/app/shared/directives/directives.module';
+import { TooltipModule } from 'src/app/shared/directives/tooltip/tooltip.module';
+import { MenuLogoutModule } from 'src/app/shared/directives/menu/menu-logout/menu-logout.module';
+import { MenuLinkModule } from 'src/app/shared/directives/menu/menu-link/menu-link.module';
 
 
 
@@ -11,7 +13,9 @@ import { DirectivesModule } from 'src/app/shared/directives/directives.module';
   imports: [
     CommonModule,
     RouterModule,
-    DirectivesModule
+    TooltipModule,
+    MenuLogoutModule,
+    MenuLinkModule
   ],
   exports: [MenuListComponent]
 })

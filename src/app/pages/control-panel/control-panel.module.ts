@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ControlPanelComponent } from './control-panel.component';
 import { ControlPanelRoutingModule } from './control-panel-routing';
-import { MaterialModule } from 'src/app/modules/material/material.module';
-import { ComponentsModule } from 'src/app/shared/components/components.module';
+import { MatTableModule } from '@angular/material/table';
+import { TableUsersModule } from 'src/app/shared/components/table-users/table-users.module';
 
 
 
@@ -12,8 +12,8 @@ import { ComponentsModule } from 'src/app/shared/components/components.module';
   imports: [
     CommonModule,
     ControlPanelRoutingModule,
-    MaterialModule,
-    ComponentsModule
+    MatTableModule,
+    TableUsersModule
   ]
 })
 export class ControlPanelModule { }
