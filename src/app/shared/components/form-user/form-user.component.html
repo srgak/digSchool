@@ -58,6 +58,11 @@
   </mat-form-field>
   <ng-container *ngIf="form.get('role')?.value === 'pupil'">
     <!-- todo компонент-форма для заполнения класса -->
+    <app-form-user-class
+      class="form__sub"
+      formControlName="class"
+      [touched]="form.get('class')!.touched"
+    ></app-form-user-class>
   </ng-container>
   <div class="form__submit">
     <button

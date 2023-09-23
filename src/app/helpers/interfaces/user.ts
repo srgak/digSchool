@@ -11,7 +11,7 @@ export interface UserAuthForm extends UserAuth {}
 export interface UserAuthDB extends UserId, UserAuth {}
 export interface UserAuthResponse extends ResponseDB, UserId {}
 
-interface ClassData {
+export interface ClassData {
   number: number;
   letter: string;
 }

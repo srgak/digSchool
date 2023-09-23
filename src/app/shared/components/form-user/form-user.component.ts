@@ -17,7 +17,7 @@ export class FormUserComponent implements OnInit {
     lastName: new FormControl(null, [Validators.required]),
     patronymic: new FormControl(null, [Validators.required]),
     role: new FormControl(null, [Validators.required]),
-    class: new FormControl(null) //todo создать отдельную форму для заполнения класса
+    class: new FormControl(null, [Validators.required])
   });
   public roles: RoleData[] = [
     {
@@ -45,11 +45,20 @@ export class FormUserComponent implements OnInit {
   ngOnInit(): void {
     if(this.data) {
       this.form.patchValue(this.data);
+      Object.keys(this.form.controls).forEach(name => {
+        if(!this.form.get(name)?.value) {
+          this.form.get(name)?.disable();
+        }
+      });
     }
-    // Object.keys(this.form.controls).forEach(name => {
-    //   if(!this.form.get(name)?.value) {
-    //     this.form.get(name)?.disable();
-    //   }
-    // });
+    this.form.get('role')?.valueChanges.subscribe(value => {
+      if(value !== 'pupil') {
+        this.form.get('class')?.disable();
+        this.form.get('class')?.markAsUntouched();
+      } else {
+        this.form.get('class')?.enable();
+      }
+      //todo подумать над универсальной реализацией
+    });
   }
 }
