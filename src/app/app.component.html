@@ -2,7 +2,7 @@
   <router-outlet></router-outlet>
 </div>
 <app-menu
-  *ngIf="authFlag.prop"
+  *ngIf="accessToken.prop"
 ></app-menu>
 <app-modal
   *ngIf="modal.isOpen"

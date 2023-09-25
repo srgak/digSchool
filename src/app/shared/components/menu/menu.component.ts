@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { Observable, Subscription, map } from 'rxjs';
+import { Observable, Subscription, map, tap } from 'rxjs';
 import { MenuData, MenuSettings } from 'src/app/helpers/interfaces/menu';
 import { SETTINGS_MENU_TOKEN } from 'src/app/helpers/tokens';
 import { UserRoleService } from 'src/app/services/storage/user-role/user-role.service';

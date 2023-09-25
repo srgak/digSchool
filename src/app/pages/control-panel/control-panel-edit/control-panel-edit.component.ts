@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserData } from 'src/app/helpers/interfaces/user';
 import { pageName } from 'src/app/helpers/routes';
-import { UsersService } from 'src/app/services/db/users/users.service';
+import { HttpService } from 'src/app/services/http/http.service';
 import { FormUserModule } from 'src/app/shared/components/form-user/form-user.module';
 
 @Component({
@@ -20,15 +20,20 @@ import { FormUserModule } from 'src/app/shared/components/form-user/form-user.mo
 export class ControlPanelEditComponent {
   constructor(
     public activatedRoute: ActivatedRoute,
-    private userData: UsersService,
-    private router: Router
+    private router: Router,
+    private http: HttpService
   ) {}
 
   public editUser(user: UserData): void {
-    this.userData.DB.put(user);
-    this.router.navigateByUrl(pageName.ControlPanel);
+    this.http.editUserData(user.id, user)
+      .subscribe(() => {
+        this.router.navigateByUrl(pageName.ControlPanel);
+      });
   }
   public deleteUser(): void {
-    this.userData.DB.delete(this.activatedRoute.snapshot.data['id']);
+    this.http.deleteUserData(this.activatedRoute.snapshot.params['id'])
+      .subscribe(() => {
+        this.router.navigateByUrl(pageName.ControlPanel);
+      });
   }
 }

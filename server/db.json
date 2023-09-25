@@ -1,0 +1,24 @@
+{
+  "users": [
+    {
+      "email": "srgak@mail.ru",
+      "password": "$2a$10$OzjHpuud3oUn6QYRwhh.d.dT4xjDMQgISu8/.yQddD7pvIjNQNMT2",
+      "id": 1
+    },
+    {
+      "id": 2
+    }
+  ],
+  "user-data": [
+    {
+      "id": 1,
+      "firstName": "Админ",
+      "lastName": "Админов",
+      "patronymic": "Админович",
+      "role": "admin"
+    }
+  ],
+  "auth": {
+    "status": "success"
+  }
+}

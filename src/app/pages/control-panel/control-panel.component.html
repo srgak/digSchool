@@ -1,5 +1,5 @@
 <h1 class="title-page">Панель управления</h1>
 <app-table-users
-  [data]="userData.storage"
+  [data]="(userList | async) || []"
   (onSelect)="editUser($event)"
 ></app-table-users>

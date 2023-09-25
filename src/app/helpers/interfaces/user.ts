@@ -1,15 +1,14 @@
-import { ResponseDB } from "./db";
-
 interface UserId {
   id: number;
 }
 interface UserAuth {
-  login: string;
+  email: string;
   password: string;
 }
 export interface UserAuthForm extends UserAuth {}
-export interface UserAuthDB extends UserId, UserAuth {}
-export interface UserAuthResponse extends ResponseDB, UserId {}
+export interface UserAuthCheck extends UserId {
+  email: string;
+}
 
 export interface ClassData {
   number: number;
@@ -27,6 +26,10 @@ interface Pupil extends Person {
   class?: ClassData
 }
 export interface UserData extends Admin, Teacher, Pupil {}
+export interface UserAuthResponse {
+  accessToken: string;
+  user: UserAuthCheck;
+}
 
 export interface RoleData {
   name: string;
