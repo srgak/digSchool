@@ -1,6 +1,18 @@
-<div class="container">
-  <router-outlet></router-outlet>
-</div>
+<header class="header">
+  <div class="container">
+    Тут должен быть логотип
+  </div>
+</header>
+<main class="wrapper">
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+</main>
+<footer class="footer">
+  <div class="container">
+    power by Angular
+  </div>
+</footer>
 <app-menu
   *ngIf="accessToken.prop"
 ></app-menu>
