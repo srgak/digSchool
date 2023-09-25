@@ -16,6 +16,17 @@
       "lastName": "Админов",
       "patronymic": "Админович",
       "role": "admin"
+    },
+    {
+      "id": 2,
+      "firstName": "Иван",
+      "lastName": "Иванов",
+      "patronymic": "Иванович",
+      "role": "pupil",
+      "class": {
+        "number": 5,
+        "letter": "Б"
+      }
     }
   ],
   "auth": {

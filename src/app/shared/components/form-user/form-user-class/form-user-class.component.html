@@ -3,34 +3,36 @@
   class="form"
   [formGroup]="form"
 >
-  <mat-form-field
-    class="form__field"
-  >
-    <mat-label>Номер</mat-label>
-    <input 
-      type="text"
-      matInput
-      formControlName="number"
+  <div class="form__wrapper">
+    <mat-form-field
+      class="form__field"
     >
-    <mat-error
-      *ngIf="form.get('number')?.hasError('required')"
+      <mat-label>Номер</mat-label>
+      <input 
+        type="text"
+        matInput
+        formControlName="number"
+      >
+      <mat-error
+        *ngIf="form.get('number')?.hasError('required')"
+      >
+        Обязательное поле
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field
+      class="form__field"
     >
-      Обязательное поле
-    </mat-error>
-  </mat-form-field>
-  <mat-form-field
-    class="form__field"
-  >
-    <mat-label>Буква</mat-label>
-    <input 
-      type="text"
-      matInput
-      formControlName="letter"
-    >
-    <mat-error
-      *ngIf="form.get('letter')?.hasError('required')"
-    >
-      Обязательное поле
-    </mat-error>
-  </mat-form-field>
+      <mat-label>Буква</mat-label>
+      <input 
+        type="text"
+        matInput
+        formControlName="letter"
+      >
+      <mat-error
+        *ngIf="form.get('letter')?.hasError('required')"
+      >
+        Обязательное поле
+      </mat-error>
+    </mat-form-field>
+  </div>
 </div>

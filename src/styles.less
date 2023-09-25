@@ -24,13 +24,16 @@
 
 .form {
   @apply
-    grid
-    gap-20
-    grid-cols-12
     border
     rounded
-    border-active-1
-    p-20;
+    border-active-1;
+  &__wrapper {
+    @apply
+      grid
+      gap-20
+      grid-cols-12
+      p-20;
+  }
   &__field {
     @apply  
       col-span-6;
