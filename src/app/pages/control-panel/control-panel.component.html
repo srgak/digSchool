@@ -3,3 +3,10 @@
   [data]="(userList | async) || []"
   (onSelect)="editUser($event)"
 ></app-table-users>
+<a
+  mat-button
+  color="primary"
+  routerLink="create"
+>
+  Создать
+</a>

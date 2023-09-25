@@ -4,6 +4,7 @@ import { NgModule } from "@angular/core";
 import { ControlPanelEditComponent } from "./control-panel-edit/control-panel-edit.component";
 import { pageName } from "src/app/helpers/routes";
 import { userEditResolver } from "src/app/resolvers/user-edit";
+import { ControlPanelCreateComponent } from "./control-panel-create/control-panel-create.component";
 
 const routes: Routes = [
   {
@@ -18,6 +19,11 @@ const routes: Routes = [
     resolve: [
       userEditResolver
     ]
+  },
+  {
+    path: `${pageName.ControlPanelCreate}`,
+    pathMatch: 'full',
+    component: ControlPanelCreateComponent
   }
 ];
 

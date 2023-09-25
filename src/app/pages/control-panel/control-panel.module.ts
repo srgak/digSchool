@@ -4,6 +4,7 @@ import { ControlPanelComponent } from './control-panel.component';
 import { ControlPanelRoutingModule } from './control-panel-routing';
 import { MatTableModule } from '@angular/material/table';
 import { TableUsersModule } from 'src/app/shared/components/table-users/table-users.module';
+import { MatButtonModule } from '@angular/material/button';
 
 
 
@@ -13,7 +14,8 @@ import { TableUsersModule } from 'src/app/shared/components/table-users/table-us
     CommonModule,
     ControlPanelRoutingModule,
     MatTableModule,
-    TableUsersModule
+    TableUsersModule,
+    MatButtonModule
   ]
 })
 export class ControlPanelModule { }
