@@ -10,9 +10,32 @@
     @apply
       rounded-circle
       bg-active-3
+      border-active-2
+      border-2
       w-50
       h-50
       m-auto
-      block;
+      block
+      relative;
+    &__line {
+      @apply
+        w-30
+        bg-active-4
+        absolute
+        left-half
+        top-half;
+      height: 2px;
+      &:first-child {
+        @apply
+          -translate-x-half
+          -translate-y-half;
+      }
+      &:last-child {
+        @apply
+          -translate-x-half
+          -translate-y-half
+          rotate-90;
+      }
+    }
   }
 }

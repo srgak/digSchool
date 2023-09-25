@@ -2,7 +2,10 @@
   class="menu-button"
   type="button"
   (click)="toggleMenu()"
->+</button>
+>
+  <span class="menu-button__line"></span>
+  <span class="menu-button__line"></span>
+</button>
 <ng-container *ngIf="isOpen">
   <app-menu-list [menuData]="menuList"></app-menu-list>
 </ng-container>

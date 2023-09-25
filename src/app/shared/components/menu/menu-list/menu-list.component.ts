@@ -15,7 +15,7 @@ export class MenuListComponent {
   public menuLogout: MenuItem = {
     name: 'Выход',
     link: pageName.Auth,
-    img: ''
+    img: '/assets/img/icons/logout.svg'
   };
   constructor(
     private router: Router,

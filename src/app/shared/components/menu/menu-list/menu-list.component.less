@@ -1,7 +1,8 @@
 :host {
   @apply
     absolute
-    w-full;
+    left-half
+    -translate-x-half;
   bottom: calc(100% + 20px);
 }
 .menu-list {
@@ -13,17 +14,22 @@
     p-10
     flex
     justify-center
-    gap-x-20
-    m-auto;
-    max-width: calc(100% - 20px);
+    gap-x-20;
   &__link {
     @apply
-      inline-block
+      inline-flex
+      justify-center
+      items-center
       w-50
       h-50
       rounded-circle
       bg-active-3
       hover_bg-active-1;
+      img {
+        @apply
+          w-40
+          h-40;
+      }
   }
 }
 

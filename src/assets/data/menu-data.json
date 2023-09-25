@@ -3,12 +3,12 @@
     {
       "name": "Главная",
       "link": "dashboard",
-      "img": ""
+      "img": "/assets/img/icons/home.svg"
     },
     {
       "name": "Панель управления пользователями",
       "link": "control-panel",
-      "img": ""
+      "img": "/assets/img/icons/control-panel.svg"
     }
   ],
   "pupil": [
