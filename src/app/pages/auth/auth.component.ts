@@ -11,6 +11,7 @@ import { ModalService } from 'src/app/services/modal/modal.service';
 import { AccessTokenService } from 'src/app/services/storage/access-token/access-token.service';
 import { AuthFlagService } from 'src/app/services/storage/auth-flag/auth-flag.service';
 import { UserIdService } from 'src/app/services/storage/user-id/user-id.service';
+import { UserRoleService } from 'src/app/services/storage/user-role/user-role.service';
 
 @Component({
   templateUrl: './auth.component.html',
@@ -29,7 +30,8 @@ export class AuthComponent {
     public modal: ModalService,
     private http: HttpService,
     private accessToken: AccessTokenService,
-    private user: UsersService
+    private user: UsersService,
+    private userRole: UserRoleService
   ) {}
 
   public sendForm() {
@@ -58,6 +60,7 @@ export class AuthComponent {
   }
 
   private loginSuccess = (data: UserAuthResponse): void => {
+    this.userRole.prop = data.user.role;
     this.accessToken.prop = data.accessToken;
     // this.user.currentUser = data.user;
     this.userId.prop = data.user.id;
@@ -67,9 +70,4 @@ export class AuthComponent {
   public showModalAuth() {
     //todo показать модалку с информацией 
   }
-
-  // private saveData(data: UserAuthResponse): void {
-  //   this.authFlag.prop = true;
-  //   this.userId.prop = data.id;
-  // }
 }

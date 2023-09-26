@@ -12,6 +12,8 @@ export class FormUserComponent implements OnInit {
   @Input() public data?: UserData;
   @Output() public onComplete: EventEmitter<UserData> = new EventEmitter();
   public form: FormGroup = new FormGroup({
+    email: new FormControl(null, [Validators.required]),
+    password: new FormControl(null, [Validators.required]),
     id: new FormControl(null),
     firstName: new FormControl(null, [Validators.required]),
     lastName: new FormControl(null, [Validators.required]),

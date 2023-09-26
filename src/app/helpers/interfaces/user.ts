@@ -6,9 +6,9 @@ interface UserAuth {
   password: string;
 }
 export interface UserAuthForm extends UserAuth {}
-export interface UserAuthCheck extends UserId {
-  email: string;
-}
+// export interface UserAuthCheck extends UserId {
+//   email: string;
+// }
 
 export interface ClassData {
   number: number;
@@ -25,10 +25,10 @@ interface Teacher extends Person {}
 interface Pupil extends Person {
   class?: ClassData
 }
-export interface UserData extends Admin, Teacher, Pupil {}
+export interface UserData extends Admin, Teacher, Pupil, UserAuth {}
 export interface UserAuthResponse {
   accessToken: string;
-  user: UserAuthCheck;
+  user: UserData;
 }
 
 export interface RoleData {

@@ -4,6 +4,36 @@
   (submit)="onSubmit()"
 >
   <div class="form__wrapper">
+    <mat-form-field
+      class="form__field"
+    >
+      <mat-label>email</mat-label>
+      <input 
+        type="text"
+        matInput
+        formControlName="email"
+      >
+      <mat-error
+        *ngIf="form.get('email')?.hasError('required')"
+      >
+        Обязательное поле
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field
+      class="form__field"
+    >
+      <mat-label>Пароль</mat-label>
+      <input 
+        type="text"
+        matInput
+        formControlName="password"
+      >
+      <mat-error
+        *ngIf="form.get('password')?.hasError('required')"
+      >
+        Обязательное поле
+      </mat-error>
+    </mat-form-field>
     <mat-form-field class="form__field">
       <mat-label>Имя</mat-label>
       <input
@@ -59,7 +89,6 @@
     </mat-form-field>
   </div>
   <ng-container *ngIf="form.get('role')?.value === 'pupil'">
-    <!-- todo компонент-форма для заполнения класса -->
     <app-form-user-class
       class="form__sub"
       formControlName="class"
@@ -68,11 +97,7 @@
   </ng-container>
   <div class="form__wrapper">
     <div class="form__submit">
-      <button
-        mat-button
-        color="accent"
-        type="submit"
-      >Изменить</button>
+      <ng-content select="button"></ng-content>
     </div>
   </div>
 </form>

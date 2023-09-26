@@ -10,9 +10,6 @@ export const userDataResolver: ResolveFn<UserData> = (): Observable<UserData> =>
   const role = inject(UserRoleService);
   return inject(HttpService).getUserData(inject(UserIdService).prop)
     .pipe(
-      map(
-        data => data[0]
-      ),
       tap(data => {
         role.prop = data.role;
       })

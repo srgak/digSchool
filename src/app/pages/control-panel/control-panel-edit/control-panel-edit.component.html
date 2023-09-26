@@ -1,8 +1,15 @@
 <app-form-user
   [data]="(activatedRoute.data | async)!['0']"
   (onComplete)="editUser($event)"
-></app-form-user>
-<!-- todo кнопка для удаления -->
+>
+  <button
+    mat-button
+    color="accent"
+    type="submit"
+  >
+    Имзенить
+  </button>
+</app-form-user>
 <button
   type="button"
   (click)="deleteUser()"

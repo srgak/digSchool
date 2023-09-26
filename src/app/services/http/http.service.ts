@@ -13,6 +13,9 @@ export class HttpService {
     private http: HttpClient
   ) { }
 
+  public register(data: UserData): Observable<UserAuthResponse> {
+    return this.http.post<UserAuthResponse>(`${environments.apiUrl}register`, data);
+  }
   public login(data: UserAuthForm): Observable<UserAuthResponse> {
     return this.http.post<UserAuthResponse>(`${environments.apiUrl}login`, data);
   }
@@ -23,16 +26,16 @@ export class HttpService {
       }
     })
   }
-  public getUserData(id?: number): Observable<UserData[]> {
-    if(id) {
-      return this.http.get<UserData[]>(`${environments.apiUrl}user-data?id=${id}`);
-    }
-    return this.http.get<UserData[]>(`${environments.apiUrl}user-data`);
+  public getUserData(id?: number): Observable<UserData> {
+    return this.http.get<UserData>(`${environments.apiUrl}users/${id}`);
+  }
+  public getUserList(): Observable<UserData[]> {
+    return this.http.get<UserData[]>(`${environments.apiUrl}users`);
   }
   public editUserData(id: number, data: UserData): Observable<UserData> {
-    return this.http.put<UserData>(`${environments.apiUrl}user-data/${id}`, data);
+    return this.http.put<UserData>(`${environments.apiUrl}users/${id}`, data);
   }
   public deleteUserData(id: number): Observable<any> {
-    return this.http.delete(`${environments.apiUrl}user-data/${id}`);
+    return this.http.delete(`${environments.apiUrl}users/${id}`);
   }
 }
