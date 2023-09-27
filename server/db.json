@@ -8,6 +8,12 @@
       "lastName": "Админов",
       "patronymic": "Админович",
       "role": "admin"
+    },
+    {
+      "id": 2,
+      "role": "teacher",
+      "firstName": "Татьяна",
+      "subject": "Математика"
     }
   ],
   "auth": {

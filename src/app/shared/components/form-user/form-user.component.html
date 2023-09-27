@@ -88,12 +88,28 @@
       </mat-error>
     </mat-form-field>
   </div>
-  <ng-container *ngIf="form.get('role')?.value === 'pupil'">
-    <app-form-user-class
-      class="form__sub"
-      formControlName="class"
-      [touched]="form.get('class')!.touched"
-    ></app-form-user-class>
+  <ng-container
+    [ngSwitch]="form.get('role')?.value"
+  >
+    <ng-container *ngSwitchCase="'pupil'">
+      <app-form-user-class
+        class="form__sub"
+        formControlName="class"
+        [touched]="form.get('class')!.touched"
+      ></app-form-user-class>
+      <app-form-list>
+        <ng-container formArrayName="subjectsStudied">
+          <app-form-user-academic-subject
+            *ngFor="let item of academicSubject['controls']; let i = index"
+            formControlName="{{i}}"
+            [touched]="item!.touched"
+          ></app-form-user-academic-subject>
+        </ng-container>
+      </app-form-list>
+    </ng-container>
+    <ng-container *ngSwitchCase="'teacher'">
+      Учитель
+    </ng-container>
   </ng-container>
   <div class="form__wrapper">
     <div class="form__submit">

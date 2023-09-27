@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { RoleData, UserData } from 'src/app/helpers/interfaces/user';
+import { ToggleControls } from 'src/app/helpers/toggle-controls';
 
 @Component({
   selector: 'app-form-user',
@@ -19,7 +20,10 @@ export class FormUserComponent implements OnInit {
     lastName: new FormControl(null, [Validators.required]),
     patronymic: new FormControl(null, [Validators.required]),
     role: new FormControl(null, [Validators.required]),
-    class: new FormControl(null, [Validators.required])
+    class: new FormControl(null, [Validators.required]),
+    subjectsStudied: new FormArray([
+      new FormControl(null, [Validators.required])
+    ])
   });
   public roles: RoleData[] = [
     {
@@ -35,6 +39,12 @@ export class FormUserComponent implements OnInit {
       value: 'teacher'
     }
   ];
+  private toggleControls: ToggleControls = new ToggleControls(this.form, {
+    pupil: ['class', 'subjectsStudied']
+  });
+  get academicSubject(): FormArray {
+    return this.form.get('subjectsStudied') as FormArray;
+  }
 
   public onSubmit(): void {
     if(this.form.valid) {
@@ -54,13 +64,11 @@ export class FormUserComponent implements OnInit {
       });
     }
     this.form.get('role')?.valueChanges.subscribe(value => {
-      if(value !== 'pupil') {
-        this.form.get('class')?.disable();
-        this.form.get('class')?.markAsUntouched();
-      } else {
-        this.form.get('class')?.enable();
-      }
-      //todo подумать над универсальной реализацией
+      this.toggleControls.toggle(value);
+    });
+
+    this.form.valueChanges.subscribe(() => {
+      console.log(this.form.controls);
     });
   }
 }

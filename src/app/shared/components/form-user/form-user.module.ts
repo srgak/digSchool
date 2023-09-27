@@ -7,6 +7,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { FormUserClassModule } from './form-user-class/form-user-class.module';
+import { FormUserAcademicSubjectModule } from './form-user-academic-subject/form-user-academic-subject.module';
+import { FormListModule } from '../form-list/form-list.module';
 
 
 
@@ -19,7 +21,9 @@ import { FormUserClassModule } from './form-user-class/form-user-class.module';
     MatInputModule,
     MatSelectModule,
     MatButtonModule,
-    FormUserClassModule
+    FormUserClassModule,
+    FormUserAcademicSubjectModule,
+    FormListModule
   ],
   exports: [FormUserComponent]
 })

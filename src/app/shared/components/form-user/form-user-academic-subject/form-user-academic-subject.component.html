@@ -1,0 +1,39 @@
+<form
+  class="form"
+  [formGroup]="form"
+>
+  <div class="form__wrapper">
+    <mat-form-field class="form__field">
+      <mat-label>Предмет</mat-label>
+      <mat-select formControlName="subject">
+        <mat-option
+          *ngFor="let item of subjects"
+          [value]="item"
+        >
+          {{item}}
+        </mat-option>
+      </mat-select>
+      <mat-error
+        *ngIf="form.get('subject')!.hasError('required')"
+      >
+        Обязательное поле
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="form__field">
+      <mat-label>Учитель</mat-label>
+      <mat-select formControlName="teacher">
+        <mat-option
+          *ngFor="let item of teachers"
+          [value]="item"
+        >
+          {{item}}
+        </mat-option>
+      </mat-select>
+      <mat-error
+        *ngIf="form.get('teacher')!.hasError('required')"
+      >
+        Обязательное поле
+      </mat-error>
+    </mat-form-field>
+  </div>
+</form>

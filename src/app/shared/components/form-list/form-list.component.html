@@ -1,0 +1,16 @@
+<div class="form-list">
+  <div class="form-list__control">
+    <button 
+      type="button"
+      class="form-list__control-button"
+      (click)="remove()"
+      [disabled]="array['controls'].length <= 1"
+    >-</button>
+    <button
+      type="button" 
+      class="form-list__control-button"
+      (click)="add()"
+    >+</button>
+  </div>
+  <ng-content select="[formArrayName]"></ng-content>
+</div>

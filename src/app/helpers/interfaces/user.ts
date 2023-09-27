@@ -21,7 +21,9 @@ interface Person extends UserId {
   role: string;
 }
 interface Admin extends Person {}
-interface Teacher extends Person {}
+interface Teacher extends Person {
+  subject: string;
+}
 interface Pupil extends Person {
   class?: ClassData
 }
@@ -34,4 +36,9 @@ export interface UserAuthResponse {
 export interface RoleData {
   name: string;
   value: string;
+}
+
+export interface SubjectData {
+  name: string;
+  teacher: string;
 }

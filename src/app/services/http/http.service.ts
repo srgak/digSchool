@@ -38,4 +38,8 @@ export class HttpService {
   public deleteUserData(id: number): Observable<any> {
     return this.http.delete(`${environments.apiUrl}users/${id}`);
   }
+
+  public getTeachers(subject: string): Observable<UserData[]> {
+    return this.http.get<UserData[]>(`${environments.apiUrl}users?role=teacher&subject=${subject}`);
+  }
 }
