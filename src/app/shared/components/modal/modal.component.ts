@@ -1,6 +1,7 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, ComponentRef, EventEmitter, Input, OnDestroy, Output, ViewChild, ViewContainerRef } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, Output, ViewChild, ViewContainerRef } from '@angular/core';
 import { BodyScroll } from 'src/app/helpers/body-scroll';
 import { ModalData } from 'src/app/helpers/interfaces/modal';
+import { AdComponent } from 'src/app/helpers/interfaces/ad-components';
 
 @Component({
   selector: 'app-modal',
@@ -9,22 +10,27 @@ import { ModalData } from 'src/app/helpers/interfaces/modal';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ModalComponent extends BodyScroll implements AfterViewInit, OnDestroy {
-  @ViewChild('outer', {read: ViewContainerRef}) private vcr!: ViewContainerRef;
+  @ViewChild('dynamic', { read: ViewContainerRef }) private viewRef!: ViewContainerRef;
   @Input() public componentData?: ModalData;
   @Output() public onClose: EventEmitter<void> = new EventEmitter();
-  private currentComponent!: ComponentRef<any>;
 
+  constructor(
+    private cdr: ChangeDetectorRef
+  ) {
+    super();
+  }
   public close(): void {
-    this.vcr.clear();
+    this.viewRef.clear();
     this.onClose.emit();
   }
 
   ngAfterViewInit(): void {
-    this.vcr.clear();
+    this.viewRef.clear();
     if(this.componentData) {
-      this.currentComponent = this.vcr.createComponent(this.componentData.component);
-      this.currentComponent.instance.data = this.componentData.data;
+      const component = this.viewRef.createComponent<AdComponent>(this.componentData.component);
+      component.instance.data = this.componentData.data;
       this.lockScroll();
+      this.cdr.detectChanges();
     }
   }
   ngOnDestroy(): void {

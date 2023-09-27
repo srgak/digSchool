@@ -2,13 +2,13 @@
 <form
   class="form"
   [formGroup]="form"
-  (submit)="sendForm()"
+  (submit)="onSubmit()"
 >
   <div class="form__wrapper">
     <mat-form-field
     class="form__field"
   >
-    <mat-label>Логин</mat-label>
+    <mat-label>Email</mat-label>
       <input
         type="text"
         matInput
@@ -16,8 +16,13 @@
         formControlName="email"
       >
       <mat-error 
-        *ngIf="form.get('login')?.hasError('required')"
+        *ngIf="form.get('email')?.hasError('required')"
       >Обязательное поле</mat-error>
+      <mat-error
+        *ngIf="form.get('email')!.hasError('email')"
+      >
+        Неправильный email
+      </mat-error>
     </mat-form-field>
     <mat-form-field
       class="form__field"
