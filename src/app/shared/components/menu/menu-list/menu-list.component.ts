@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuData, MenuItem } from 'src/app/helpers/interfaces/menu';
 import { pageName } from 'src/app/helpers/routes';
@@ -11,7 +11,7 @@ import { AuthFlagService } from 'src/app/services/storage/auth-flag/auth-flag.se
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MenuListComponent {
-  @Input() public menuData!: MenuData;
+  @Input() public menuData!: MenuData | null;
   public menuLogout: MenuItem = {
     name: 'Выход',
     link: pageName.Auth,

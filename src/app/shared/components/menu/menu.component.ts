@@ -1,8 +1,7 @@
-import { ChangeDetectionStrategy, Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { Observable, Subscription, map, tap } from 'rxjs';
-import { MenuData, MenuSettings } from 'src/app/helpers/interfaces/menu';
+import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
+import { Observable } from 'rxjs';
+import { MenuData } from 'src/app/helpers/interfaces/menu';
 import { SETTINGS_MENU_TOKEN } from 'src/app/helpers/tokens';
-import { UserRoleService } from 'src/app/services/storage/user-role/user-role.service';
 
 @Component({
   selector: 'app-menu',
@@ -10,28 +9,13 @@ import { UserRoleService } from 'src/app/services/storage/user-role/user-role.se
   styleUrls: ['./menu.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MenuComponent implements OnInit, OnDestroy {
+export class MenuComponent {
   public isOpen: boolean = false;
   public menuList!: MenuData;
-  private subs: Subscription = new Subscription();
   constructor(
-    @Inject(SETTINGS_MENU_TOKEN) public settings: Observable<MenuSettings>,
-    private userRole: UserRoleService
+    @Inject(SETTINGS_MENU_TOKEN) public settings: Observable<MenuData>
   ) {}
   public toggleMenu(): void {
     this.isOpen = !this.isOpen;
-  }
-  ngOnInit(): void {
-    this.subs.add(
-      this.settings.pipe(
-        map(list => list[this.userRole.prop])
-      )
-      .subscribe(value => {
-        this.menuList = value;
-      })
-    );
-  }
-  ngOnDestroy(): void {
-    this.subs.unsubscribe();
   }
 }

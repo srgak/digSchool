@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 import { MenuComponent } from './menu.component';
 import { MenuListModule } from './menu-list/menu-list.module';
 import { SETTINGS_MENU_TOKEN } from 'src/app/helpers/tokens';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { HttpClient }   from '@angular/common/http';
-import { MenuSettings } from 'src/app/helpers/interfaces/menu';
+import { MenuData, MenuSettings } from 'src/app/helpers/interfaces/menu';
+import { UserRoleService } from 'src/app/services/storage/user-role/user-role.service';
 
 
 @NgModule({
@@ -18,12 +19,19 @@ import { MenuSettings } from 'src/app/helpers/interfaces/menu';
   providers: [
     {
       provide: SETTINGS_MENU_TOKEN,
-      useFactory: (http: HttpClient): Observable<MenuSettings> => {
+      useFactory: (
+        http: HttpClient,
+        role: UserRoleService
+      ): Observable<MenuData> => {
         return http
           .get<MenuSettings>('/assets/data/menu-data.json')
+          .pipe(
+            map(data => data[role.prop])
+          )
       },
       deps: [
-        HttpClient
+        HttpClient,
+        UserRoleService
       ]
     }
   ]

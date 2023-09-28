@@ -15,24 +15,24 @@
     {
       "name": "Главная",
       "link": "dashboard",
-      "img": ""
+      "img": "/assets/img/icons/home.svg"
     },
     {
       "name": "Дневник",
       "link": "",
-      "img": ""
+      "img": "/assets/img/icons/diary.svg"
     }
   ],
   "teacher": [
     {
       "name": "Главная",
       "link": "dashboard",
-      "img": ""
+      "img": "/assets/img/icons/home.svg"
     },
     {
       "name": "Журнал",
       "link": "",
-      "img": ""
+      "img": "/assets/img/icons/magazine.svg"
     }
   ]
 }
