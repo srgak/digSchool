@@ -7,10 +7,10 @@
       <mat-label>Предмет</mat-label>
       <mat-select formControlName="name">
         <mat-option
-          *ngFor="let item of subjects"
-          [value]="item"
+          *ngFor="let item of lessonsData.list"
+          [value]="item.value"
         >
-          {{item}}
+          {{item.name}}
         </mat-option>
       </mat-select>
       <mat-error

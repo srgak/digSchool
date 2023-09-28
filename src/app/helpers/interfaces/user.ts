@@ -34,8 +34,3 @@ export interface UserAuthResponse {
   accessToken: string;
   user: UserData;
 }
-
-export interface RoleData {
-  name: string;
-  value: string;
-}

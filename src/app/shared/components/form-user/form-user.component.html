@@ -80,7 +80,7 @@
       <mat-label>Роль</mat-label>
       <mat-select formControlName="role">
         <mat-option 
-          *ngFor="let item of roles" 
+          *ngFor="let item of rolesData.list" 
           [value]="item.value"
         >
           {{item.name}}
@@ -113,7 +113,28 @@
       </app-form-list>
     </ng-container>
     <ng-container *ngSwitchCase="'teacher'">
-      Учитель
+      <div class="form__wrapper">
+        <mat-form-field
+          class="form__field"
+        >
+          <mat-label>Преподаваемый предмет</mat-label>
+          <mat-select
+            formControlName="teachLesson"
+          >
+            <mat-option
+              *ngFor="let item of lessonsData.list"
+              [value]="item.value"
+            >
+              {{item.name}}
+            </mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="teachLesson.hasError('required')"
+          >
+            {{teachLesson.errors?.['required']}}
+          </mat-error>
+        </mat-form-field>
+      </div>
     </ng-container>
   </ng-container>
   <div class="form__wrapper">

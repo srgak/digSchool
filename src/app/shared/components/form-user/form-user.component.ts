@@ -1,8 +1,10 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormMain, FormSubmit } from 'src/app/helpers/interfaces/form';
-import { RoleData, UserData } from 'src/app/helpers/interfaces/user';
+import { UserData } from 'src/app/helpers/interfaces/user';
 import { ToggleControls } from 'src/app/helpers/toggle-controls';
 import { FormUser } from './form-user';
+import { SelectDataRolesService } from 'src/app/services/select-data/select-data-roles/select-data-roles.service';
+import { SelectDataLessonsService } from 'src/app/services/select-data/select-data-lessons/select-data-lessons.service';
 
 @Component({
   selector: 'app-form-user',
@@ -13,24 +15,16 @@ import { FormUser } from './form-user';
 export class FormUserComponent extends FormUser implements FormMain, FormSubmit, OnInit {
   @Input() public data?: UserData;
   @Output() public onComplete: EventEmitter<UserData> = new EventEmitter();
-  
-  public roles: RoleData[] = [
-    {
-      name: 'Администратор',
-      value: 'admin'
-    },
-    {
-      name: 'Ученик',
-      value: 'pupil'
-    },
-    {
-      name: 'Учитель',
-      value: 'teacher'
-    }
-  ];
+
   private toggleControls: ToggleControls = new ToggleControls(this.form, {
     pupil: ['class', 'lessons']
   });
+  constructor(
+    public rolesData: SelectDataRolesService,
+    public lessonsData: SelectDataLessonsService
+  ) {
+    super();
+  }
 
   public onSubmit(): void {
     if(this.form.valid) {

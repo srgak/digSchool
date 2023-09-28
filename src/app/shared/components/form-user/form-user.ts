@@ -13,7 +13,8 @@ export class FormUser implements FormMain {
     patronymic: new FormControl(null, [this.validators.validateRequired]),
     role: new FormControl(null, [this.validators.validateRequired]),
     class: new FormControl(null, [this.validators.validateRequired]),
-    lessons: new FormArray([], [this.validators.validateRequired])
+    lessons: new FormArray([], [this.validators.validateRequired]),
+    teachLesson: new FormControl(null, [this.validators.validateRequired])
   });
 
   public get email(): FormControl {
@@ -39,5 +40,8 @@ export class FormUser implements FormMain {
   }
   public get lessons(): FormArray {
     return this.form.get('lessons') as FormArray;
+  }
+  public get teachLesson(): FormControl {
+    return this.form.get('teachLesson') as FormControl;
   }
 }

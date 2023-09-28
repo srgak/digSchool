@@ -9,7 +9,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormUserClassModule } from './form-user-class/form-user-class.module';
 import { FormUserLessonModule } from './form-user-lesson/form-user-lesson.module';
 import { FormListModule } from '../form-list/form-list.module';
-import { ValidatorsService } from 'src/app/services/validators/validators.service';
+import { SelectDataRolesService } from 'src/app/services/select-data/select-data-roles/select-data-roles.service';
+import { SelectDataLessonsService } from 'src/app/services/select-data/select-data-lessons/select-data-lessons.service';
 
 
 
@@ -28,7 +29,8 @@ import { ValidatorsService } from 'src/app/services/validators/validators.servic
   ],
   exports: [FormUserComponent],
   providers: [
-    ValidatorsService
+    SelectDataRolesService,
+    SelectDataLessonsService
   ]
 })
 export class FormUserModule { }

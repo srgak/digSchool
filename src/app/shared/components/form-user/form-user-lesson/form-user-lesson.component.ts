@@ -5,6 +5,7 @@ import { FormCustom } from 'src/app/helpers/interfaces/form';
 import { LessonData } from 'src/app/helpers/interfaces/user';
 import { HttpService } from 'src/app/services/http/http.service';
 import { FormUserLesson } from './form-user-lessons';
+import { SelectDataLessonsService } from 'src/app/services/select-data/select-data-lessons/select-data-lessons.service';
 
 @Component({
   selector: 'app-form-user-lesson',
@@ -40,7 +41,8 @@ export class FormUserLessonComponent extends FormUserLesson implements FormCusto
   public teachers: string[] = [];
 
   constructor(
-    private http: HttpService
+    private http: HttpService,
+    public lessonsData: SelectDataLessonsService
   ) {
     super();
   }
