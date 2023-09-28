@@ -8,15 +8,12 @@ export class FormUser implements FormMain {
   public form: FormGroup = new FormGroup({
     email: new FormControl(null, [this.validators.validateRequired, this.validators.validateEmail]),
     password: new FormControl(null, [this.validators.validateRequired]),
-    id: new FormControl(null),
     firstName: new FormControl(null, [this.validators.validateRequired]),
     lastName: new FormControl(null, [this.validators.validateRequired]),
     patronymic: new FormControl(null, [this.validators.validateRequired]),
     role: new FormControl(null, [this.validators.validateRequired]),
     class: new FormControl(null, [this.validators.validateRequired]),
-    lessons: new FormArray([
-      new FormControl(null, [this.validators.validateRequired])
-    ])
+    lessons: new FormArray([], [this.validators.validateRequired])
   });
 
   public get email(): FormControl {

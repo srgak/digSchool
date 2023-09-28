@@ -25,7 +25,7 @@ export class ControlPanelEditComponent {
   ) {}
 
   public editUser(user: UserData): void {
-    this.http.editUserData(user.id, user)
+    this.http.editUserData(this.activatedRoute.snapshot.params['id'], user)
       .subscribe(() => {
         this.router.navigateByUrl(pageName.ControlPanel);
       });

@@ -11,13 +11,12 @@
     },
     {
       "email": "teacher@mail.ru",
-      "password": "$2a$10$Rsv4zWYjNJqbUqn1TwcKduGGgzLtDsQI.SD3HtSNdTZvx/UqKyoo2",
-      "id": 2,
+      "password": "$2a$10$VDTJsD6FoMzdz8R8yejxA.vjCz0uYef04AO21OJguLPW4BHqxXgS6",
       "firstName": "Татьяна",
       "lastName": "Петрова",
       "patronymic": "Сергеевна",
       "role": "teacher",
-      "lessons": []
+      "id": 2
     }
   ],
   "auth": {

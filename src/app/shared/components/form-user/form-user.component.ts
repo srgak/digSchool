@@ -44,17 +44,13 @@ export class FormUserComponent extends FormUser implements FormMain, FormSubmit,
     if(this.data) {
       this.form.patchValue(this.data);
       Object.keys(this.form.controls).forEach(name => {
-        if(!this.form.get(name)?.value) {
+        if(!this.form.get(name)?.value || !this.form.get(name)?.value.length) {
           this.form.get(name)?.disable();
         }
       });
     }
-    this.form.get('role')?.valueChanges.subscribe(value => {
+    this.role?.valueChanges.subscribe(value => {
       this.toggleControls.toggle(value);
-    });
-
-    this.form.valueChanges.subscribe(() => {
-      console.log(this.form.controls);
     });
   }
 }
