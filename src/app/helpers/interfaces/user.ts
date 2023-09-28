@@ -6,13 +6,14 @@ interface UserAuth {
   password: string;
 }
 export interface UserAuthForm extends UserAuth {}
-// export interface UserAuthCheck extends UserId {
-//   email: string;
-// }
 
 export interface ClassData {
   number: number;
   letter: string;
+}
+export interface LessonData {
+  name: string;
+  teacher: string;
 }
 interface Person extends UserId {
   firstName: string;
@@ -22,10 +23,11 @@ interface Person extends UserId {
 }
 interface Admin extends Person {}
 interface Teacher extends Person {
-  lesson: string;
+  teachLesson?: string;
 }
 interface Pupil extends Person {
-  class?: ClassData
+  class?: ClassData;
+  lessons?: LessonData[];
 }
 export interface UserData extends Admin, Teacher, Pupil, UserAuth {}
 export interface UserAuthResponse {
@@ -36,9 +38,4 @@ export interface UserAuthResponse {
 export interface RoleData {
   name: string;
   value: string;
-}
-
-export interface SubjectData {
-  name: string;
-  teacher: string;
 }

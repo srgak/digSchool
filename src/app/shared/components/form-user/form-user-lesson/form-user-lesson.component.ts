@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, forwardRe
 import { NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors } from '@angular/forms';
 import { switchMap } from 'rxjs';
 import { FormCustom } from 'src/app/helpers/interfaces/form';
-import { SubjectData } from 'src/app/helpers/interfaces/user';
+import { LessonData } from 'src/app/helpers/interfaces/user';
 import { HttpService } from 'src/app/services/http/http.service';
 import { FormUserLesson } from './form-user-lessons';
 
@@ -45,9 +45,9 @@ export class FormUserLessonComponent extends FormUserLesson implements FormCusto
     super();
   }
 
-  private onChange(_: SubjectData | null) {};
+  private onChange(_: LessonData | null) {};
   private onTouch() {}
-  writeValue(obj: SubjectData): void {
+  writeValue(obj: LessonData): void {
     this.form.patchValue(obj);
   }
   registerOnChange(fn: any): void {

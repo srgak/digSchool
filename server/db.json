@@ -10,10 +10,14 @@
       "role": "admin"
     },
     {
+      "email": "teacher@mail.ru",
+      "password": "$2a$10$Rsv4zWYjNJqbUqn1TwcKduGGgzLtDsQI.SD3HtSNdTZvx/UqKyoo2",
       "id": 2,
-      "role": "teacher",
       "firstName": "Татьяна",
-      "lesson": "Математика"
+      "lastName": "Петрова",
+      "patronymic": "Сергеевна",
+      "role": "teacher",
+      "lessons": []
     }
   ],
   "auth": {
