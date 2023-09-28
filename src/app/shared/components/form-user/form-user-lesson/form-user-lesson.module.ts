@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormUserAcademicSubjectComponent } from './form-user-academic-subject.component';
+import { FormUserLessonComponent } from './form-user-lesson.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 
 
 
 @NgModule({
-  declarations: [FormUserAcademicSubjectComponent],
+  declarations: [FormUserLessonComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     MatSelectModule
   ],
-  exports: [FormUserAcademicSubjectComponent]
+  exports: [FormUserLessonComponent]
 })
-export class FormUserAcademicSubjectModule { }
+export class FormUserLessonModule { }

@@ -22,7 +22,7 @@ interface Person extends UserId {
 }
 interface Admin extends Person {}
 interface Teacher extends Person {
-  subject: string;
+  lesson: string;
 }
 interface Pupil extends Person {
   class?: ClassData

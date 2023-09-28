@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormMain, FormSubmit } from 'src/app/helpers/interfaces/form';
 import { RoleData, UserData } from 'src/app/helpers/interfaces/user';
 import { ToggleControls } from 'src/app/helpers/toggle-controls';
+import { FormUser } from './form-user';
 
 @Component({
   selector: 'app-form-user',
@@ -9,22 +10,10 @@ import { ToggleControls } from 'src/app/helpers/toggle-controls';
   styleUrls: ['./form-user.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FormUserComponent implements OnInit {
+export class FormUserComponent extends FormUser implements FormMain, FormSubmit, OnInit {
   @Input() public data?: UserData;
   @Output() public onComplete: EventEmitter<UserData> = new EventEmitter();
-  public form: FormGroup = new FormGroup({
-    email: new FormControl(null, [Validators.required]),
-    password: new FormControl(null, [Validators.required]),
-    id: new FormControl(null),
-    firstName: new FormControl(null, [Validators.required]),
-    lastName: new FormControl(null, [Validators.required]),
-    patronymic: new FormControl(null, [Validators.required]),
-    role: new FormControl(null, [Validators.required]),
-    class: new FormControl(null, [Validators.required]),
-    subjectsStudied: new FormArray([
-      new FormControl(null, [Validators.required])
-    ])
-  });
+  
   public roles: RoleData[] = [
     {
       name: 'Администратор',
@@ -40,11 +29,8 @@ export class FormUserComponent implements OnInit {
     }
   ];
   private toggleControls: ToggleControls = new ToggleControls(this.form, {
-    pupil: ['class', 'subjectsStudied']
+    pupil: ['class', 'lessons']
   });
-  get academicSubject(): FormArray {
-    return this.form.get('subjectsStudied') as FormArray;
-  }
 
   public onSubmit(): void {
     if(this.form.valid) {

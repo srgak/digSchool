@@ -14,9 +14,9 @@
         formControlName="number"
       >
       <mat-error
-        *ngIf="form.get('number')?.hasError('required')"
+        *ngIf="number.hasError('required')"
       >
-        Обязательное поле
+        {{number.errors?.['required']}}
       </mat-error>
     </mat-form-field>
     <mat-form-field
@@ -29,9 +29,9 @@
         formControlName="letter"
       >
       <mat-error
-        *ngIf="form.get('letter')?.hasError('required')"
+        *ngIf="letter.hasError('required')"
       >
-        Обязательное поле
+        {{letter.errors?.['required']}}
       </mat-error>
     </mat-form-field>
   </div>

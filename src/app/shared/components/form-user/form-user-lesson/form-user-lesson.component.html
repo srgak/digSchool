@@ -5,7 +5,7 @@
   <div class="form__wrapper">
     <mat-form-field class="form__field">
       <mat-label>Предмет</mat-label>
-      <mat-select formControlName="subject">
+      <mat-select formControlName="name">
         <mat-option
           *ngFor="let item of subjects"
           [value]="item"
@@ -14,9 +14,9 @@
         </mat-option>
       </mat-select>
       <mat-error
-        *ngIf="form.get('subject')!.hasError('required')"
+        *ngIf="name.hasError('required')"
       >
-        Обязательное поле
+        {{name.errors?.['required']}}
       </mat-error>
     </mat-form-field>
     <mat-form-field class="form__field">
@@ -30,9 +30,9 @@
         </mat-option>
       </mat-select>
       <mat-error
-        *ngIf="form.get('teacher')!.hasError('required')"
+        *ngIf="teacher.hasError('required')"
       >
-        Обязательное поле
+        {{teacher.errors?.['required']}}
       </mat-error>
     </mat-form-field>
   </div>

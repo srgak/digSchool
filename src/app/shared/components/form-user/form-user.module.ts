@@ -7,8 +7,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { FormUserClassModule } from './form-user-class/form-user-class.module';
-import { FormUserAcademicSubjectModule } from './form-user-academic-subject/form-user-academic-subject.module';
+import { FormUserLessonModule } from './form-user-lesson/form-user-lesson.module';
 import { FormListModule } from '../form-list/form-list.module';
+import { ValidatorsService } from 'src/app/services/validators/validators.service';
 
 
 
@@ -22,9 +23,12 @@ import { FormListModule } from '../form-list/form-list.module';
     MatSelectModule,
     MatButtonModule,
     FormUserClassModule,
-    FormUserAcademicSubjectModule,
+    FormUserLessonModule,
     FormListModule
   ],
-  exports: [FormUserComponent]
+  exports: [FormUserComponent],
+  providers: [
+    ValidatorsService
+  ]
 })
 export class FormUserModule { }

@@ -1,37 +1,36 @@
 import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, forwardRef } from '@angular/core';
-import { ControlValueAccessor, FormControl, FormGroup, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validators } from '@angular/forms';
+import { NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors } from '@angular/forms';
 import { switchMap } from 'rxjs';
+import { FormCustom } from 'src/app/helpers/interfaces/form';
 import { SubjectData } from 'src/app/helpers/interfaces/user';
 import { HttpService } from 'src/app/services/http/http.service';
+import { FormUserLesson } from './form-user-lessons';
 
 @Component({
-  selector: 'app-form-user-academic-subject',
-  templateUrl: './form-user-academic-subject.component.html',
-  styleUrls: ['./form-user-academic-subject.component.less'],
+  selector: 'app-form-user-lesson',
+  templateUrl: './form-user-lesson.component.html',
+  styleUrls: ['./form-user-lesson.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => FormUserAcademicSubjectComponent),
+      useExisting: forwardRef(() => FormUserLessonComponent),
       multi: true
     },
     {
       provide: NG_VALIDATORS,
-      useExisting: forwardRef(() => FormUserAcademicSubjectComponent),
+      useExisting: forwardRef(() => FormUserLessonComponent),
       multi: true
     }
   ]
 })
-export class FormUserAcademicSubjectComponent implements ControlValueAccessor, Validators, OnInit, OnDestroy {
+export class FormUserLessonComponent extends FormUserLesson implements FormCustom, OnInit, OnDestroy {
   @Input() set touched(flag: boolean) {
     if(flag) {
       this.form.markAllAsTouched();
     }
   }
-  public form: FormGroup = new FormGroup({
-    subject: new FormControl(null, [Validators.required]),
-    teacher: new FormControl(null, [Validators.required])
-  });
+  
   public subjects: string[] = [
     'Русский язык',
     'Математика',
@@ -42,7 +41,9 @@ export class FormUserAcademicSubjectComponent implements ControlValueAccessor, V
 
   constructor(
     private http: HttpService
-  ) {}
+  ) {
+    super();
+  }
 
   private onChange(_: SubjectData | null) {};
   private onTouch() {}
@@ -63,7 +64,7 @@ export class FormUserAcademicSubjectComponent implements ControlValueAccessor, V
     this.form.valueChanges.subscribe(value => {
       this.onChange(value);
     });
-    this.form.get('subject')?.valueChanges
+    this.form.get('name')?.valueChanges
       .pipe(
         switchMap((subject) => this.http.getTeachers(subject))
       )

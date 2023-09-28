@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Form } from 'src/app/helpers/interfaces/form';
+import { FormMain, FormSubmit } from 'src/app/helpers/interfaces/form';
 import { UserAuthResponse } from 'src/app/helpers/interfaces/user';
 import { pageName } from 'src/app/helpers/routes';
 import { HttpService } from 'src/app/services/http/http.service';
@@ -9,18 +8,14 @@ import { ModalService } from 'src/app/services/modal/modal.service';
 import { AccessTokenService } from 'src/app/services/storage/access-token/access-token.service';
 import { UserIdService } from 'src/app/services/storage/user-id/user-id.service';
 import { UserRoleService } from 'src/app/services/storage/user-role/user-role.service';
+import { AuthForm } from './auth-form';
 
 @Component({
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AuthComponent implements Form {
-  public form: FormGroup = new FormGroup({
-    email: new FormControl(null, [Validators.required, Validators.email]),
-    password: new FormControl(null, [Validators.required])
-  });
-
+export class AuthComponent extends AuthForm implements FormMain, FormSubmit {
   constructor(
     private router: Router,
     private userId: UserIdService,
@@ -28,7 +23,9 @@ export class AuthComponent implements Form {
     private http: HttpService,
     private accessToken: AccessTokenService,
     private userRole: UserRoleService
-  ) {}
+  ) {
+    super();
+  }
 
   public onSubmit() {
     if(this.form.valid) {

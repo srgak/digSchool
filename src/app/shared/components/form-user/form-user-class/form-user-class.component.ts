@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, forwardRef } from '@angular/core';
-import { ControlValueAccessor, FormControl, FormGroup, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator, Validators } from '@angular/forms';
+import { NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors } from '@angular/forms';
+import { FormCustom } from 'src/app/helpers/interfaces/form';
 import { ClassData } from 'src/app/helpers/interfaces/user';
+import { FormUserClass } from './form-user-class';
 
 @Component({
   selector: 'app-form-user-class',
@@ -20,17 +22,12 @@ import { ClassData } from 'src/app/helpers/interfaces/user';
     }
   ]
 })
-export class FormUserClassComponent implements ControlValueAccessor, Validator, OnInit, OnDestroy {
+export class FormUserClassComponent extends FormUserClass implements FormCustom, OnInit, OnDestroy {
   @Input() set touched(flag: boolean) {
     if(flag) {
       this.form.markAllAsTouched();
     }
   }
-  public form: FormGroup = new FormGroup({
-    number: new FormControl(null, [Validators.required]),
-    letter: new FormControl(null, [Validators.required])
-  });
-
   private onChange(_: ClassData | null) {};
   private onTouch() {}
   writeValue(obj: ClassData): void {

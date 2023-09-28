@@ -16,12 +16,14 @@
         formControlName="email"
       >
       <mat-error 
-        *ngIf="form.get('email')?.hasError('required')"
-      >Обязательное поле</mat-error>
-      <mat-error
-        *ngIf="form.get('email')!.hasError('email')"
+        *ngIf="email.hasError('required')"
       >
-        Неправильный email
+        {{email.errors?.['required']}}
+      </mat-error>
+      <mat-error
+        *ngIf="form.get('email')?.hasError('email')"
+      >
+        {{email.errors?.['email']}}
       </mat-error>
     </mat-form-field>
     <mat-form-field
@@ -35,8 +37,10 @@
         formControlName="password"
       >
       <mat-error 
-        *ngIf="form.get('password')?.hasError('required')"
-      >Обязательное поле</mat-error>
+        *ngIf="password.hasError('required')"
+      >
+        {{password.errors?.['required']}}
+      </mat-error>
     </mat-form-field>
     <div class="form__submit">
       <button
@@ -54,8 +58,4 @@
       </button>
     </div>
   </div>
-  <mat-error
-    class="form__error"
-    *ngIf="form.hasError('incorrect')"
-  >Неправильное имя пользователя или пароль. Попробуйте снова.</mat-error>
 </form>

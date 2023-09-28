@@ -14,9 +14,14 @@
         formControlName="email"
       >
       <mat-error
-        *ngIf="form.get('email')?.hasError('required')"
+        *ngIf="email.hasError('required')"
       >
-        Обязательное поле
+        {{email.errors?.['required']}}
+      </mat-error>
+      <mat-error
+        *ngIf="email.hasError('email')"
+      >
+        {{email.errors?.['emmail']}}
       </mat-error>
     </mat-form-field>
     <mat-form-field
@@ -29,9 +34,9 @@
         formControlName="password"
       >
       <mat-error
-        *ngIf="form.get('password')?.hasError('required')"
+        *ngIf="password.hasError('required')"
       >
-        Обязательное поле
+        {{password.errors?.['required']}}
       </mat-error>
     </mat-form-field>
     <mat-form-field class="form__field">
@@ -42,9 +47,9 @@
         formControlName="firstName"
       >
       <mat-error
-        *ngIf="form.get('firstName')?.hasError('required')"
+        *ngIf="firstName.hasError('required')"
       >
-        Обязательное поле
+        {{firstName.errors?.['required']}}
       </mat-error>
     </mat-form-field>
     <mat-form-field class="form__field">
@@ -54,9 +59,9 @@
         formControlName="lastName"
       >
       <mat-error
-        *ngIf="form.get('lastName')?.hasError('required')"
+        *ngIf="lastName.hasError('required')"
       >
-        Обязательное поле
+        {{lastName.errors?.['required']}}
       </mat-error>
     </mat-form-field>
     <mat-form-field class="form__field">
@@ -66,9 +71,9 @@
         formControlName="patronymic"
       >
       <mat-error
-        *ngIf="form.get('patronymic')?.hasError('required')"
+        *ngIf="patronymic.hasError('required')"
       >
-        Обязательное поле
+        {{patronymic.errors?.['required']}}
       </mat-error>
     </mat-form-field>
     <mat-form-field class="form__field">
@@ -82,28 +87,28 @@
         </mat-option>
       </mat-select>
       <mat-error
-        *ngIf="form.get('role')?.hasError('required')"
+        *ngIf="role.hasError('required')"
       >
-        Обязательное поле
+        {{role.errors?.['required']}}
       </mat-error>
     </mat-form-field>
   </div>
   <ng-container
-    [ngSwitch]="form.get('role')?.value"
+    [ngSwitch]="role.value"
   >
     <ng-container *ngSwitchCase="'pupil'">
       <app-form-user-class
         class="form__sub"
         formControlName="class"
-        [touched]="form.get('class')!.touched"
+        [touched]="class.touched"
       ></app-form-user-class>
       <app-form-list>
-        <ng-container formArrayName="subjectsStudied">
-          <app-form-user-academic-subject
-            *ngFor="let item of academicSubject['controls']; let i = index"
+        <ng-container formArrayName="lessons">
+          <app-form-user-lesson
+            *ngFor="let item of lessons['controls']; let i = index"
             formControlName="{{i}}"
             [touched]="item!.touched"
-          ></app-form-user-academic-subject>
+          ></app-form-user-lesson>
         </ng-container>
       </app-form-list>
     </ng-container>

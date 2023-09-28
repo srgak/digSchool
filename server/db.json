@@ -13,7 +13,7 @@
       "id": 2,
       "role": "teacher",
       "firstName": "Татьяна",
-      "subject": "Математика"
+      "lesson": "Математика"
     }
   ],
   "auth": {
