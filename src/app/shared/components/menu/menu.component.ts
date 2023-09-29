@@ -11,7 +11,6 @@ import { SETTINGS_MENU_TOKEN } from 'src/app/helpers/tokens';
 })
 export class MenuComponent {
   public isOpen: boolean = false;
-  public menuList!: MenuData;
   constructor(
     @Inject(SETTINGS_MENU_TOKEN) public settings: Observable<MenuData>
   ) {}

@@ -6,6 +6,10 @@
   <span class="menu-button__line"></span>
   <span class="menu-button__line"></span>
 </button>
-<ng-container *ngIf="isOpen">
-  <app-menu-list [menuData]="settings | async"></app-menu-list>
-</ng-container>
+<app-menu-list 
+  class="menu-list"
+  [ngClass]="{
+    'active': isOpen
+  }"
+  [menuData]="settings | async"
+></app-menu-list>

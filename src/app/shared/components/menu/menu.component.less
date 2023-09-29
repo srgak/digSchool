@@ -38,4 +38,15 @@
       }
     }
   }
+  &-list {
+    @apply
+      opacity-0
+      invisible;
+    transition: 0.3s;
+    &.active {
+      @apply
+        opacity-100
+        visible;
+    }
+  }
 }
