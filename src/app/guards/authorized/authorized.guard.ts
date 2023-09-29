@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 import { Observable, catchError, map, throwError } from 'rxjs';
 import { pageName } from 'src/app/helpers/routes';
-import { HttpService } from 'src/app/services/http/http.service';
+import { HttpAuthService } from 'src/app/services/http/auth/http-auth.service';
 import { AccessTokenService } from 'src/app/services/storage/access-token/access-token.service';
 
 @Injectable({
@@ -11,11 +11,11 @@ import { AccessTokenService } from 'src/app/services/storage/access-token/access
 class AuthorizedGuard {
   constructor(
     private accessToken: AccessTokenService,
-    private http: HttpService,
+    private httpAuth: HttpAuthService,
     private router: Router
   ) {}
   canActivate(): Observable<boolean> {
-    return this.http.checkAuth(this.accessToken.prop)
+    return this.httpAuth.checkAuth(this.accessToken.prop)
       .pipe(
         catchError(error => {
           this.accessToken.remove();
