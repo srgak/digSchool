@@ -1,4 +1,4 @@
-interface UserId {
+export interface UserId {
   id: number;
 }
 interface UserAuth {
