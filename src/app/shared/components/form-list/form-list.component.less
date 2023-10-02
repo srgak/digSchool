@@ -1,5 +1,9 @@
 .form {
   &-list {
+    @apply
+      flex
+      flex-col
+      gap-y-20;
     &__control {
       @apply
         flex
@@ -9,7 +13,8 @@
           w-50
           h-50
           rounded-circle
-          bg-active-3;
+          button
+          button-active;
       }
     }
   }

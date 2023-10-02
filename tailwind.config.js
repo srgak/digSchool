@@ -1,3 +1,5 @@
+const plugin = require('tailwindcss/plugin');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -73,6 +75,28 @@ module.exports = {
     },
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    plugin(function({addComponents}){
+      addComponents({
+        '.button': {
+          display: 'inline-block',
+          padding: '10px 20px',
+          borderRadius: '10px',
+          border: '1px solid hsla(0,0%,100%,.5)',
+          transition: '0.3s',
+          '&:disabled': {
+            opacity: 0.7,
+            'pointer-events': 'none'
+          }
+        },
+        '.button-active': {
+          '&:hover': {
+            backgroundColor: '#F22738',
+            borderColor: '#F22738'
+          }
+        }
+      })
+    })
+  ]
 }
 

@@ -1,4 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
+@import './assets/styles/material.less';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -10,7 +10,15 @@
     font-family: Roboto, "Helvetica Neue", sans-serif; 
     @apply
       bg-active-2
-      text-active-4;
+      text-active-4
+      text-18;
+  }
+}
+
+@layer components {
+  .container {
+    max-width: 1200px;
+    height: 100%;
   }
 }
 
@@ -24,15 +32,21 @@
 
 .form {
   @apply
-    border
     rounded
-    border-active-1;
+    px-20
+    py-30;
+  background: linear-gradient(#1E586E, #3D909E 70%, #68BDC4);
   &__wrapper {
     @apply
       grid
       gap-20
       grid-cols-12
-      p-20;
+      mb-20;
+    &:only-child,
+    &:last-child {
+      @apply
+        mb-0;
+    }
   }
   &__field {
     @apply  
@@ -87,6 +101,7 @@
     py-10;
 }
 
+
 @screen mobile {
   .title {
     &-page {
@@ -105,11 +120,5 @@
       @apply
         flex-col;
     }
-  }
-}
-
-@layer components {
-  .container {
-    max-width: 1200px;
   }
 }

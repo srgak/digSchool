@@ -1,39 +1,37 @@
-<form
-  class="form"
-  [formGroup]="form"
+<div 
+  class="form__wrapper"
+  [formGroup]="form"  
 >
-  <div class="form__wrapper">
-    <mat-form-field class="form__field">
-      <mat-label>Предмет</mat-label>
-      <mat-select formControlName="name">
-        <mat-option
-          *ngFor="let item of lessonsData.list"
-          [value]="item.value"
-        >
-          {{item.name}}
-        </mat-option>
-      </mat-select>
-      <mat-error
-        *ngIf="name.hasError('required')"
+  <mat-form-field class="form__field">
+    <mat-label>Предмет</mat-label>
+    <mat-select formControlName="name">
+      <mat-option
+        *ngFor="let item of lessonsData.list"
+        [value]="item.value"
       >
-        {{name.errors?.['required']}}
-      </mat-error>
-    </mat-form-field>
-    <mat-form-field class="form__field">
-      <mat-label>Учитель</mat-label>
-      <mat-select formControlName="teacher">
-        <mat-option
-          *ngFor="let item of teachers"
-          [value]="item"
-        >
-          {{item}}
-        </mat-option>
-      </mat-select>
-      <mat-error
-        *ngIf="teacher.hasError('required')"
+        {{item.name}}
+      </mat-option>
+    </mat-select>
+    <mat-error
+      *ngIf="name.hasError('required')"
+    >
+      {{name.errors?.['required']}}
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="form__field">
+    <mat-label>Учитель</mat-label>
+    <mat-select formControlName="teacher">
+      <mat-option
+        *ngFor="let item of teachers"
+        [value]="item"
       >
-        {{teacher.errors?.['required']}}
-      </mat-error>
-    </mat-form-field>
-  </div>
-</form>
+        {{item}}
+      </mat-option>
+    </mat-select>
+    <mat-error
+      *ngIf="teacher.hasError('required')"
+    >
+      {{teacher.errors?.['required']}}
+    </mat-error>
+  </mat-form-field>
+</div>
