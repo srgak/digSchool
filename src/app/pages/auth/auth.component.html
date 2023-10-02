@@ -31,10 +31,10 @@
     >
       <mat-label>Пароль</mat-label>
       <input
-        type="password"
         matInput
         placeholder="На горшке сидел король"
         formControlName="password"
+        showPassword
       >
       <mat-error 
         *ngIf="password.hasError('required')"

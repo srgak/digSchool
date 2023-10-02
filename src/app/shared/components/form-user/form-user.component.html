@@ -28,10 +28,10 @@
       class="form__field"
     >
       <mat-label>Пароль</mat-label>
-      <input 
-        type="text"
+      <input
         matInput
         formControlName="password"
+        showPassword
       >
       <mat-error
         *ngIf="password.hasError('required')"

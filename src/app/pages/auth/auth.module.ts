@@ -4,6 +4,7 @@ import { AuthComponent } from './auth.component';
 import { AuthRoutingModule } from './auth-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { PasswordModule } from 'src/app/shared/directives/password/password.module';
 
 
 
@@ -13,7 +14,8 @@ import { MatInputModule } from '@angular/material/input';
     CommonModule,
     AuthRoutingModule,
     ReactiveFormsModule,
-    MatInputModule
+    MatInputModule,
+    PasswordModule
   ]
 })
 export class AuthModule { }

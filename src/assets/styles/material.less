@@ -5,6 +5,16 @@
   border: 1px solid hsla(0,0%,100%,.5);
   border-radius: 10px !important;
 }
+.mat-mdc-form-field-input-control.mat-mdc-form-field-input-control {
+  text-overflow: ellipsis;
+}
+.mat-mdc-form-field-input-control.mat-mdc-form-field-input-control[type='password'] {
+  width: calc(100% - 35px);
+  letter-spacing: 5px;
+  &::placeholder {
+    letter-spacing: normal;
+  }
+}
 .mdc-text-field--filled .mdc-floating-label--float-above {
   transform: translateY(calc(-50% - 105%)) scale(0.75) !important;
   background: rgba(0, 0, 0, 0.08);

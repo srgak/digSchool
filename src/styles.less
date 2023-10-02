@@ -66,6 +66,20 @@
     @apply
       col-span-12;
   }
+  &__password {
+    @apply
+      w-30
+      h-30
+      bg-active-1
+      absolute
+      right-0
+      top-half
+      -translate-y-half;
+    background: url('./assets/img/icons/password-close.svg') no-repeat center/cover;
+    &.active {
+      background-image: url('./assets/img/icons/password-open.svg');
+    }
+  }
 }
 
 .tooltip {
