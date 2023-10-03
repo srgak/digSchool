@@ -19,7 +19,8 @@ import { ApiInterceptor } from './interceptors/api.interceptor';
     BrowserAnimationsModule,
     HttpClientModule,
     MenuModule,
-    ModalModule
+    ModalModule,
+    BrowserAnimationsModule
   ],
   providers: [
     {

@@ -1,7 +1,10 @@
 <div
   class="modal"
+  [@toggleModal]="animationState"
   >
-  <ng-template #dynamic></ng-template>
+  <div class="modal__content">
+    <ng-template #dynamic></ng-template>
+  </div>
   <button
       class="modal__close"
       type="button"
