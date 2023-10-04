@@ -21,5 +21,6 @@ export class FormListComponent implements AfterContentInit {
 
   ngAfterContentInit(): void {
     this.array = this.arrayName.control;
+    this.add();
   }
 }
