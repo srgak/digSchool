@@ -8,7 +8,10 @@ import { environments } from 'src/environments/environments';
   providedIn: 'root'
 })
 export class HttpTeachersService extends HttpMain {
-  public getTeachers(lesson: string): Observable<UserData[]> {
+  public getTeachers(): Observable<UserData[]> {
+    return this.http.get<UserData[]>(`${environments.apiUrl}users?role=teacher`);
+  }
+  public getTeachersLesson(lesson: string): Observable<UserData[]> {
     return this.http.get<UserData[]>(`${environments.apiUrl}users?role=teacher&teachLesson=${lesson}`);
   }
 }

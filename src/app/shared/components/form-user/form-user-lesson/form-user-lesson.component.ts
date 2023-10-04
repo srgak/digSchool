@@ -68,7 +68,7 @@ export class FormUserLessonComponent extends FormUserLesson implements FormCusto
     });
     this.form.get('name')?.valueChanges
       .pipe(
-        switchMap((subject) => this.httpTeachers.getTeachers(subject))
+        switchMap((subject) => this.httpTeachers.getTeachersLesson(subject))
       )
       .subscribe(data => {
         this.teachers = [];
