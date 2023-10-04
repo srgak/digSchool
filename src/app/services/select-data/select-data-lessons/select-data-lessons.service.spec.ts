@@ -5,7 +5,7 @@ import { SelectDataLessonsService } from './select-data-lessons.service';
 describe('SelectDataLessonsService', () => {
   let service: SelectDataLessonsService;
 
-  beforeEach(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       providers: [SelectDataLessonsService]
     });
