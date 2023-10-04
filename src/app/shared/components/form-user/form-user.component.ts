@@ -1,10 +1,12 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
 import { FormMain, FormSubmit } from 'src/app/helpers/interfaces/form';
 import { UserData } from 'src/app/helpers/interfaces/user';
 import { ToggleControls } from 'src/app/helpers/toggle-controls';
 import { FormUser } from './form-user';
 import { SelectDataRolesService } from 'src/app/services/select-data/select-data-roles/select-data-roles.service';
 import { SelectDataLessonsService } from 'src/app/services/select-data/select-data-lessons/select-data-lessons.service';
+import { SYMBOLS_EN_TO_RU, SYMBOLS_RU_TO_EN } from 'src/app/helpers/tokens/symbols-translate';
+import { SimpleObject } from 'src/app/helpers/interfaces/common';
 
 @Component({
   selector: 'app-form-user',
@@ -21,7 +23,9 @@ export class FormUserComponent extends FormUser implements FormMain, FormSubmit,
   });
   constructor(
     public rolesData: SelectDataRolesService,
-    public lessonsData: SelectDataLessonsService
+    public lessonsData: SelectDataLessonsService,
+    @Inject(SYMBOLS_EN_TO_RU) public lettersEnToRu: SimpleObject<string>,
+    @Inject(SYMBOLS_RU_TO_EN) public lettersRuToEn: SimpleObject<string>
   ) {
     super();
   }

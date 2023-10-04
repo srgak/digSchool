@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { MenuData } from 'src/app/helpers/interfaces/menu';
-import { SETTINGS_MENU_TOKEN } from 'src/app/helpers/tokens';
+import { SETTINGS_MENU_TOKEN } from 'src/app/helpers/tokens/menu';
 
 @Component({
   selector: 'app-menu',

@@ -5,6 +5,7 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { PasswordModule } from 'src/app/shared/directives/password/password.module';
+import { TransliterationModule } from 'src/app/shared/directives/transliteration/transliteration.module';
 
 
 
@@ -15,7 +16,8 @@ import { PasswordModule } from 'src/app/shared/directives/password/password.modu
     AuthRoutingModule,
     ReactiveFormsModule,
     MatInputModule,
-    PasswordModule
+    PasswordModule,
+    TransliterationModule
   ]
 })
 export class AuthModule { }

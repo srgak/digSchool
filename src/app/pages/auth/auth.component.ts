@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormMain, FormSubmit } from 'src/app/helpers/interfaces/form';
 import { UserAuthResponse } from 'src/app/helpers/interfaces/user';
@@ -9,6 +9,8 @@ import { UserIdService } from 'src/app/services/storage/user-id/user-id.service'
 import { UserRoleService } from 'src/app/services/storage/user-role/user-role.service';
 import { AuthForm } from './auth-form';
 import { HttpAuthService } from 'src/app/services/http/auth/http-auth.service';
+import { SYMBOLS_RU_TO_EN } from 'src/app/helpers/tokens/symbols-translate';
+import { SimpleObject } from 'src/app/helpers/interfaces/common';
 
 @Component({
   templateUrl: './auth.component.html',
@@ -22,7 +24,8 @@ export class AuthComponent extends AuthForm implements FormMain, FormSubmit {
     public modal: ModalService,
     private httpAuth: HttpAuthService,
     private accessToken: AccessTokenService,
-    private userRole: UserRoleService
+    private userRole: UserRoleService,
+    @Inject(SYMBOLS_RU_TO_EN) public lettersEnToRu: SimpleObject<string>
   ) {
     super();
   }

@@ -12,6 +12,7 @@
         type="text"
         matInput
         formControlName="email"
+        [inputTransliteration]="lettersRuToEn"
       >
       <mat-error
         *ngIf="email.hasError('required')"
@@ -45,6 +46,7 @@
         type="text"
         matInput
         formControlName="firstName"
+        [inputTransliteration]="lettersEnToRu"
       >
       <mat-error
         *ngIf="firstName.hasError('required')"
@@ -54,9 +56,11 @@
     </mat-form-field>
     <mat-form-field class="form__field">
       <mat-label>Фамилия</mat-label>
-      <input 
+      <input
+        type="text"
         matInput
         formControlName="lastName"
+        [inputTransliteration]="lettersEnToRu"
       >
       <mat-error
         *ngIf="lastName.hasError('required')"
@@ -66,9 +70,11 @@
     </mat-form-field>
     <mat-form-field class="form__field">
       <mat-label>Отчество</mat-label>
-      <input 
+      <input
+        type="text"
         matInput
         formControlName="patronymic"
+        [inputTransliteration]="lettersEnToRu"
       >
       <mat-error
         *ngIf="patronymic.hasError('required')"

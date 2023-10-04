@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MenuComponent } from './menu.component';
 import { MenuListModule } from './menu-list/menu-list.module';
-import { SETTINGS_MENU_TOKEN } from 'src/app/helpers/tokens';
+import { SETTINGS_MENU_TOKEN } from 'src/app/helpers/tokens/menu';
 import { Observable, map } from 'rxjs';
 import { HttpClient }   from '@angular/common/http';
 import { MenuData, MenuSettings } from 'src/app/helpers/interfaces/menu';

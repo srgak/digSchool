@@ -12,6 +12,7 @@ import { FormListModule } from '../form-list/form-list.module';
 import { SelectDataRolesService } from 'src/app/services/select-data/select-data-roles/select-data-roles.service';
 import { SelectDataLessonsService } from 'src/app/services/select-data/select-data-lessons/select-data-lessons.service';
 import { PasswordModule } from '../../directives/password/password.module';
+import { TransliterationModule } from '../../directives/transliteration/transliteration.module';
 
 
 
@@ -27,7 +28,8 @@ import { PasswordModule } from '../../directives/password/password.module';
     FormUserClassModule,
     FormUserLessonModule,
     FormListModule,
-    PasswordModule
+    PasswordModule,
+    TransliterationModule
   ],
   exports: [FormUserComponent],
   providers: [
