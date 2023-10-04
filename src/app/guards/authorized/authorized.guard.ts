@@ -8,7 +8,7 @@ import { AccessTokenService } from 'src/app/services/storage/access-token/access
 @Injectable({
   providedIn: 'root'
 })
-class AuthorizedGuard {
+export class AuthorizedGuard {
   constructor(
     private accessToken: AccessTokenService,
     private httpAuth: HttpAuthService,
