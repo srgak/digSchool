@@ -16,7 +16,7 @@ describe('UserRoleService', () => {
     expect(service).toBeTruthy();
   });
   it('Задать значение', () => {
-    const roleSpySet = spyOnProperty(service, 'prop', 'set');
+    const roleSpySet = spyOnProperty(service, 'prop', 'set').and.callThrough();
 
     service.prop = 'admin';
     expect(roleSpySet).toHaveBeenCalled();
