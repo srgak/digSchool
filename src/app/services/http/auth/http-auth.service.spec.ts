@@ -6,7 +6,7 @@ import { UserAuthForm, UserAuthResponse, UserData } from 'src/app/helpers/interf
 import { environments } from 'src/environments/environments';
 import { SimpleObject } from 'src/app/helpers/interfaces/common';
 
-fdescribe('HttpAuthService', () => {
+describe('HttpAuthService', () => {
   let service: HttpAuthService;
   let httpTestingController: HttpTestingController;
   const mockUser: UserData = {
