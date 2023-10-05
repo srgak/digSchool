@@ -6,11 +6,24 @@ describe('UserIdService', () => {
   let service: UserIdService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [UserIdService]
+    });
     service = TestBed.inject(UserIdService);
   });
 
-  it('should be created', () => {
+  it('Создать сервис', () => {
     expect(service).toBeTruthy();
+  });
+  it('Задать значение', () => {
+    const spySet = spyOnProperty(service, 'prop', 'set').and.callThrough();
+
+    service.prop = 1;
+    expect(spySet).toHaveBeenCalled();
+  });
+  it('получить значение', () => {
+    spyOn(localStorage, 'getItem').and.returnValue('1');
+    spyOnProperty(service, 'prop', 'get').and.callThrough();
+    expect(service.prop).toBe(1);
   });
 });
