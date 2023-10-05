@@ -21,7 +21,7 @@ describe('UserIdService', () => {
     service.prop = 1;
     expect(spySet).toHaveBeenCalled();
   });
-  it('получить значение', () => {
+  it('Получить значение', () => {
     spyOn(localStorage, 'getItem').and.returnValue('1');
     spyOnProperty(service, 'prop', 'get').and.callThrough();
     expect(service.prop).toBe(1);
