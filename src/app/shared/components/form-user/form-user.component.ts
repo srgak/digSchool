@@ -19,7 +19,8 @@ export class FormUserComponent extends FormUser implements FormMain, FormSubmit,
   @Output() public onComplete: EventEmitter<UserData> = new EventEmitter();
 
   private toggleControls: ToggleControls = new ToggleControls(this.form, {
-    pupil: ['class', 'lessons']
+    pupil: ['class', 'lessons'],
+    teacher: ['teachLesson']
   });
   constructor(
     public rolesData: SelectDataRolesService,

@@ -1,4 +1,4 @@
-import { AfterContentInit, ChangeDetectionStrategy, Component, ContentChild } from '@angular/core';
+import { AfterContentInit, ChangeDetectionStrategy, Component, ContentChild, OnDestroy } from '@angular/core';
 import { FormArray, FormArrayName, FormControl } from '@angular/forms';
 
 @Component({
@@ -7,7 +7,7 @@ import { FormArray, FormArrayName, FormControl } from '@angular/forms';
   styleUrls: ['./form-list.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FormListComponent implements AfterContentInit {
+export class FormListComponent implements AfterContentInit, OnDestroy {
   @ContentChild(FormArrayName) private arrayName!: FormArrayName;
   public array!: FormArray;
 
@@ -22,5 +22,10 @@ export class FormListComponent implements AfterContentInit {
   ngAfterContentInit(): void {
     this.array = this.arrayName.control;
     this.add();
+  }
+  ngOnDestroy(): void {
+    for(let i = 0; i < this.array.length; i++) {
+      this.remove();
+    }
   }
 }
