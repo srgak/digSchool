@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { pageName } from './helpers/routes';
 import { canActivateAuth, canDeactivateAuth } from './guards/authorized/authorized.guard';
 import { userDataResolver } from './resolvers/user-data';
+import { userMarksResolver } from './resolvers/user-marks';
 
 const routes: Routes = [
   {
@@ -36,7 +37,10 @@ const routes: Routes = [
     path: pageName.Diary,
     loadChildren: () => import('./pages/diary/diary-routing.module').then(m => m.DiaryRoutingModule),
     title: 'Дневник',
-    canActivate: [canActivateAuth]
+    canActivate: [canActivateAuth],
+    resolve: [
+      userMarksResolver
+    ]
   }
 ];
 

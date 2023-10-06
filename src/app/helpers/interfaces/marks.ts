@@ -1,6 +1,6 @@
 import { UserId } from "./user";
 
-interface Mark {
+export interface Mark {
   nameLesson: string;
   info: {
     date: Date;
