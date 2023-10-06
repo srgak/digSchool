@@ -9,7 +9,7 @@ export class ValidatorsService {
   public validateRequired(control: AbstractControl): ValidationErrors | null {
     const {value} = control;
 
-    return value && value.length ? null : {
+    return value && (value.length || Object.keys(value).length) ? null : {
       required: 'Обязательное поле'
     }
   }

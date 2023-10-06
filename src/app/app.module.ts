@@ -8,10 +8,12 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MenuModule } from './shared/components/menu/menu.module';
 import { ModalModule } from './shared/components/modal/modal.module';
 import { ApiInterceptor } from './interceptors/api.interceptor';
+import { DiaryComponent } from './pages/diary/diary.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DiaryComponent
   ],
   imports: [
     BrowserModule,

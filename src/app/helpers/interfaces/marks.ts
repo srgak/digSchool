@@ -10,5 +10,5 @@ interface Mark {
   }[]
 }
 export interface MarksData extends UserId {
-  marks: Mark[]
+  data: Mark[];
 }

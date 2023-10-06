@@ -3,5 +3,6 @@ export const enum pageName {
   Main = 'dashboard',
   ControlPanel = 'control-panel',
   ControlPanelEdit = 'edit',
-  ControlPanelCreate = 'create'
+  ControlPanelCreate = 'create',
+  Diary = 'diary'
 }

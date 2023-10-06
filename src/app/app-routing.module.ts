@@ -31,6 +31,12 @@ const routes: Routes = [
     path: pageName.ControlPanel,
     loadChildren: () => import('./pages/control-panel/control-panel.module').then(m => m.ControlPanelModule),
     canActivate: [canActivateAuth]
+  },
+  {
+    path: pageName.Diary,
+    loadChildren: () => import('./pages/diary/diary-routing.module').then(m => m.DiaryRoutingModule),
+    title: 'Дневник',
+    canActivate: [canActivateAuth]
   }
 ];
 
