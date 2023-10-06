@@ -12,9 +12,7 @@ export class TableUsersComponent {
   @Output() public onSelect: EventEmitter<UserData> = new EventEmitter();
   public columnList: string[] = [
     'id',
-    'lastName',
-    'firstName',
-    'patronymic',
+    'fio',
     'role'
   ];
 }

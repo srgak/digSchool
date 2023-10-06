@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TableUsersComponent } from './table-users.component';
 import { MatTableModule } from '@angular/material/table';
+import { SurnameNpModule } from '../../pipes/surname-np/surname-np.module';
 
 
 
@@ -9,7 +10,8 @@ import { MatTableModule } from '@angular/material/table';
   declarations: [TableUsersComponent],
   imports: [
     CommonModule,
-    MatTableModule
+    MatTableModule,
+    SurnameNpModule
   ],
   exports: [TableUsersComponent]
 })

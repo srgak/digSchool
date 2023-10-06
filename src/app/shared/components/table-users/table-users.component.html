@@ -7,17 +7,15 @@
     <th mat-header-cell *matHeaderCellDef>id</th>
     <td mat-cell *matCellDef="let element">{{element.id}}</td>
   </ng-container>
-  <ng-container matColumnDef="lastName">
-    <th mat-header-cell *matHeaderCellDef>Фамилия</th>
-    <td mat-cell *matCellDef="let element">{{element.lastName}}</td>
-  </ng-container>
-  <ng-container matColumnDef="firstName">
-    <th mat-header-cell *matHeaderCellDef>Имя</th>
-    <td mat-cell *matCellDef="let element">{{element.firstName}}</td>
-  </ng-container>
-  <ng-container matColumnDef="patronymic">
-    <th mat-header-cell *matHeaderCellDef>Отчество</th>
-    <td mat-cell *matCellDef="let element">{{element.patronymic}}</td>
+  <ng-container matColumnDef="fio">
+    <th mat-header-cell *matHeaderCellDef>ФИО</th>
+    <td mat-cell *matCellDef="let element">{{
+      {
+        firstName: element.firstName,
+        lastName: element.lastName,
+        patronymic: element.patronymic
+      } | surnameNP
+    }}</td>
   </ng-container>
   <ng-container matColumnDef="role">
     <th mat-header-cell *matHeaderCellDef>Роль</th>
