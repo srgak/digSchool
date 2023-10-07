@@ -20,11 +20,15 @@
     },
     {
       "email": "pupil@test.ru",
-      "password": "$2a$10$4UiJETKSls/RO3BnNQAE5eMpNYmW.dS6vgpPKAvOKoycQNtBqoCGO",
+      "password": "$2a$10$9Kux6jFg0gUcRwAkzZcuKuTiO3rt/kYdCErSmmeNHrqUdG0ExQrra",
       "firstName": "Петров",
       "lastName": "ПЁтр",
       "patronymic": "Петрович",
       "role": "pupil",
+      "class": {
+        "number": "5",
+        "letter": "Б"
+      },
       "lessons": [
         {
           "name": "Математика",

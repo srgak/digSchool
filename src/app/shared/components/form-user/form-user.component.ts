@@ -7,6 +7,7 @@ import { SelectDataRolesService } from 'src/app/services/select-data/select-data
 import { SelectDataLessonsService } from 'src/app/services/select-data/select-data-lessons/select-data-lessons.service';
 import { SYMBOLS_EN_TO_RU, SYMBOLS_RU_TO_EN } from 'src/app/helpers/tokens/symbols-translate';
 import { SimpleObject } from 'src/app/helpers/interfaces/common';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-form-user',
@@ -38,18 +39,21 @@ export class FormUserComponent extends FormUser implements FormMain, FormSubmit,
       this.form.markAllAsTouched();
     }
   }
+  private initArray(data: unknown[]): void {
+    data.forEach(() => {
+      this.lessons.push(
+        new FormControl(null)
+      );
+    });
+  }
 
   ngOnInit(): void {
-    if(this.data) {
-      this.form.patchValue(this.data);
-      Object.keys(this.form.controls).forEach(name => {
-        if(!this.form.get(name)?.value || !this.form.get(name)?.value.length) {
-          this.form.get(name)?.disable();
-        }
-      });
-    }
     this.role?.valueChanges.subscribe(value => {
       this.toggleControls.toggle(value);
     });
+    if(this.data) {
+      if(this.data.lessons) this.initArray(this.data.lessons);
+      this.form.patchValue(this.data);
+    }
   }
 }
