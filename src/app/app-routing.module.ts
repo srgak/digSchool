@@ -35,7 +35,7 @@ const routes: Routes = [
   },
   {
     path: pageName.Diary,
-    loadChildren: () => import('./pages/diary/diary-routing.module').then(m => m.DiaryRoutingModule),
+    loadChildren: () => import('./pages/diary/diary.module').then(m => m.DiaryModule),
     title: 'Дневник',
     canActivate: [canActivateAuth],
     resolve: [

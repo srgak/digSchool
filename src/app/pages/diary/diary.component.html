@@ -1,3 +1,9 @@
-<pre>
-  {{activeRoute.data | async | json}}
-</pre>
+
+<a
+  *ngFor="let item of markData$ | async"
+  [routerLink]="item.nameLesson"
+>
+  {{item.nameLesson}}
+</a>
+
+<router-outlet></router-outlet>
