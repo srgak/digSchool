@@ -1,8 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { Observable, catchError, map, throwError } from 'rxjs';
 import { pageName } from 'src/app/helpers/routes';
-import { HttpAuthService } from 'src/app/services/http/auth/http-auth.service';
 import { AccessTokenService } from 'src/app/services/storage/access-token/access-token.service';
 
 @Injectable({
@@ -10,25 +8,18 @@ import { AccessTokenService } from 'src/app/services/storage/access-token/access
 })
 export class AuthorizedGuard {
   constructor(
-    private accessToken: AccessTokenService,
-    private httpAuth: HttpAuthService,
-    private router: Router
+    private accessToken: AccessTokenService
   ) {}
-  canActivate(): Observable<boolean> {
-    return this.httpAuth.checkAuth(this.accessToken.prop)
-      .pipe(
-        catchError(error => {
-          this.accessToken.remove();
-          this.router.navigateByUrl(pageName.Auth);
-          return throwError(() => error);
-        }),
-        map(data => !!data)
-      )
+  canActivate(): boolean {
+    return !!this.accessToken.prop;
   }
 }
 
-export const canActivateAuth: CanActivateFn = (): Observable<boolean> => {
-  return inject(AuthorizedGuard).canActivate();
+export const canActivateAuth: CanActivateFn = (): boolean => {
+  if(!inject(AuthorizedGuard).canActivate()) {
+    inject(Router).navigateByUrl(pageName.Auth);
+  }
+  return true;
 }
 export const canDeactivateAuth: CanActivateFn = (): boolean => {
   if(!!inject(AccessTokenService).prop) {

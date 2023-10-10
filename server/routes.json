@@ -1,3 +1,4 @@
 {
-  "/auth*": "/660/auth$1"
+  "/users*": "/660/users$1",
+  "/marks*": "/660/marks$1"
 }

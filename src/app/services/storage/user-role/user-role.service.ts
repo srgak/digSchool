@@ -5,10 +5,13 @@ import { StorageProperty } from 'src/app/helpers/interfaces/storage';
   providedIn: 'root'
 })
 export class UserRoleService implements StorageProperty {
-  get prop(): string {
+  public get prop(): string {
     return localStorage.getItem('role') || '';
   }
-  set prop(value: string) {
+  public set prop(value: string) {
     localStorage.setItem('role', value);
+  }
+  public remove(): void {
+    localStorage.removeItem('role');
   }
 }

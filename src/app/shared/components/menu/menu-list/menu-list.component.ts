@@ -2,7 +2,8 @@ import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core
 import { Router } from '@angular/router';
 import { MenuData, MenuItem } from 'src/app/helpers/interfaces/menu';
 import { pageName } from 'src/app/helpers/routes';
-import { AuthFlagService } from 'src/app/services/storage/auth-flag/auth-flag.service';
+import { AccessTokenService } from 'src/app/services/storage/access-token/access-token.service';
+import { UserIdService } from 'src/app/services/storage/user-id/user-id.service';
 
 @Component({
   selector: 'app-menu-list',
@@ -19,12 +20,13 @@ export class MenuListComponent {
   };
   constructor(
     private router: Router,
-    private authFlag: AuthFlagService
+    private accessToken: AccessTokenService,
+    private userId: UserIdService
   ) {}
 
   public logOut(): void {
-    this.authFlag.prop = false;
-    localStorage.removeItem('id');
+    this.accessToken.remove();
+    this.userId.remove();
     this.router.navigateByUrl(pageName.Auth);
   }
 }

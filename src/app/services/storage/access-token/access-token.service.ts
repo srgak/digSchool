@@ -5,10 +5,10 @@ import { StorageProperty } from 'src/app/helpers/interfaces/storage';
   providedIn: 'root'
 })
 export class AccessTokenService implements StorageProperty {
-  get prop(): string {
+  public get prop(): string {
     return localStorage.getItem('accessToken') || '';
   }
-  set prop(value: string) {
+  public set prop(value: string) {
     localStorage.setItem('accessToken', value);
   }
   public remove(): void {

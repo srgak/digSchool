@@ -3,7 +3,6 @@ import { HttpMain } from '../http';
 import { UserAuthForm, UserAuthResponse, UserData } from 'src/app/helpers/interfaces/user';
 import { Observable } from 'rxjs';
 import { environments } from 'src/environments/environments';
-import { SimpleObject } from 'src/app/helpers/interfaces/common';
 
 @Injectable({
   providedIn: 'root'
@@ -14,12 +13,5 @@ export class HttpAuthService extends HttpMain {
   }
   public login(data: UserAuthForm): Observable<UserAuthResponse> {
     return this.http.post<UserAuthResponse>(`${environments.apiUrl}login`, data);
-  }
-  public checkAuth(token: string): Observable<SimpleObject<string>> {
-    return this.http.get<SimpleObject<string>>(`${environments.apiUrl}auth`, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    })
   }
 }
