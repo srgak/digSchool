@@ -94,6 +94,10 @@ module.exports = {
             backgroundColor: '#F22738',
             borderColor: '#F22738'
           }
+        },
+        '.button-link-active': {
+          backgroundColor: '#F22738',
+          borderColor: '#F22738'
         }
       })
     })
