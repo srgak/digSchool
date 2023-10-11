@@ -4,5 +4,6 @@ export const enum pageName {
   ControlPanel = 'control-panel',
   ControlPanelEdit = 'edit',
   ControlPanelCreate = 'create',
-  Diary = 'diary'
+  Diary = 'diary',
+  Journal = 'journal'
 }

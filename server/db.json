@@ -11,11 +11,12 @@
     },
     {
       "email": "teacher@mail.ru",
-      "password": "$2a$10$pAw3SUh42s1XxOxQ1i9e2uKbaxeTCyBc84DYby6Kvu588v4x140Dm",
+      "password": "$2a$10$k1xG0npdMa0srsXOYPWIku.PjwMaybR4QFD57xKkoO.cE18IfNOvW",
       "firstName": "Татьяна",
       "lastName": "Петрова",
       "patronymic": "Сергеевна",
       "role": "teacher",
+      "teachLesson": "Математика",
       "id": 2
     },
     {
@@ -38,9 +39,6 @@
       "id": 3
     }
   ],
-  "auth": {
-    "status": "success"
-  },
   "marks": [
     {
       "id": 3,

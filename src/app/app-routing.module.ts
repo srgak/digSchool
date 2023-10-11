@@ -31,7 +31,8 @@ const routes: Routes = [
   {
     path: pageName.ControlPanel,
     loadChildren: () => import('./pages/control-panel/control-panel.module').then(m => m.ControlPanelModule),
-    canActivate: [canActivateAuth]
+    canActivate: [canActivateAuth],
+    title: 'Панель управления'
   },
   {
     path: pageName.Diary,
@@ -41,6 +42,12 @@ const routes: Routes = [
     resolve: [
       userMarksResolver
     ]
+  },
+  {
+    path: pageName.Journal,
+    loadChildren: () => import('./pages/journal/journal.module').then(m => m.JournalModule),
+    title: 'Журнал',
+    canActivate: [canActivateAuth]
   }
 ];
 
