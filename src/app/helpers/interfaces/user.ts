@@ -7,10 +7,6 @@ interface UserAuth {
 }
 export interface UserAuthForm extends UserAuth {}
 
-export interface ClassData {
-  number: number;
-  letter: string;
-}
 export interface LessonData {
   name: string;
   teacher: string;
@@ -26,7 +22,7 @@ interface Teacher extends Person {
   teachLesson?: string;
 }
 interface Pupil extends Person {
-  class?: ClassData;
+  class?: string;
   lessons?: LessonData[];
 }
 export interface UserData extends Admin, Teacher, Pupil, UserAuth {}

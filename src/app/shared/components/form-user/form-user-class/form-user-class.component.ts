@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, forwardRef } from '@angular/core';
 import { NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors } from '@angular/forms';
-import { FormCustom } from 'src/app/helpers/interfaces/form';
-import { ClassData } from 'src/app/helpers/interfaces/user';
+import { ControlCustom } from 'src/app/helpers/interfaces/form';
 import { FormUserClass } from './form-user-class';
+import { SelectDataClassesService } from 'src/app/services/select-data/select-data-classes/select-data-classes.service';
 
 @Component({
   selector: 'app-form-user-class',
@@ -22,16 +22,22 @@ import { FormUserClass } from './form-user-class';
     }
   ]
 })
-export class FormUserClassComponent extends FormUserClass implements FormCustom, OnInit, OnDestroy {
+export class FormUserClassComponent extends FormUserClass implements ControlCustom, OnInit, OnDestroy {
   @Input() set touched(flag: boolean) {
     if(flag) {
-      this.form.markAllAsTouched();
+      this.control.markAsTouched();
     }
   }
-  private onChange(_: ClassData | null) {};
-  private onTouch() {}
-  writeValue(obj: ClassData): void {
-    this.form.patchValue(obj);
+  private onChange(_: string | null) {};
+  private onTouch() {};
+
+  constructor(
+    public classesData: SelectDataClassesService
+  ) {
+    super();
+  }
+  writeValue(obj: string): void {
+    this.control.patchValue(obj);
   }
   registerOnChange(fn: any): void {
     this.onChange = fn;
@@ -40,11 +46,11 @@ export class FormUserClassComponent extends FormUserClass implements FormCustom,
     this.onTouch = fn;
   }
   validate(): ValidationErrors | null {
-    return this.form.valid ? null : {required: ''}
+    return this.control.valid ? null : {required: ''}
   }
 
   ngOnInit(): void {
-    this.form.valueChanges.subscribe(value => {
+    this.control.valueChanges.subscribe(value => {
       this.onChange(value);
     });
   }

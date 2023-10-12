@@ -4,6 +4,8 @@ import { FormUserClassComponent } from './form-user-class.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { SelectDataClassesService } from 'src/app/services/select-data/select-data-classes/select-data-classes.service';
 
 
 
@@ -13,8 +15,12 @@ import { MatInputModule } from '@angular/material/input';
     CommonModule,
     ReactiveFormsModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatSelectModule
   ],
-  exports: [FormUserClassComponent]
+  exports: [FormUserClassComponent],
+  providers: [
+    SelectDataClassesService
+  ]
 })
 export class FormUserClassModule { }

@@ -1,37 +1,19 @@
 <p>Информация о классе</p>
-<div
-  [formGroup]="form"
->
-  <div class="form__wrapper">
-    <mat-form-field
-      class="form__field"
+<div class="form__wrapper">
+  <mat-form-field class="form__field">
+    <mat-label>Класс</mat-label>
+    <mat-select [formControl]="control">
+      <mat-option
+        *ngFor="let item of classesData.list"
+        [value]="item.value"
+      >
+        {{item.name}}
+      </mat-option>
+    </mat-select>
+    <mat-error
+      *ngIf="control.hasError('required')"
     >
-      <mat-label>Номер</mat-label>
-      <input 
-        type="text"
-        matInput
-        formControlName="number"
-      >
-      <mat-error
-        *ngIf="number.hasError('required')"
-      >
-        {{number.errors?.['required']}}
-      </mat-error>
-    </mat-form-field>
-    <mat-form-field
-      class="form__field"
-    >
-      <mat-label>Буква</mat-label>
-      <input 
-        type="text"
-        matInput
-        formControlName="letter"
-      >
-      <mat-error
-        *ngIf="letter.hasError('required')"
-      >
-        {{letter.errors?.['required']}}
-      </mat-error>
-    </mat-form-field>
-  </div>
+      {{control.errors?.['required']}}
+    </mat-error>
+  </mat-form-field>
 </div>

@@ -21,7 +21,7 @@ export class FormUserComponent extends FormUser implements FormMain, FormSubmit,
 
   private toggleControls: ToggleControls = new ToggleControls(this.form, {
     pupil: ['class', 'lessons'],
-    teacher: ['teachLesson']  
+    teacher: ['teachLesson']
   });
   constructor(
     public rolesData: SelectDataRolesService,

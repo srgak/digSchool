@@ -26,10 +26,7 @@
       "lastName": "ПЁтр",
       "patronymic": "Петрович",
       "role": "pupil",
-      "class": {
-        "number": "5",
-        "letter": "Б"
-      },
+      "class": "5Б",
       "lessons": [
         {
           "name": "Математика",
