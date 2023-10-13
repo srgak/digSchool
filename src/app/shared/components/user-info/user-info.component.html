@@ -1,0 +1,16 @@
+<div class="user-info">
+  <div class="user-info__item">
+    <div class="user-info__value">
+      {{lastName$ | async}}
+      {{firstName$ | async}}
+      {{patronymic$ | async}}
+    </div>
+    <div class="user-info__label">ФИО</div>
+  </div>
+  <div class="user-info__item">
+    <div class="user-info__value">
+      {{role$ | async}}
+    </div>
+    <div class="user-info__label">Должность</div>
+  </div>
+</div>

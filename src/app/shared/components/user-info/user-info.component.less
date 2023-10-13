@@ -1,0 +1,28 @@
+:host {
+  @apply
+    w-full;
+  max-width: 600px;
+}
+.user-info {
+  @apply
+    border
+    border-active-3
+    rounded-10
+    p-20;
+  &__item {
+    &:not(:last-child) {
+      @apply
+        mb-10;
+    }
+  }
+  &__value {
+    @apply
+      border-b
+      border-b-active-4;
+  }
+  &__label {
+    @apply
+      text-center
+      text-14;
+  }
+}

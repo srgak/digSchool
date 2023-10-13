@@ -1,3 +1,5 @@
+import { SimpleObject } from "./common";
+
 export interface UserId {
   id: number;
 }
@@ -25,7 +27,7 @@ interface Pupil extends Person {
   class?: string;
   lessons?: LessonData[];
 }
-export interface UserData extends Admin, Teacher, Pupil, UserAuth {}
+export interface UserData extends Admin, Teacher, Pupil, UserAuth, SimpleObject<unknown> {}
 export interface UserAuthResponse {
   accessToken: string;
   user: UserData;
