@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, map, tap } from 'rxjs';
-import { Mark } from 'src/app/helpers/interfaces/marks';
+import { map } from 'rxjs';
 import { MarksDataService } from 'src/app/services/marks/marks.service';
 
 @Component({
@@ -10,14 +9,12 @@ import { MarksDataService } from 'src/app/services/marks/marks.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DiaryComponent {
-  public markData$: Observable<Mark[]>;
   constructor(
     private activeRoute: ActivatedRoute,
-    private marksData: MarksDataService
+    public marksData: MarksDataService
   ) {
-    this.markData$ = activeRoute.data.pipe(
-      map(data => data['0']),
-      tap(data => marksData.data = data)
+    marksData.data$ = activeRoute.data.pipe(
+      map(data => data['0'])
     )
   }
 }

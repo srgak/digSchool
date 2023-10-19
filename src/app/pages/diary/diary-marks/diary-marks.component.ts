@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, map, switchMap } from 'rxjs';
 import { MarkValue } from 'src/app/helpers/interfaces/marks';
 import { MarksDataService } from 'src/app/services/marks/marks.service';
 
@@ -17,9 +17,8 @@ import { MarksDataService } from 'src/app/services/marks/marks.service';
     MatTableModule
   ]
 })
-export class DiaryMarksComponent implements OnInit, OnDestroy {
+export class DiaryMarksComponent {
   public currentMarks!: Observable<MarkValue[] | string>;
-  private subs: Subscription = new Subscription();
   public columnList: string[] = [
     'date',
     'value',
@@ -29,17 +28,11 @@ export class DiaryMarksComponent implements OnInit, OnDestroy {
   constructor(
     private activeRoute: ActivatedRoute,
     public marksData: MarksDataService
-  ) {}
-
-  ngOnInit(): void {
-    this.subs.add(
-      this.activeRoute.params
-        .subscribe(data => {
-          this.marksData.getCurrentMarks(data['id']);
-        })
-    );
-  }
-  ngOnDestroy(): void {
-    this.subs.unsubscribe();
+  ) {
+    marksData.currentMarks$ = activeRoute.params
+      .pipe(
+        map(data => data['id']),
+        switchMap(data => marksData.getCurrentMarks(data))
+      )
   }
 }
