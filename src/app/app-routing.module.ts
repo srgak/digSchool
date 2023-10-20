@@ -4,6 +4,7 @@ import { pageName } from './helpers/routes';
 import { canActivateAuth, canDeactivateAuth } from './guards/authorized/authorized.guard';
 import { userDataResolver } from './resolvers/user-data';
 import { userMarksResolver } from './resolvers/user-marks';
+import { canActivateAdmin, canActivatePupil, canActivateTeacher } from './guards/check-role/check-role.guard';
 
 const routes: Routes = [
   {
@@ -31,14 +32,20 @@ const routes: Routes = [
   {
     path: pageName.ControlPanel,
     loadChildren: () => import('./pages/control-panel/control-panel.module').then(m => m.ControlPanelModule),
-    canActivate: [canActivateAuth],
+    canActivate: [
+      canActivateAuth,
+      canActivateAdmin
+    ],
     title: 'Панель управления'
   },
   {
     path: pageName.Diary,
     loadChildren: () => import('./pages/diary/diary.module').then(m => m.DiaryModule),
     title: 'Дневник',
-    canActivate: [canActivateAuth],
+    canActivate: [
+      canActivateAuth,
+      canActivatePupil
+    ],
     resolve: [
       userMarksResolver
     ]
@@ -47,7 +54,10 @@ const routes: Routes = [
     path: pageName.Journal,
     loadChildren: () => import('./pages/journal/journal.module').then(m => m.JournalModule),
     title: 'Журнал',
-    canActivate: [canActivateAuth]
+    canActivate: [
+      canActivateAuth,
+      canActivateTeacher
+    ]
   }
 ];
 
