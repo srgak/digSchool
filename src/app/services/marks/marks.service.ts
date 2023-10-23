@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable, find, from, map, switchMap } from 'rxjs';
 import { Mark, MarkValue } from 'src/app/helpers/interfaces/marks';
 
 @Injectable({
@@ -12,7 +12,9 @@ export class MarksDataService {
   public getCurrentMarks(nameLesson: string): Observable<MarkValue[] | undefined> {
     return this.data$
       .pipe(
-        map(marks => marks.find(item => item.nameLesson === nameLesson)?.info)
+        switchMap(array => from(array)),
+        find(item => item.nameLesson === nameLesson),
+        map(mark => mark?.info)
       )
   }
 }
