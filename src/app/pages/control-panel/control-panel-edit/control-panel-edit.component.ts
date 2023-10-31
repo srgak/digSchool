@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UserData } from 'src/app/helpers/interfaces/user';
 import { pageName } from 'src/app/helpers/routes';
 import { HttpUsersService } from 'src/app/services/http/users/http-users.service';
-import { FormUserModule } from 'src/app/shared/components/form-user/form-user.module';
+import { FormUserModule } from 'src/app/shared/components/forms/form-user/form-user.module';
 
 @Component({
   selector: 'app-control-panel-edit',
