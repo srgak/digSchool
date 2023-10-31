@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { MatTableModule } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, map, switchMap } from 'rxjs';
+import { Observable, filter, map, switchMap } from 'rxjs';
 import { MarkValue } from 'src/app/helpers/interfaces/marks';
 import { MarksDataService } from 'src/app/services/marks/marks.service';
+import { TableMarksModule } from 'src/app/shared/components/tables/table-marks/table-marks.module';
 
 @Component({
   selector: 'app-diary-marks',
@@ -14,7 +14,7 @@ import { MarksDataService } from 'src/app/services/marks/marks.service';
   standalone: true,
   imports: [
     CommonModule,
-    MatTableModule
+    TableMarksModule
   ]
 })
 export class DiaryMarksComponent {
@@ -32,7 +32,8 @@ export class DiaryMarksComponent {
     marksData.currentMarks$ = activeRoute.params
       .pipe(
         map(data => data['id']),
-        switchMap(data => marksData.getCurrentMarks(data))
+        switchMap(data => marksData.getCurrentMarks(data)),
+        filter(list => !!list)
       )
   }
 }

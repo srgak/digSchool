@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ControlPanelComponent } from './control-panel.component';
 import { ControlPanelRoutingModule } from './control-panel-routing';
 import { MatTableModule } from '@angular/material/table';
-import { TableUsersModule } from 'src/app/shared/components/table-users/table-users.module';
+import { TableUsersModule } from 'src/app/shared/components/tables/table-users/table-users.module';
 import { MatButtonModule } from '@angular/material/button';
 
 
