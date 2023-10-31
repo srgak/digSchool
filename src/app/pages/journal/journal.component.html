@@ -1,0 +1,25 @@
+<!-- 1 выбрать класс -->
+<!-- возможно придётся сделать полноценный фильтр -->
+<mat-form-field>
+  <mat-label>Класс</mat-label>
+  <mat-select
+    (selectionChange)="onClassChanged($event)"
+  >
+    <mat-option
+      *ngFor="let item of classData.list"
+      [value]="item.value"
+    >
+      {{item.name}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<!-- общая таблица со всеми учениками -->
+<app-table-pupils
+  *ngIf="pupilsList | async as pupilsList; else notFound"
+  [data]="pupilsList"
+></app-table-pupils>
+<ng-template #notFound>
+  Не найдено
+</ng-template>
+
+<!-- при выборе ученика отправить на страницу с его оценками -->

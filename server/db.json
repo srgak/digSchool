@@ -34,6 +34,48 @@
         }
       ],
       "id": 3
+    },
+    {
+      "firstName": "Тест1",
+      "lastName": "Тестов1",
+      "patronymic": "Тестович1",
+      "role": "pupil",
+      "class": "1А",
+      "lessons": [
+        {
+          "name": "Математика",
+          "teacher": "Татьяна"
+        }
+      ],
+      "id": 4
+    },
+    {
+      "firstName": "Тест2",
+      "lastName": "Тестов2",
+      "patronymic": "Тестович2",
+      "role": "pupil",
+      "class": "2А",
+      "lessons": [
+        {
+          "name": "Математика",
+          "teacher": "Татьяна"
+        }
+      ],
+      "id": 5
+    },
+    {
+      "firstName": "Тест2",
+      "lastName": "Тестов2",
+      "patronymic": "Тестович2",
+      "role": "pupil",
+      "class": "3А",
+      "lessons": [
+        {
+          "name": "Математика",
+          "teacher": "Татьяна"
+        }
+      ],
+      "id": 6
     }
   ],
   "marks": [
