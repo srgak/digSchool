@@ -6,15 +6,15 @@ import { Mark, MarkValue } from 'src/app/helpers/interfaces/marks';
   providedIn: 'root'
 })
 export class MarksDataService {
-  public currentMarks$!: Observable<MarkValue[] | undefined>;
+  public currentMarks$!: Observable<MarkValue[]>;
   public data$!: Observable<Mark[]>;
 
-  public getCurrentMarks(nameLesson: string): Observable<MarkValue[] | undefined> {
+  public getCurrentMarks(nameLesson: string): Observable<MarkValue[]> {
     return this.data$
       .pipe(
         switchMap(array => from(array)),
         find(item => item.nameLesson === nameLesson),
-        map(mark => mark?.info)
+        map(mark => mark ? mark.info : [])
       )
   }
 }

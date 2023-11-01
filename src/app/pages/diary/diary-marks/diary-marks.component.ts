@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, filter, map, switchMap } from 'rxjs';
+import { Observable, map, switchMap } from 'rxjs';
 import { MarkValue } from 'src/app/helpers/interfaces/marks';
+import { notEmptyList } from 'src/app/helpers/pipes/not-empty-list';
 import { MarksDataService } from 'src/app/services/marks/marks.service';
 import { TableMarksModule } from 'src/app/shared/components/tables/table-marks/table-marks.module';
 
@@ -33,7 +34,7 @@ export class DiaryMarksComponent {
       .pipe(
         map(data => data['id']),
         switchMap(data => marksData.getCurrentMarks(data)),
-        filter(list => !!list)
+        notEmptyList
       )
   }
 }
