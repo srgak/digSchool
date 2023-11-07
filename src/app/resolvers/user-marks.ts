@@ -1,12 +1,13 @@
-import { ResolveFn } from "@angular/router";
+import { ActivatedRouteSnapshot, ResolveFn } from "@angular/router";
 import { Observable, map } from "rxjs";
 import { Mark } from "../helpers/interfaces/marks";
 import { inject } from "@angular/core";
 import { MarksService } from "../services/http/marks/marks.service";
-import { UserIdService } from "../services/storage/user-id/user-id.service";
 
-export const userMarksResolver: ResolveFn<Mark[]> = (): Observable<Mark[]> => {
-  return inject(MarksService).getMarks(inject(UserIdService).prop)
+export const userMarksResolver: ResolveFn<Mark[]> = (
+    activeRoute: ActivatedRouteSnapshot
+  ): Observable<Mark[]> => {
+  return inject(MarksService).getMarks(activeRoute.params['id'])
     .pipe(
       map(data => data.data)
     );

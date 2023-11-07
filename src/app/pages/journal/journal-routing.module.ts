@@ -3,6 +3,7 @@ import { JournalComponent } from "./journal.component";
 import { NgModule } from "@angular/core";
 import { pageName } from "src/app/helpers/routes";
 import { JournalMarksComponent } from "./journal-marks/journal-marks.component";
+import { userMarksResolver } from "src/app/resolvers/user-marks";
 
 const routes: Routes = [
   {
@@ -13,7 +14,10 @@ const routes: Routes = [
   {
     path: `${pageName.JournalMarks}/:id`,
     pathMatch: 'full',
-    component: JournalMarksComponent
+    component: JournalMarksComponent,
+    resolve: [
+      userMarksResolver
+    ]
   }
 ];
 

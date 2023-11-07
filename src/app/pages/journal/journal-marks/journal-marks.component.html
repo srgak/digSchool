@@ -1,1 +1,4 @@
-<p>journal-marks works!</p>
+<app-table-marks
+  *ngIf="marksData.currentMarks$ | async as list"
+  [data]="list"
+></app-table-marks>
