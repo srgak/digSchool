@@ -15,8 +15,8 @@
 </mat-form-field>
 <!-- общая таблица со всеми учениками -->
 <app-table-pupils
-  *ngIf="pupilsList | async as pupilsList; else notFound"
-  [data]="pupilsList"
+  *ngIf="pupilsList | async as list; else notFound"
+  [data]="list"
 ></app-table-pupils>
 <ng-template #notFound>
   Не найдено

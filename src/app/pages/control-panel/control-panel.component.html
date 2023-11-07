@@ -1,6 +1,7 @@
 <h1 class="title-page">Панель управления</h1>
 <app-table-users
-  [data]="(userList | async) || []"
+  *ngIf="userList | async as list"
+  [data]="list"
   (onSelect)="editUser($event)"
 ></app-table-users>
 <a
