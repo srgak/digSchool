@@ -5,5 +5,6 @@ export const enum pageName {
   ControlPanelEdit = 'edit',
   ControlPanelCreate = 'create',
   Diary = 'diary',
-  Journal = 'journal'
+  Journal = 'journal',
+  JournalMarks = 'marks'
 }

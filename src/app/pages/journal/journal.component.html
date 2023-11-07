@@ -17,6 +17,7 @@
 <app-table-pupils
   *ngIf="pupilsList | async as list; else notFound"
   [data]="list"
+  (onSelect)="onPupilSelected($event)"
 ></app-table-pupils>
 <ng-template #notFound>
   Не найдено
