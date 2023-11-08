@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { MenuData, MenuItem } from 'src/app/helpers/interfaces/menu';
 import { pageName } from 'src/app/helpers/routes';
 import { AccessTokenService } from 'src/app/services/storage/access-token/access-token.service';
-import { UserIdService } from 'src/app/services/storage/user-id/user-id.service';
+import { UserDataService } from 'src/app/services/storage/user-data/user-data.service';
 
 @Component({
   selector: 'app-menu-list',
@@ -21,12 +21,12 @@ export class MenuListComponent {
   constructor(
     private router: Router,
     private accessToken: AccessTokenService,
-    private userId: UserIdService
+    private userData: UserDataService
   ) {}
 
   public logOut(): void {
     this.accessToken.remove();
-    this.userId.remove();
+    this.userData.remove();
     this.router.navigateByUrl(pageName.Auth);
   }
 }

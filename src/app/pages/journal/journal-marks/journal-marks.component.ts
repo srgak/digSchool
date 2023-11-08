@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { map, switchMap } from 'rxjs';
+import { BehaviorSubject, map, switchMap } from 'rxjs';
 import { notEmptyList } from 'src/app/helpers/pipes/not-empty-list';
 import { MarksDataService } from 'src/app/services/marks/marks.service';
+import { UserTeachLessonService } from 'src/app/services/storage/user-teach-lesson/user-teach-lesson.service';
 import { TableMarksModule } from 'src/app/shared/components/tables/table-marks/table-marks.module';
 
 @Component({
@@ -19,14 +20,17 @@ import { TableMarksModule } from 'src/app/shared/components/tables/table-marks/t
 export class JournalMarksComponent {
   constructor(
     private activateRoute: ActivatedRoute,
-    public marksData: MarksDataService
+    public marksData: MarksDataService,
+    private teachLesson: UserTeachLessonService
   ) {
-    marksData.data$ = activateRoute.data.pipe(
-      map(data => data['0'])
-    )
-    marksData.currentMarks$ = marksData.data$
+    marksData.currentMarks$ = activateRoute.data
       .pipe(
-        switchMap(() => marksData.getCurrentMarks('Математика')),
+        map(data => data['0']),
+        switchMap(data => {
+          marksData.data$ = new BehaviorSubject(data).asObservable();
+          return marksData.data$;
+        }),
+        switchMap(() => marksData.getCurrentMarks(this.teachLesson.prop)),
         notEmptyList
       )
   }

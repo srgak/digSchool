@@ -1,17 +1,19 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { StorageProperty } from 'src/app/helpers/interfaces/storage';
+import { UserDataService } from '../user-data/user-data.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserIdService implements StorageProperty {
+  private userData: UserDataService = inject(UserDataService);
   public get prop(): number {
-    return JSON.parse(localStorage.getItem('id') || '0');
+    return this.userData.prop.id;
   }
   public set prop(value: number) {
-    localStorage.setItem('id', JSON.stringify(value));
-  }
-  public remove(): void {
-    localStorage.removeItem('id');
+    this.userData.prop = {
+      ...this.userData.prop,
+      id: value
+    };
   }
 }

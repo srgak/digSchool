@@ -3,15 +3,15 @@ import { UserData } from "../helpers/interfaces/user";
 import { inject } from "@angular/core";
 import { UserIdService } from "../services/storage/user-id/user-id.service";
 import { Observable, tap } from "rxjs";
-import { UserRoleService } from "../services/storage/user-role/user-role.service";
 import { HttpUsersService } from "../services/http/users/http-users.service";
+import { UserDataService } from "../services/storage/user-data/user-data.service";
 
 export const userDataResolver: ResolveFn<UserData> = (): Observable<UserData> => {
-  const role = inject(UserRoleService);
+  const userData = inject(UserDataService);
   return inject(HttpUsersService).getUserData(inject(UserIdService).prop)
     .pipe(
       tap(data => {
-        role.prop = data.role;
+        userData.prop = data
       })
     );
 }

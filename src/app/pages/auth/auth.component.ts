@@ -5,12 +5,11 @@ import { UserAuthResponse } from 'src/app/helpers/interfaces/user';
 import { pageName } from 'src/app/helpers/routes';
 import { ModalService } from 'src/app/services/modal/modal.service';
 import { AccessTokenService } from 'src/app/services/storage/access-token/access-token.service';
-import { UserIdService } from 'src/app/services/storage/user-id/user-id.service';
-import { UserRoleService } from 'src/app/services/storage/user-role/user-role.service';
 import { AuthForm } from './auth-form';
 import { HttpAuthService } from 'src/app/services/http/auth/http-auth.service';
 import { SYMBOLS_RU_TO_EN } from 'src/app/helpers/tokens/symbols-translate';
 import { SimpleObject } from 'src/app/helpers/interfaces/common';
+import { UserDataService } from 'src/app/services/storage/user-data/user-data.service';
 
 @Component({
   templateUrl: './auth.component.html',
@@ -20,11 +19,10 @@ import { SimpleObject } from 'src/app/helpers/interfaces/common';
 export class AuthComponent extends AuthForm implements FormMain, FormSubmit {
   constructor(
     private router: Router,
-    private userId: UserIdService,
     public modal: ModalService,
     private httpAuth: HttpAuthService,
     private accessToken: AccessTokenService,
-    private userRole: UserRoleService,
+    private userData: UserDataService,
     @Inject(SYMBOLS_RU_TO_EN) public lettersEnToRu: SimpleObject<string>
   ) {
     super();
@@ -40,9 +38,8 @@ export class AuthComponent extends AuthForm implements FormMain, FormSubmit {
   }
 
   private onSuccess = (data: UserAuthResponse): void => {
-    this.userRole.prop = data.user.role;
+    this.userData.prop = data.user;
     this.accessToken.prop = data.accessToken;
-    this.userId.prop = data.user.id;
     this.router.navigateByUrl(pageName.Main);
   }
 }

@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { UserData } from 'src/app/helpers/interfaces/user';
 import { pageName } from 'src/app/helpers/routes';
-import { UsersService } from 'src/app/services/db/users/users.service';
 import { HttpUsersService } from 'src/app/services/http/users/http-users.service';
 
 @Component({
@@ -13,7 +12,6 @@ import { HttpUsersService } from 'src/app/services/http/users/http-users.service
 export class ControlPanelComponent {
   public userList: Observable<UserData[]> = this.httpUsers.getUserList();
   constructor(
-    public userData: UsersService,
     private router: Router,
     private httpUsers: HttpUsersService
   ) {}
