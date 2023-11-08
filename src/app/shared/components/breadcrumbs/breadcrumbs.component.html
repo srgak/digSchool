@@ -1,0 +1,36 @@
+<ul
+  class="breadcrumb"
+>
+  <li
+    class="breadcrumb__item"
+    *ngFor="let item of list"  
+  >
+    <ng-container
+      [ngTemplateOutlet]="item.link ? breadcrumbItem : breadcrumbLastItem"
+      [ngTemplateOutletContext]="item"
+    ></ng-container>
+  </li>
+</ul>
+
+<ng-template 
+  #breadcrumbItem
+  let-name="name"  
+  let-link="link"
+>
+  <a
+    [href]="link"
+  >
+    <span class="breadcrumb__title">
+      {{name}}
+    </span>
+  </a>
+</ng-template>
+
+<ng-template
+  #breadcrumbLastItem
+  let-name="name"
+>
+  <span class="breadcrumb__title">
+    {{name}}
+  </span>
+</ng-template>

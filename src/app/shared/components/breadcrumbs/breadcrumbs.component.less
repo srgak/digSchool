@@ -1,0 +1,25 @@
+.breadcrumb {
+  @apply
+    flex
+    flex-wrap
+    items-baseline
+    w-full;
+  &__item {
+    @apply
+      inline-flex
+      items-center;
+    &:not(:last-child):after {
+      content: '/';
+      display: inline-block;
+      width: 9px;
+      height: 22px;
+      margin-right: 10px;
+    }
+  }
+  &__title {
+    @apply
+      text-14
+      inline-block
+      mr-10;
+  }
+}
