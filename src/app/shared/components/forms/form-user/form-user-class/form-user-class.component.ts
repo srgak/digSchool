@@ -3,6 +3,7 @@ import { NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors } from '@angular/for
 import { ControlCustom } from 'src/app/helpers/interfaces/form';
 import { FormUserClass } from './form-user-class';
 import { SelectDataClassesService } from 'src/app/services/select-data/select-data-classes/select-data-classes.service';
+import { validators, valueAccessor } from 'src/app/helpers/providers/custom-control';
 
 @Component({
   selector: 'app-form-user-class',
@@ -10,16 +11,8 @@ import { SelectDataClassesService } from 'src/app/services/select-data/select-da
   styleUrls: ['./form-user-class.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => FormUserClassComponent),
-      multi: true
-    },
-    {
-      provide: NG_VALIDATORS,
-      useExisting: forwardRef(() => FormUserClassComponent),
-      multi: true
-    }
+    valueAccessor(FormUserClassComponent),
+    validators(FormUserClassComponent)
   ]
 })
 export class FormUserClassComponent extends FormUserClass implements ControlCustom, OnInit, OnDestroy {

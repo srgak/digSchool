@@ -6,6 +6,7 @@ import { LessonData } from 'src/app/helpers/interfaces/user';
 import { FormUserLesson } from './form-user-lessons';
 import { SelectDataLessonsService } from 'src/app/services/select-data/select-data-lessons/select-data-lessons.service';
 import { HttpTeachersService } from 'src/app/services/http/teachers/http-teachers.service';
+import { validators, valueAccessor } from 'src/app/helpers/providers/custom-control';
 
 @Component({
   selector: 'app-form-user-lesson',
@@ -13,16 +14,8 @@ import { HttpTeachersService } from 'src/app/services/http/teachers/http-teacher
   styleUrls: ['./form-user-lesson.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => FormUserLessonComponent),
-      multi: true
-    },
-    {
-      provide: NG_VALIDATORS,
-      useExisting: forwardRef(() => FormUserLessonComponent),
-      multi: true
-    }
+    valueAccessor(FormUserLessonComponent),
+    validators(FormUserLessonComponent)
   ]
 })
 export class FormUserLessonComponent extends FormUserLesson implements FormCustom, OnInit, OnDestroy {

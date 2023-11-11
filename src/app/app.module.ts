@@ -9,6 +9,7 @@ import { MenuModule } from './shared/components/menu/menu.module';
 import { ModalModule } from './shared/components/modal/modal.module';
 import { ApiInterceptor } from './interceptors/api.interceptor';
 import { BreadcrumbsModule } from './shared/components/breadcrumbs/breadcrumbs.module';
+import { interceptorProvide } from './helpers/providers/interceptor';
 
 @NgModule({
   declarations: [
@@ -25,11 +26,7 @@ import { BreadcrumbsModule } from './shared/components/breadcrumbs/breadcrumbs.m
     BreadcrumbsModule
   ],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: ApiInterceptor,
-      multi: true
-    }
+    interceptorProvide
   ],
   bootstrap: [AppComponent]
 })
