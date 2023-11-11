@@ -12,7 +12,7 @@ export const enum pageBreadcrumbs {
   auth = 'assets/data/breadcrumbs/auth.json',
   main = 'assets/data/breadcrumbs/main.json',
   controlPanel = 'assets/data/breadcrumbs/control-panel.json',
-  controlPanelEdit = 'assets/data/breeadcrumbs/control-panel-edit.json',
+  controlPanelEdit = 'assets/data/breadcrumbs/control-panel-edit.json',
   controlPanelCreate = 'assets/data/breadcrumbs/control-panel-create.json',
   diary = 'assets/data/breadcrumbs/diary.json',
   journal = 'assets/data/breadcrumbs/journal.json',
