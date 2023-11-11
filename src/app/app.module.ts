@@ -8,6 +8,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MenuModule } from './shared/components/menu/menu.module';
 import { ModalModule } from './shared/components/modal/modal.module';
 import { ApiInterceptor } from './interceptors/api.interceptor';
+import { BreadcrumbsModule } from './shared/components/breadcrumbs/breadcrumbs.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ApiInterceptor } from './interceptors/api.interceptor';
     HttpClientModule,
     MenuModule,
     ModalModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    BreadcrumbsModule
   ],
   providers: [
     {

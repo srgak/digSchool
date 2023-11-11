@@ -1,8 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { BreadcrumbItem } from 'src/app/helpers/interfaces/breadcrumbs';
 import { UserData } from 'src/app/helpers/interfaces/user';
-import { pageName } from 'src/app/helpers/routes';
+import { breadcrumbsProvide } from 'src/app/helpers/providers/breadcrumbs/breadcrumbs';
+import { pageBreadcrumbs, pageName } from 'src/app/helpers/routes';
+import { BREADCRUMBS } from 'src/app/helpers/tokens/breadcrumbs';
+import { BreadcrumbsService } from 'src/app/services/breadcrumbs/breadcrumbs.service';
 import { HttpUsersService } from 'src/app/services/http/users/http-users.service';
 import { FormUserModule } from 'src/app/shared/components/forms/form-user/form-user.module';
 
@@ -15,14 +20,21 @@ import { FormUserModule } from 'src/app/shared/components/forms/form-user/form-u
   imports: [
     CommonModule,
     FormUserModule
+  ],
+  providers: [
+    breadcrumbsProvide(pageBreadcrumbs.controlPanelEdit)
   ]
 })
 export class ControlPanelEditComponent {
   constructor(
     public activatedRoute: ActivatedRoute,
     private router: Router,
-    private httpUsers: HttpUsersService
-  ) {}
+    private httpUsers: HttpUsersService,
+    @Inject(BREADCRUMBS) private breadcrumbs: Observable<BreadcrumbItem[]>,
+    private breadcrumbsData: BreadcrumbsService
+  ) {
+    this.breadcrumbsData.current = this.breadcrumbs;
+  }
 
   public editUser(user: UserData): void {
     this.httpUsers.editUserData(this.activatedRoute.snapshot.params['id'], user)

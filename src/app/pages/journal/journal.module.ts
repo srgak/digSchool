@@ -7,6 +7,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { SelectDataClassesService } from 'src/app/services/select-data/select-data-classes/select-data-classes.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TablePupilsModule } from 'src/app/shared/components/tables/table-pupils/table-pupils.module';
+import { breadcrumbsProvide } from 'src/app/helpers/providers/breadcrumbs/breadcrumbs';
+import { pageBreadcrumbs } from 'src/app/helpers/routes';
 
 
 
@@ -21,7 +23,8 @@ import { TablePupilsModule } from 'src/app/shared/components/tables/table-pupils
     TablePupilsModule
   ],
   providers: [
-    SelectDataClassesService
+    SelectDataClassesService,
+    breadcrumbsProvide(pageBreadcrumbs.journal)
   ]
 })
 export class JournalModule { }

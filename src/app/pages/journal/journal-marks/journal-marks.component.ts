@@ -1,13 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BehaviorSubject, map, switchMap } from 'rxjs';
+import { BehaviorSubject, Observable, map, switchMap } from 'rxjs';
 import { BreadcrumbItem } from 'src/app/helpers/interfaces/breadcrumbs';
 import { notEmptyList } from 'src/app/helpers/pipes/not-empty-list';
-import { BREADCRUMBS, BREADCRUMBS_JOURNAL_MARKS } from 'src/app/helpers/tokens/breadcrumbs';
+import { breadcrumbsProvide } from 'src/app/helpers/providers/breadcrumbs/breadcrumbs';
+import { pageBreadcrumbs } from 'src/app/helpers/routes';
+import { BREADCRUMBS } from 'src/app/helpers/tokens/breadcrumbs';
+import { BreadcrumbsService } from 'src/app/services/breadcrumbs/breadcrumbs.service';
 import { MarksDataService } from 'src/app/services/marks/marks.service';
 import { UserTeachLessonService } from 'src/app/services/storage/user-teach-lesson/user-teach-lesson.service';
-import { BreadcrumbsModule } from 'src/app/shared/components/breadcrumbs/breadcrumbs.module';
 import { TableMarksModule } from 'src/app/shared/components/tables/table-marks/table-marks.module';
 
 @Component({
@@ -17,14 +19,10 @@ import { TableMarksModule } from 'src/app/shared/components/tables/table-marks/t
   standalone: true,
   imports: [
     CommonModule,
-    TableMarksModule,
-    BreadcrumbsModule
+    TableMarksModule
   ],
   providers: [
-    {
-      provide: BREADCRUMBS,
-      useValue: BREADCRUMBS_JOURNAL_MARKS
-    }
+    breadcrumbsProvide(pageBreadcrumbs.journalMarks)
   ]
 })
 export class JournalMarksComponent {
@@ -32,8 +30,10 @@ export class JournalMarksComponent {
     private activateRoute: ActivatedRoute,
     public marksData: MarksDataService,
     private teachLesson: UserTeachLessonService,
-    @Inject(BREADCRUMBS) public breadcrumbs: BreadcrumbItem[]
+    @Inject(BREADCRUMBS) private breadcrumbs: Observable<BreadcrumbItem[]>,
+    private breadcrumbsData: BreadcrumbsService
   ) {
+    this.breadcrumbsData.current = this.breadcrumbs;
     marksData.currentMarks$ = activateRoute.data
       .pipe(
         map(data => data['0']),

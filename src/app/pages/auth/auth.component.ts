@@ -10,6 +10,10 @@ import { HttpAuthService } from 'src/app/services/http/auth/http-auth.service';
 import { SYMBOLS_RU_TO_EN } from 'src/app/helpers/tokens/symbols-translate';
 import { SimpleObject } from 'src/app/helpers/interfaces/common';
 import { UserDataService } from 'src/app/services/storage/user-data/user-data.service';
+import { Observable } from 'rxjs';
+import { BreadcrumbItem } from 'src/app/helpers/interfaces/breadcrumbs';
+import { BREADCRUMBS } from 'src/app/helpers/tokens/breadcrumbs';
+import { BreadcrumbsService } from 'src/app/services/breadcrumbs/breadcrumbs.service';
 
 @Component({
   templateUrl: './auth.component.html',
@@ -23,9 +27,12 @@ export class AuthComponent extends AuthForm implements FormMain, FormSubmit {
     private httpAuth: HttpAuthService,
     private accessToken: AccessTokenService,
     private userData: UserDataService,
-    @Inject(SYMBOLS_RU_TO_EN) public lettersEnToRu: SimpleObject<string>
+    @Inject(SYMBOLS_RU_TO_EN) public lettersEnToRu: SimpleObject<string>,
+    @Inject(BREADCRUMBS) private breadcrumbs: Observable<BreadcrumbItem[]>,
+    private breadcrumbsData: BreadcrumbsService
   ) {
     super();
+    this.breadcrumbsData.current = this.breadcrumbs;
   }
 
   public onSubmit() {
