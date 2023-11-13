@@ -25,7 +25,7 @@ export class ApiInterceptor implements HttpInterceptor {
             this.router.navigateByUrl(pageName.Auth);
             this.accessToken.remove();
           }
-          this.modal.openModal('error', error.error);
+          this.modal.openModal('error', error.message);
           return throwError(() => error);
         })
       )
