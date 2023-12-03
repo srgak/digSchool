@@ -1,9 +1,8 @@
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
-import { Provider } from "@angular/core";
-import { ApiInterceptor } from "src/app/interceptors/api.interceptor";
+import { Provider, Type } from "@angular/core";
 
-export const interceptorProvide: Provider = {
+export const interceptorProvide = (someClass: Type<any>): Provider => ({
   provide: HTTP_INTERCEPTORS,
-  useClass: ApiInterceptor,
+  useClass: someClass,
   multi: true
-}
+})

@@ -4,12 +4,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { MenuModule } from './shared/components/menu/menu.module';
 import { ModalModule } from './shared/components/modal/modal.module';
-import { ApiInterceptor } from './interceptors/api.interceptor';
 import { BreadcrumbsModule } from './shared/components/breadcrumbs/breadcrumbs.module';
 import { interceptorProvide } from './helpers/providers/interceptor';
+import { TokenInterceptor } from './interceptors/send-token.interceptor';
+import { ErrorsHandlerInterceptor } from './interceptors/errors-handler.interceptor';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { interceptorProvide } from './helpers/providers/interceptor';
     BreadcrumbsModule
   ],
   providers: [
-    interceptorProvide
+    interceptorProvide(ErrorsHandlerInterceptor),
+    interceptorProvide(TokenInterceptor)
   ],
   bootstrap: [AppComponent]
 })
