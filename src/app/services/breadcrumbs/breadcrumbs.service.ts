@@ -7,8 +7,10 @@ import { BreadcrumbItem } from 'src/app/helpers/interfaces/breadcrumbs';
 })
 export class BreadcrumbsService {
   private _current: Subject<BreadcrumbItem[]> = new Subject();
-  public set current(value: Observable<BreadcrumbItem[]>) {
-    value.subscribe(this.current);
+  public set current(flow: Observable<BreadcrumbItem[]>) {
+    flow.subscribe(value => {
+      this._current.next(value);
+    });
   }
   public get current(): Subject<BreadcrumbItem[]> {
     return this._current;
