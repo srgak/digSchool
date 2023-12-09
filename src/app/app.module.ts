@@ -11,6 +11,10 @@ import { BreadcrumbsModule } from './shared/components/breadcrumbs/breadcrumbs.m
 import { interceptorProvide } from './helpers/providers/interceptor';
 import { TokenInterceptor } from './interceptors/send-token.interceptor';
 import { ErrorsHandlerInterceptor } from './interceptors/errors-handler.interceptor';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { environments } from 'src/environments/environments';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -24,7 +28,10 @@ import { ErrorsHandlerInterceptor } from './interceptors/errors-handler.intercep
     MenuModule,
     ModalModule,
     BrowserAnimationsModule,
-    BreadcrumbsModule
+    BreadcrumbsModule,
+    StoreModule.forRoot({}, {}),
+    EffectsModule.forRoot([]),
+    !environments.production ? StoreDevtoolsModule.instrument() : []
   ],
   providers: [
     interceptorProvide(ErrorsHandlerInterceptor),
