@@ -6,7 +6,7 @@
 <main class="wrapper">
   <div class="container">
     <app-breadcrumbs
-      *ngIf="breadcrumbsData.current | async as breadcrumbs"
+      *ngIf="breadcrumbs$ | async as breadcrumbs"
       [list]="breadcrumbs"
     ></app-breadcrumbs>
     <router-outlet></router-outlet>

@@ -15,6 +15,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { environments } from 'src/environments/environments';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { appReducers } from './store/reducers/app.reducer';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     ModalModule,
     BrowserAnimationsModule,
     BreadcrumbsModule,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot(appReducers),
     EffectsModule.forRoot([]),
     !environments.production ? StoreDevtoolsModule.instrument() : []
   ],

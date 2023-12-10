@@ -1,18 +1,22 @@
-import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Injectable, inject } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { BreadcrumbItem } from 'src/app/helpers/interfaces/breadcrumbs';
+import { getBreadcrumbs } from 'src/app/store/actions/breadcrumbs.action';
+import { AppState } from 'src/app/store/state/app.state';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BreadcrumbsService {
-  private _current: Subject<BreadcrumbItem[]> = new Subject();
+  private store: Store<AppState> = inject(Store<AppState>);
   public set current(flow: Observable<BreadcrumbItem[]>) {
-    flow.subscribe(value => {
-      this._current.next(value);
-    });
+    flow.subscribe(this.setDataToStore);
   }
-  public get current(): Subject<BreadcrumbItem[]> {
-    return this._current;
+
+  private setDataToStore = (value: BreadcrumbItem[]): void => {
+    this.store.dispatch(getBreadcrumbs({
+      list: value
+    }))
   }
 }
