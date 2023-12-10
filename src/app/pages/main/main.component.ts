@@ -1,10 +1,11 @@
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { Observable, map } from 'rxjs';
-import { BreadcrumbItem } from 'src/app/helpers/interfaces/breadcrumbs';
 import { UserData } from 'src/app/helpers/interfaces/user';
-import { BREADCRUMBS } from 'src/app/helpers/tokens/breadcrumbs';
-import { BreadcrumbsService } from 'src/app/services/breadcrumbs/breadcrumbs.service';
+import { BREADCRUMBS_URL } from 'src/app/helpers/tokens/breadcrumbs';
+import { requestBreadcrumbs } from 'src/app/store/actions/breadcrumbs.action';
+import { AppState } from 'src/app/store/state/app.state';
 
 @Component({
   selector: 'app-main',
@@ -19,9 +20,11 @@ export class MainComponent {
     );
   constructor(
     public activateRoute: ActivatedRoute,
-    @Inject(BREADCRUMBS) private breadcrumbs: Observable<BreadcrumbItem[]>,
-    private breadcrumbsData: BreadcrumbsService
+    @Inject(BREADCRUMBS_URL) private breadcrumbsUrl: string,
+    private store: Store<AppState>
   ) {
-    this.breadcrumbsData.current = this.breadcrumbs;
+    this.store.dispatch(requestBreadcrumbs({
+      url: this.breadcrumbsUrl
+    }));
   }
 }

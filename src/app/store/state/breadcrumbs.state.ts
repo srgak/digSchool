@@ -1,7 +1,7 @@
 import { BreadcrumbItem } from "src/app/helpers/interfaces/breadcrumbs";
 
 export interface BreadcrumbsState {
-  list: BreadcrumbItem[] | null
+  list: BreadcrumbItem[] | null;
 }
 
 export const initialBreadcrumbsState: BreadcrumbsState = {

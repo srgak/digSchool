@@ -10,10 +10,10 @@ import { HttpAuthService } from 'src/app/services/http/auth/http-auth.service';
 import { SYMBOLS_RU_TO_EN } from 'src/app/helpers/tokens/symbols-translate';
 import { SimpleObject } from 'src/app/helpers/interfaces/common';
 import { UserDataService } from 'src/app/services/storage/user-data/user-data.service';
-import { Observable } from 'rxjs';
-import { BreadcrumbItem } from 'src/app/helpers/interfaces/breadcrumbs';
-import { BREADCRUMBS } from 'src/app/helpers/tokens/breadcrumbs';
-import { BreadcrumbsService } from 'src/app/services/breadcrumbs/breadcrumbs.service';
+import { BREADCRUMBS_URL } from 'src/app/helpers/tokens/breadcrumbs';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/store/state/app.state';
+import { requestBreadcrumbs } from 'src/app/store/actions/breadcrumbs.action';
 
 @Component({
   templateUrl: './auth.component.html',
@@ -28,11 +28,13 @@ export class AuthComponent extends AuthForm implements FormMain, FormSubmit {
     private accessToken: AccessTokenService,
     private userData: UserDataService,
     @Inject(SYMBOLS_RU_TO_EN) public lettersEnToRu: SimpleObject<string>,
-    @Inject(BREADCRUMBS) private breadcrumbs: Observable<BreadcrumbItem[]>,
-    private breadcrumbsData: BreadcrumbsService
+    @Inject(BREADCRUMBS_URL) private breadcrumbsUrl: string,
+    private store: Store<AppState>
   ) {
     super();
-    this.breadcrumbsData.current = this.breadcrumbs;
+    this.store.dispatch(requestBreadcrumbs({
+      url: this.breadcrumbsUrl
+    }));
   }
 
   public onSubmit() {

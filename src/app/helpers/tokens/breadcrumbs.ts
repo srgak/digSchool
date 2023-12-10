@@ -1,5 +1,3 @@
 import { InjectionToken } from "@angular/core";
-import { BreadcrumbItem } from "../interfaces/breadcrumbs";
-import { Observable } from "rxjs";
 
-export const BREADCRUMBS = new InjectionToken<Observable<BreadcrumbItem[]>>('Хлебные крошки');
+export const BREADCRUMBS_URL = new InjectionToken<string>('Ссылка для получения данных хлебных крошек');

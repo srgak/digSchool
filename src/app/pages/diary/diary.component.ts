@@ -1,10 +1,11 @@
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, map } from 'rxjs';
-import { BreadcrumbItem } from 'src/app/helpers/interfaces/breadcrumbs';
-import { BREADCRUMBS } from 'src/app/helpers/tokens/breadcrumbs';
-import { BreadcrumbsService } from 'src/app/services/breadcrumbs/breadcrumbs.service';
+import { Store } from '@ngrx/store';
+import { map } from 'rxjs';
+import { BREADCRUMBS_URL } from 'src/app/helpers/tokens/breadcrumbs';
 import { MarksDataService } from 'src/app/services/marks/marks.service';
+import { requestBreadcrumbs } from 'src/app/store/actions/breadcrumbs.action';
+import { AppState } from 'src/app/store/state/app.state';
 
 @Component({
   templateUrl: './diary.component.html',
@@ -15,10 +16,12 @@ export class DiaryComponent {
   constructor(
     private activeRoute: ActivatedRoute,
     public marksData: MarksDataService,
-    @Inject(BREADCRUMBS) private breadcrumbs: Observable<BreadcrumbItem[]>,
-    private breadcrumbsData: BreadcrumbsService
+    @Inject(BREADCRUMBS_URL) private breadcrumbsUrl: string,
+    private store: Store<AppState>
   ) {
-    this.breadcrumbsData.current = this.breadcrumbs;
+    this.store.dispatch(requestBreadcrumbs({
+      url: this.breadcrumbsUrl
+    }));
     marksData.data$ = activeRoute.data.pipe(
       map(data => data['0'])
     )

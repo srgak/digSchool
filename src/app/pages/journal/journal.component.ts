@@ -1,15 +1,16 @@
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { MatSelectChange } from '@angular/material/select';
 import { Router } from '@angular/router';
-import { Observable, filter } from 'rxjs';
-import { BreadcrumbItem } from 'src/app/helpers/interfaces/breadcrumbs';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { UserData } from 'src/app/helpers/interfaces/user';
 import { notEmptyList } from 'src/app/helpers/pipes/not-empty-list';
 import { pageName } from 'src/app/helpers/routes';
-import { BREADCRUMBS } from 'src/app/helpers/tokens/breadcrumbs';
-import { BreadcrumbsService } from 'src/app/services/breadcrumbs/breadcrumbs.service';
+import { BREADCRUMBS_URL } from 'src/app/helpers/tokens/breadcrumbs';
 import { HttpPupilsService } from 'src/app/services/http/pupils/http-pupils.service';
 import { SelectDataClassesService } from 'src/app/services/select-data/select-data-classes/select-data-classes.service';
+import { requestBreadcrumbs } from 'src/app/store/actions/breadcrumbs.action';
+import { AppState } from 'src/app/store/state/app.state';
 
 @Component({
   templateUrl: './journal.component.html',
@@ -22,10 +23,12 @@ export class JournalComponent {
     public classData: SelectDataClassesService,
     public httpPupils: HttpPupilsService,
     private router: Router,
-    @Inject(BREADCRUMBS) private breadcrumbs: Observable<BreadcrumbItem[]>,
-    private breadcrumbsData: BreadcrumbsService
+    @Inject(BREADCRUMBS_URL) private breadcrumbsUrl: string,
+    private store: Store<AppState>
   ) {
-    this.breadcrumbsData.current = this.breadcrumbs;
+    this.store.dispatch(requestBreadcrumbs({
+      url: this.breadcrumbsUrl
+    }));
     this.pupilsList = httpPupils.getPupils()
       .pipe(
         notEmptyList
