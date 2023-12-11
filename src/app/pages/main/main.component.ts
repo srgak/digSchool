@@ -8,7 +8,6 @@ import { requestBreadcrumbs } from 'src/app/store/actions/breadcrumbs.action';
 import { AppState } from 'src/app/store/state/app.state';
 
 @Component({
-  selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush

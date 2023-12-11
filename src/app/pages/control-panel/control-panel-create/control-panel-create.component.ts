@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -12,9 +12,9 @@ import { requestBreadcrumbs } from 'src/app/store/actions/breadcrumbs.action';
 import { AppState } from 'src/app/store/state/app.state';
 
 @Component({
-  selector: 'app-control-panel-create',
   templateUrl: './control-panel-create.component.html',
   styleUrls: ['./control-panel-create.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
     FormUserModule,

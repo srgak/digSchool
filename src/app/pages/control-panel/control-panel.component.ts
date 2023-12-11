@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -11,7 +11,8 @@ import { AppState } from 'src/app/store/state/app.state';
 
 @Component({
   templateUrl: './control-panel.component.html',
-  styleUrls: ['./control-panel.component.less']
+  styleUrls: ['./control-panel.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ControlPanelComponent {
   public userList: Observable<UserData[]> = this.httpUsers.getUserList();

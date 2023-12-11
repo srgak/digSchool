@@ -8,7 +8,6 @@ import { MarksDataService } from 'src/app/services/marks/marks.service';
 import { TableMarksModule } from 'src/app/shared/components/tables/table-marks/table-marks.module';
 
 @Component({
-  selector: 'app-diary-marks',
   templateUrl: './diary-marks.component.html',
   styleUrls: ['./diary-marks.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,

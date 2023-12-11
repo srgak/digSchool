@@ -12,7 +12,6 @@ import { requestBreadcrumbs } from 'src/app/store/actions/breadcrumbs.action';
 import { AppState } from 'src/app/store/state/app.state';
 
 @Component({
-  selector: 'app-control-panel-edit',
   templateUrl: './control-panel-edit.component.html',
   styleUrls: ['./control-panel-edit.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
