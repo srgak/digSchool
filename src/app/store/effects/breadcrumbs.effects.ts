@@ -4,13 +4,25 @@ import { exhaustMap, map, of, switchMap, tap } from "rxjs";
 import { getBreadcrumbs, requestBreadcrumbs } from "../actions/breadcrumbs.action";
 import { HttpClient } from "@angular/common/http";
 import { BreadcrumbItem } from "src/app/helpers/interfaces/breadcrumbs";
+import { CacheBreadcrumbsService } from "src/app/services/storage/cache-breadcrumbs/cache-breadcrumbs.service";
 
 @Injectable()
 export class BreadcrumbsEffect {
   private loadBreadcrumbs$ = createEffect(() => this.actions$.pipe(
     ofType(requestBreadcrumbs),
-    tap(data => data),
-    exhaustMap((data) => this.http.get<BreadcrumbItem[]>(data.url)),
+    exhaustMap(data => {
+      const cache = this.cacheBreadcrumbs.getTarget(data.url);
+
+      return cache ? of(cache) 
+        : this.http.get<BreadcrumbItem[]>(data.url).pipe(
+          tap(response => {
+            this.cacheBreadcrumbs.setTarget({
+              name: data.url,
+              list: response
+            });
+          })
+      );
+    }),
     map(data => ({
       list: data
     })),
@@ -19,6 +31,7 @@ export class BreadcrumbsEffect {
 
   constructor(
     private actions$: Actions,
-    private http: HttpClient
+    private http: HttpClient,
+    private cacheBreadcrumbs: CacheBreadcrumbsService
   ) {}
 }
