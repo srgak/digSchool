@@ -7,9 +7,10 @@
   <span class="menu-button__line"></span>
 </button>
 <app-menu-list 
+  *ngIf="(menuList$ | async) as list"
   class="menu-list"
   [ngClass]="{
     'active': isOpen
   }"
-  [menuData]="settings | async"
+  [menuData]="list"
 ></app-menu-list>

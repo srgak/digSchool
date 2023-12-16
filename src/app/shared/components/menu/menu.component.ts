@@ -1,7 +1,11 @@
-import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { MenuData } from 'src/app/helpers/interfaces/menu';
-import { SETTINGS_MENU_TOKEN } from 'src/app/helpers/tokens/menu';
+import { UserRoleService } from 'src/app/services/storage/user-role/user-role.service';
+import { requestMenu } from 'src/app/store/actions/menu.action';
+import { menuSelector } from 'src/app/store/selectors/menu.selector';
+import { AppState } from 'src/app/store/state/app.state';
 
 @Component({
   selector: 'app-menu',
@@ -11,9 +15,17 @@ import { SETTINGS_MENU_TOKEN } from 'src/app/helpers/tokens/menu';
 })
 export class MenuComponent {
   public isOpen: boolean = false;
+  public menuList$: Observable<MenuData | null> = this.store.select(menuSelector);
+
   constructor(
-    @Inject(SETTINGS_MENU_TOKEN) public settings: Observable<MenuData>
-  ) {}
+    private userRole: UserRoleService,
+    private store: Store<AppState>
+  ) {
+    this.store.dispatch(requestMenu({
+      role: this.userRole.prop
+    }));
+  }
+
   public toggleMenu(): void {
     this.isOpen = !this.isOpen;
   }

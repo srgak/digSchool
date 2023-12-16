@@ -1,0 +1,12 @@
+[
+  {
+    "name": "Главная",
+    "link": "dashboard",
+    "img": "/assets/img/icons/home.svg"
+  },
+  {
+    "name": "Панель управления пользователями",
+    "link": "control-panel",
+    "img": "/assets/img/icons/control-panel.svg"
+  }
+]

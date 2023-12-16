@@ -1,0 +1,12 @@
+[
+  {
+    "name": "Главная",
+    "link": "dashboard",
+    "img": "/assets/img/icons/home.svg"
+  },
+  {
+    "name": "Дневник",
+    "link": "diary",
+    "img": "/assets/img/icons/diary.svg"
+  }
+]

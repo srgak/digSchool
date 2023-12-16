@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ModalService } from './services/modal/modal.service';
 import { AccessTokenService } from './services/storage/access-token/access-token.service';
 import { Store } from '@ngrx/store';

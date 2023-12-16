@@ -17,6 +17,7 @@ import { environments } from 'src/environments/environments';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { appReducers } from './store/reducers/app.reducer';
 import { BreadcrumbsEffect } from './store/effects/breadcrumbs.effects';
+import { MenuEffect } from './store/effects/menu.effect';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import { BreadcrumbsEffect } from './store/effects/breadcrumbs.effects';
     BrowserAnimationsModule,
     BreadcrumbsModule,
     StoreModule.forRoot(appReducers),
-    EffectsModule.forRoot([BreadcrumbsEffect]),
+    EffectsModule.forRoot([BreadcrumbsEffect, MenuEffect]),
     !environments.production ? StoreDevtoolsModule.instrument() : []
   ],
   providers: [
