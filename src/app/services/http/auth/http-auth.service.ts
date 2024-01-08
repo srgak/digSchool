@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpMain } from '../http';
-import { UserAuthForm, UserAuthResponse, UserData } from 'src/app/helpers/interfaces/user';
+import { UserAuth, UserAuthForm, UserAuthResponse } from 'src/app/helpers/interfaces/user';
 import { Observable } from 'rxjs';
 import { environments } from 'src/environments/environments';
 
@@ -8,7 +8,7 @@ import { environments } from 'src/environments/environments';
   providedIn: 'root'
 })
 export class HttpAuthService extends HttpMain {
-  public register(data: UserData): Observable<UserAuthResponse> {
+  public register(data: UserAuth): Observable<UserAuthResponse> {
     return this.http.post<UserAuthResponse>(`${environments.apiUrl}register`, data);
   }
   public login(data: UserAuthForm): Observable<UserAuthResponse> {

@@ -9,11 +9,11 @@ import { AuthForm } from './auth-form';
 import { HttpAuthService } from 'src/app/services/http/auth/http-auth.service';
 import { SYMBOLS_RU_TO_EN } from 'src/app/helpers/tokens/symbols-translate';
 import { SimpleObject } from 'src/app/helpers/interfaces/common';
-import { UserDataService } from 'src/app/services/storage/user-data/user-data.service';
 import { BREADCRUMBS_URL } from 'src/app/helpers/tokens/breadcrumbs';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/state/app.state';
 import { requestBreadcrumbs } from 'src/app/store/actions/breadcrumbs.action';
+import { UserIdService } from 'src/app/services/storage/user-id/user-id.service';
 
 @Component({
   templateUrl: './auth.component.html',
@@ -26,7 +26,7 @@ export class AuthComponent extends AuthForm implements FormMain, FormSubmit {
     public modal: ModalService,
     private httpAuth: HttpAuthService,
     private accessToken: AccessTokenService,
-    private userData: UserDataService,
+    private userId: UserIdService,
     @Inject(SYMBOLS_RU_TO_EN) public lettersEnToRu: SimpleObject<string>,
     @Inject(BREADCRUMBS_URL) private breadcrumbsUrl: string,
     private store: Store<AppState>
@@ -47,7 +47,7 @@ export class AuthComponent extends AuthForm implements FormMain, FormSubmit {
   }
 
   private onSuccess = (data: UserAuthResponse): void => {
-    this.userData.prop = data.user;
+    this.userId.prop = data.user.id;
     this.accessToken.prop = data.accessToken;
     this.router.navigateByUrl(pageName.Main);
   }

@@ -18,6 +18,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { appReducers } from './store/reducers/app.reducer';
 import { BreadcrumbsEffect } from './store/effects/breadcrumbs.effects';
 import { MenuEffect } from './store/effects/menu.effect';
+import { ApolloModule } from 'apollo-angular';
+import { apolloProvide } from './helpers/providers/apollo';
 
 @NgModule({
   declarations: [
@@ -34,11 +36,13 @@ import { MenuEffect } from './store/effects/menu.effect';
     BreadcrumbsModule,
     StoreModule.forRoot(appReducers),
     EffectsModule.forRoot([BreadcrumbsEffect, MenuEffect]),
-    !environments.production ? StoreDevtoolsModule.instrument() : []
+    !environments.production ? StoreDevtoolsModule.instrument() : [],
+    ApolloModule
   ],
   providers: [
     interceptorProvide(ErrorsHandlerInterceptor),
-    interceptorProvide(TokenInterceptor)
+    interceptorProvide(TokenInterceptor),
+    apolloProvide
   ],
   bootstrap: [AppComponent]
 })

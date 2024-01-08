@@ -3,79 +3,30 @@
     {
       "email": "srgak@mail.ru",
       "password": "$2a$10$OzjHpuud3oUn6QYRwhh.d.dT4xjDMQgISu8/.yQddD7pvIjNQNMT2",
-      "id": 1,
-      "firstName": "Админ",
-      "lastName": "Админов",
-      "patronymic": "Админович",
-      "role": "admin"
+      "id": 1
     },
     {
       "email": "teacher@mail.ru",
       "password": "$2a$10$k1xG0npdMa0srsXOYPWIku.PjwMaybR4QFD57xKkoO.cE18IfNOvW",
-      "firstName": "Татьяна",
-      "lastName": "Петрова",
-      "patronymic": "Сергеевна",
-      "role": "teacher",
-      "teachLesson": "Математика",
       "id": 2
     },
     {
       "email": "pupil@test.ru",
       "password": "$2a$10$9Kux6jFg0gUcRwAkzZcuKuTiO3rt/kYdCErSmmeNHrqUdG0ExQrra",
-      "firstName": "Петров",
-      "lastName": "ПЁтр",
-      "patronymic": "Петрович",
-      "role": "pupil",
-      "class": "5Б",
-      "lessons": [
-        {
-          "name": "Математика",
-          "teacher": "Татьяна"
-        }
-      ],
       "id": 3
     },
     {
-      "firstName": "Тест1",
-      "lastName": "Тестов1",
-      "patronymic": "Тестович1",
-      "role": "pupil",
-      "class": "1А",
-      "lessons": [
-        {
-          "name": "Математика",
-          "teacher": "Татьяна"
-        }
-      ],
+      "email": "test1@test.ru",
       "id": 4
     },
     {
-      "firstName": "Тест2",
-      "lastName": "Тестов2",
-      "patronymic": "Тестович2",
-      "role": "pupil",
-      "class": "2А",
-      "lessons": [
-        {
-          "name": "Математика",
-          "teacher": "Татьяна"
-        }
-      ],
+      "email": "test2@test.ru",
       "id": 5
     },
     {
-      "firstName": "Тест2",
-      "lastName": "Тестов2",
-      "patronymic": "Тестович2",
-      "role": "pupil",
-      "class": "3А",
-      "lessons": [
-        {
-          "name": "Математика",
-          "teacher": "Татьяна"
-        }
-      ],
-      "id": 6
+      "id": 6,
+      "email": "test3@test.ru",
+      "password": "$2a$10$yZcGlgZAWNLBbuFswlSqjORNhdJkUJzazco9H.7kk89L065aSYouG"
     }
   ],
   "marks": [

@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { UserData } from 'src/app/helpers/interfaces/user';
 import { pageName } from 'src/app/helpers/routes';
 import { BREADCRUMBS_URL } from 'src/app/helpers/tokens/breadcrumbs';
-import { HttpUsersService } from 'src/app/services/http/users/http-users.service';
+import { GraphqlUsersService } from 'src/app/services/graphQL/users/graphql-users.service';
 import { requestBreadcrumbs } from 'src/app/store/actions/breadcrumbs.action';
 import { AppState } from 'src/app/store/state/app.state';
 
@@ -15,10 +15,10 @@ import { AppState } from 'src/app/store/state/app.state';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ControlPanelComponent {
-  public userList: Observable<UserData[]> = this.httpUsers.getUserList();
+  public userList: Observable<UserData[]> = this.graphQLUsers.getUserList();
   constructor(
     private router: Router,
-    private httpUsers: HttpUsersService,
+    private graphQLUsers: GraphqlUsersService,
     @Inject(BREADCRUMBS_URL) private breadcrumbsUrl: string,
     private store: Store<AppState>
   ) {
