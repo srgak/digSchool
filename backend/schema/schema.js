@@ -1,33 +1,22 @@
 const {buildSchema} = require('graphql');
-const typeUser = require('./types/schema-type-user');
+const {
+  user,
+  userAuthorized,
+  userInput,
+  userLoginInput
+} = require('./exporting/schema-user');
+const {lesson, lessonInput} = require('./exporting/shema-lesson');
+const query = require('./exporting/schema-query');
+const mutation = require('./exporting/schema-mutation');
 const schema = buildSchema(`
-  ${typeUser}
-
-  type UserAuthorized {
-    id: ID!
-    token: String!,
-  }
-  
-  input UserInput {
-    id: ID,
-    email: String!,
-    password: String!
-  }
-
-  input UserLogin {
-    email: String!,
-    password: String!
-  }
-
-  type Query {
-    getAllUsers: [User],
-    getUser(id: ID): User
-  }
-
-  type Mutation {
-    createUser(input: UserInput): User,
-    login(input: UserLogin): UserAuthorized
-  }
+  ${user}
+  ${userAuthorized}
+  ${lesson}
+  ${userInput}
+  ${lessonInput}
+  ${userLoginInput}
+  ${query}
+  ${mutation}
 `);
 
 module.exports = schema;
