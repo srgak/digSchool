@@ -1,17 +1,17 @@
 const fs = require('fs');
 
 class FileManager {
-  fs;
-  path;
+  #fs;
+  #path;
 
   constructor(path) {
-    this.path = path;
-    this.fs = fs;
+    this.#path = path;
+    this.#fs = fs;
   }
 
   get data() {
-    let data = this.fs.readFileSync(
-      this.path,
+    let data = this.#fs.readFileSync(
+      this.#path,
       {
         encoding: 'utf-8'
       }
@@ -21,8 +21,8 @@ class FileManager {
   }
 
   set data(value) {
-    this.fs.writeFileSync(
-      this.path,
+    this.#fs.writeFileSync(
+      this.#path,
       JSON.stringify(value)
     );
   }
