@@ -1,18 +1,23 @@
-const lesson = `
-  type Lesson {
-    name: String!,
-    teacher: String!
-  }
-`;
+const {GraphQLObjectType, GraphQLString, GraphQLInputObjectType} = require('graphql');
 
-const lessonInput = `
-  input LessonInput {
-    name: String!,
-    teacher: String!
+
+const lessonType = new GraphQLObjectType({
+  name: 'Lesson',
+  fields: () => ({
+    name: {type: GraphQLString},
+    teacher: {type: GraphQLString}
+  })
+});
+
+const lessonInput = new GraphQLInputObjectType({
+  name: 'LessonInput',
+  fields: {
+    name: {type: GraphQLString},
+    teacher: {type: GraphQLString}
   }
-`;
+});
 
 module.exports = {
-  lesson,
+  lessonType,
   lessonInput
 }

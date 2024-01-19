@@ -1,49 +1,56 @@
-const user = `
-  type User {
-    id: ID,
-    email: String,
-    password: String,
-    firstName: String,
-    lastName: String,
-    patronymic: String,
-    role: String,
-    class: String,
-    lessons: [Lesson],
-    teachLesson: String
-  }
-`;
+const {GraphQLObjectType, GraphQLString, GraphQLID, GraphQLList, GraphQLInputObjectType} = require('graphql');
+const {lessonType, lessonInput} = require('./shema-lesson');
 
-const userAuthorized = `
-  type UserAuthorized {
-    id: ID!
-    token: String!,
-  }
-`;
+const userType = new GraphQLObjectType({
+  name: 'User',
+  fields: () => ({
+    id: {type: GraphQLID},
+    email: {type: GraphQLString},
+    password: {type: GraphQLString},
+    firstName: {type: GraphQLString},
+    lastName: {type: GraphQLString},
+    patronymic: {type: GraphQLString},
+    role: {type: GraphQLString},
+    class: {type: GraphQLString},
+    lessons: {type: new GraphQLList(lessonType)},
+    teachLesson: {type: GraphQLString}
+  })
+});
 
-const userInput = `
-  input UserInput {
-    email: String!,
-    password: String!,
-    firstName: String!,
-    lastName: String!,
-    patronymic: String!,
-    role: String!,
-    class: String,
-    lessons: [LessonInput],
-    teachLesson: String
-  }
-`;
+const userAuthorizedType = new GraphQLObjectType({
+  name: 'UserAuthorized',
+  fields: () => ({
+    id: {type: GraphQLID},
+    token: {type: GraphQLString}
+  })
+});
 
-const userLoginInput = `
-  input UserLogin {
-    email: String!,
-    password: String!
+const userInput = new GraphQLInputObjectType({
+  name: 'UserInput',
+  fields: {
+    email: {type: GraphQLString},
+    password: {type: GraphQLString},
+    firstName: {type: GraphQLString},
+    lastName: {type: GraphQLString},
+    patronymic: {type: GraphQLString},
+    role: {type: GraphQLString},
+    class: {type: GraphQLString},
+    lessons: {type: new GraphQLList(lessonInput)},
+    teachLesson: {type: GraphQLString}
   }
-`;
+});
+
+const userLoginInput = new GraphQLInputObjectType({
+  name: 'UserLogin',
+  fields: {
+    email: {type: GraphQLString},
+    password: {type: GraphQLString}
+  }
+});
 
 module.exports = {
-  user,
-  userAuthorized,
+  userType,
+  userAuthorizedType,
   userInput,
   userLoginInput
 };

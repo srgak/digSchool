@@ -24,12 +24,12 @@ class UserDB {
     return this.data.users;
   }
 
-  getUser({id}) {
+  getUser(id) {
     return this.data.users
       .find(user => user.id === +id);
   }
 
-  createUser({input}) {
+  createUser(input) {
     const id = Date.now();
     const newUser = {
       ...input,
@@ -47,7 +47,8 @@ class UserDB {
     return newUser;
   }
 
-  login({input}) {
+  login(input) {
+    console.log(input);
     const {users} = this.data;
     const data = users
       .find(user => user.email === input.email);
@@ -66,4 +67,6 @@ class UserDB {
   }
 }
 
-module.exports = UserDB;
+const userDB = new UserDB();
+
+module.exports = userDB;
