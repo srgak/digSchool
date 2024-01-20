@@ -1,4 +1,4 @@
-const {GraphQLObjectType} = require('graphql');
+const {GraphQLObjectType, GraphQLID} = require('graphql');
 const {userType, userAuthorizedType, userInput, userLoginInput} = require('./schema-user');
 const userDB = require('../../db/users.db');
 
@@ -30,6 +30,15 @@ const mutation = new GraphQLObjectType({
       },
       resolve(parent, args) {
         return userDB.editUser(args.input);
+      }
+    },
+    deleteUser: {
+      type: GraphQLID,
+      args: {
+        id: {type: GraphQLID}
+      },
+      resolve(parent, args) {
+        return userDB.deleteUser(args.id);
       }
     }
   }

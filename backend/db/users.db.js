@@ -24,6 +24,10 @@ class UserDB {
     this.#fileManager.data = value;
   }
 
+  get users() {
+    return this.data.users;
+  }
+
   set users(value) {
     const data = this.data;
 
@@ -78,7 +82,7 @@ class UserDB {
   }
 
   editUser(input) {
-    const {users} = this.data;
+    const users = this.users;
     let targetUser;
     let targetUserIndex;
 
@@ -98,6 +102,17 @@ class UserDB {
     this.users = users;
 
     return targetUser;
+  }
+
+  deleteUser(id) {
+    const users = this.users;
+    const userIndex = users
+      .findIndex(user => user.id === +id);
+
+    users.splice(userIndex, 1);
+    this.users = users;
+
+    return id;
   }
 }
 
