@@ -40,7 +40,6 @@ class UserDB {
   }
 
   getUser(id) {
-    //TODO: добавить функционал расшифровки пароля
     return this.data.users
       .find(user => user.id === +id);
   }
