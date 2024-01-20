@@ -20,11 +20,23 @@ class UserDB {
     return this.#fileManager.data;
   }
 
+  set data(value) {
+    this.#fileManager.data = value;
+  }
+
+  set users(value) {
+    const data = this.data;
+
+    data.users = value;
+    this.data = data;
+  }
+
   getAllUsers() {
     return this.data.users;
   }
 
   getUser(id) {
+    //TODO: добавить функционал расшифровки пароля
     return this.data.users
       .find(user => user.id === +id);
   }
@@ -42,13 +54,12 @@ class UserDB {
       data.users = [];
     }
     data.users.push(newUser);
-    this.#fileManager.data = data;
+    this.data = data;
 
     return newUser;
   }
 
   login(input) {
-    console.log(input);
     const {users} = this.data;
     const data = users
       .find(user => user.email === input.email);
@@ -64,6 +75,29 @@ class UserDB {
       id: data.id,
       token
     };
+  }
+
+  editUser(input) {
+    const {users} = this.data;
+    let targetUser;
+    let targetUserIndex;
+
+    input.id = +input.id;
+    if('password' in input) {
+      input.password = this.#auth.generatePassword(input.password);
+    }
+    targetUser = users.find((user, index) => {
+      if(user.id === input.id) {
+        targetUserIndex = index;
+        return true;
+      }
+      return false;
+    });
+    targetUser = {...targetUser, ...input};
+    users.splice(targetUserIndex, 1, targetUser);
+    this.users = users;
+
+    return targetUser;
   }
 }
 

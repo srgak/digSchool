@@ -28,6 +28,7 @@ const userAuthorizedType = new GraphQLObjectType({
 const userInput = new GraphQLInputObjectType({
   name: 'UserInput',
   fields: {
+    id: {type: GraphQLID},
     email: {type: GraphQLString},
     password: {type: GraphQLString},
     firstName: {type: GraphQLString},

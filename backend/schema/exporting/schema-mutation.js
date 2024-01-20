@@ -22,6 +22,15 @@ const mutation = new GraphQLObjectType({
       resolve(parent, args) {
         return userDB.login(args.input);
       }
+    },
+    editUser: {
+      type: userType,
+      args: {
+        input: {type: userInput}
+      },
+      resolve(parent, args) {
+        return userDB.editUser(args.input);
+      }
     }
   }
 });
