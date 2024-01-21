@@ -8,6 +8,7 @@ import { SelectDataLessonsService } from 'src/app/services/select-data/select-da
 import { SYMBOLS_EN_TO_RU, SYMBOLS_RU_TO_EN } from 'src/app/helpers/tokens/symbols-translate';
 import { SimpleObject } from 'src/app/helpers/interfaces/common';
 import { FormControl } from '@angular/forms';
+import { removeEmptyFields } from 'src/app/helpers/remove-emty';
 
 @Component({
   selector: 'app-form-user',
@@ -17,6 +18,9 @@ import { FormControl } from '@angular/forms';
 })
 export class FormUserComponent extends FormUser implements FormMain, FormSubmit, OnInit {
   @Input() public data?: UserData;
+  @Input() public set isEditable(value: boolean) {
+    this.isEdit = value;
+  };
   @Output() public onComplete: EventEmitter<UserData> = new EventEmitter();
 
   private toggleControls: ToggleControls = new ToggleControls(this.form, {
@@ -34,7 +38,9 @@ export class FormUserComponent extends FormUser implements FormMain, FormSubmit,
 
   public onSubmit(): void {
     if(this.form.valid) {
-      this.onComplete.emit(this.form.value);
+      const data = removeEmptyFields<UserData>(this.form.value);
+
+      this.onComplete.emit(data);
     } else {
       this.form.markAllAsTouched();
     }

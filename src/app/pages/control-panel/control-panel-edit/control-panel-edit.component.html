@@ -1,5 +1,6 @@
 <app-form-user
   [data]="(activatedRoute.data | async)!['0']"
+  [isEditable]="true"
   (onComplete)="editUser($event)"
 >
   <button

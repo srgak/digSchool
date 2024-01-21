@@ -44,4 +44,11 @@ export class FormUser implements FormMain {
   public get teachLesson(): FormControl {
     return this.form.get('teachLesson') as FormControl;
   }
+  public set isEdit(value: boolean) {
+    if(value) {
+      this.password.removeValidators([
+        this.validators.validateRequired
+      ]);
+    }
+  }
 }
