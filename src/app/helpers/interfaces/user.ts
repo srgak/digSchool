@@ -39,7 +39,7 @@ export interface GraphQLUser {
   getUser: UserData;
 }
 export interface GraphQLUserList {
-  getAllUsers: UserData[];
+  getUserList: UserData[];
 }
 export interface GraphQLUserDelete {
   deleteUser: UserData;

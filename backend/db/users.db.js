@@ -35,8 +35,15 @@ class UserDB {
     this.data = data;
   }
 
-  getAllUsers() {
-    return this.data.users;
+  getUserList(filter) {
+    //TODO: переписать - вынести в отдельную функцию
+    let filteredUsers = this.users;
+
+    if(filter) {
+      return filteredUsers
+        .filter(item => item.role === filter.role);
+    }
+    return filteredUsers;
   }
 
   getUser(id) {

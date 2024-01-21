@@ -1,14 +1,17 @@
-const {GraphQLObjectType, GraphQLList, GraphQLID} = require('graphql');
-const { userType } = require('./schema-user');
+const {GraphQLObjectType, GraphQLList, GraphQLID, GraphQLInputObjectType, GraphQLString} = require('graphql');
+const { userType, userFilterInput } = require('./schema-user');
 const userDB = require('../../db/users.db');
 
 const query = new GraphQLObjectType({
   name: 'Query',
   fields: {
-    getAllUsers: {
+    getUserList: {
       type: new GraphQLList(userType),
-      resolve() {
-        return userDB.getAllUsers();
+      args: {
+        filter: {type: userFilterInput}
+      },
+      resolve(parent, {filter}) {
+        return userDB.getUserList(filter);
       }
     },
     getUser: {

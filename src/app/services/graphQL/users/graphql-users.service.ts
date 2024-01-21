@@ -60,7 +60,7 @@ export class GraphqlUsersService extends GraphQLMain {
       .query<GraphQLUserList>({
         query: gql`
           {
-            getAllUsers {
+            getUserList {
               id,
               firstName,
               lastName,
@@ -71,7 +71,7 @@ export class GraphqlUsersService extends GraphQLMain {
         `
       })
       .pipe(
-        map(data => data.data.getAllUsers)
+        map(data => data.data.getUserList)
       )
   }
 

@@ -49,9 +49,17 @@ const userLoginInput = new GraphQLInputObjectType({
   }
 });
 
+const userFilterInput = new GraphQLInputObjectType({
+  name: 'UsersFilterInput',
+  fields: {
+    role: {type: GraphQLString}
+  }
+});
+
 module.exports = {
   userType,
   userAuthorizedType,
   userInput,
-  userLoginInput
+  userLoginInput,
+  userFilterInput
 };
