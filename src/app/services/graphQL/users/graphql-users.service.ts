@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { GraphQLMain } from '../graphql';
-import { GraphQLUser, GraphQLUserList, GraphQLUserRemove, GraphQLUserUpdate, GraphQlUserCreate, UserData } from 'src/app/helpers/interfaces/user';
+import { GraphQLUser, GraphQLUserDelete, GraphQLUserList, GraphQLUserUpdate, GraphQlUserCreate, UserData, UserId } from 'src/app/helpers/interfaces/user';
 import { Observable, filter, map } from 'rxjs';
 import { gql } from 'apollo-angular';
 
@@ -13,7 +13,7 @@ export class GraphqlUsersService extends GraphQLMain {
       .query<GraphQLUser>({
         query: gql`
           query getUser($id: ID!) {
-            User(id: $id) {
+            getUser(id: $id) {
               ${this.getFieldsString(fields)}
             }
           }
@@ -23,7 +23,7 @@ export class GraphqlUsersService extends GraphQLMain {
         }
       })
       .pipe(
-        map(data => data.data.User)
+        map(data => data.data.getUser)
       )
   }
 
@@ -42,12 +42,13 @@ export class GraphqlUsersService extends GraphQLMain {
   public getUserDataFull(id: number): Observable<UserData> {
     const fields = [
       'id',
+      'email',
       'firstName',
       'lastName',
       'patronymic',
       'role',
       'class',
-      'lessons',
+      'lessons {name, teacher}',
       'teachLesson'
     ];
 
@@ -59,7 +60,7 @@ export class GraphqlUsersService extends GraphQLMain {
       .query<GraphQLUserList>({
         query: gql`
           {
-            allUsers {
+            getAllUsers {
               id,
               firstName,
               lastName,
@@ -70,18 +71,16 @@ export class GraphqlUsersService extends GraphQLMain {
         `
       })
       .pipe(
-        map(data => data.data.allUsers)
+        map(data => data.data.getAllUsers)
       )
   }
 
-  public deleteUserData(id: number): Observable<UserData> {
+  public deleteUserData(id: number): Observable<UserId> {
     return this.apollo
-      .mutate<GraphQLUserRemove>({
+      .mutate<GraphQLUserDelete>({
         mutation: gql`
           mutation deleteUser($id: ID!) {
-            removeUser(id: $id) {
-              id
-            }
+            deleteUser(id: $id)
           }
         `,
         variables: {
@@ -89,9 +88,9 @@ export class GraphqlUsersService extends GraphQLMain {
         }
       })
       .pipe(
-        map(data => data.data?.removeUser),
+        map(data => data.data?.deleteUser),
         filter(data => Boolean(data)),
-        map(data => data as UserData)
+        map(data => data as UserId)
       )
   }
 
@@ -99,34 +98,22 @@ export class GraphqlUsersService extends GraphQLMain {
     return this.apollo
       .mutate<GraphQLUserUpdate>({
         mutation: gql`
-          mutation updateUserData(
-            $id: ID!,
-            $firstName: String,
-            $lastName: String,
-            $patronymic: String,
-            $role: String,
-            $teachLesson: String,
-            $class: String,
-            $lessons: JSON
+          mutation editUser(
+            $input: UserInput
           ) {
-            updateUser(
-              id: $id,
-              firstName: $firstName,
-              lastName: $lastName,
-              patronymic: $patronymic,
-              role: $role,
-              teachLesson: $teachLesson,
-              class: $class,
-              lessons: $lessons
+            editUser(
+              input: $input
             ) {
               id
             }
           }
         `,
-        variables: data
+        variables: {
+          input: data
+        }
       })
       .pipe(
-        map(data => data.data?.updateUser),
+        map(data => data.data?.editUser),
         filter(data => Boolean(data)),
         map(data => data as UserData)
       )
@@ -136,29 +123,19 @@ export class GraphqlUsersService extends GraphQLMain {
     return this.apollo
       .mutate<GraphQlUserCreate>({
         mutation: gql`
-          mutation createUserData(
-            $firstName: String!,
-            $lastName: String!,
-            $patronymic: String!,
-            $role: String!,
-            $teachLesson: String,
-            $class: String,
-            $lessons: JSON
+          mutation createUser(
+            $input: UserInput
           ) {
             createUser(
-              firstName: $firstName,
-              lastName: $lastName,
-              patronymic: $patronymic,
-              role: $role,
-              teachLesson: $teachLesson,
-              class: $class,
-              lessons: $lessons
+              input: $input
             ) {
               id
             }
           }
         `,
-        variables: data
+        variables: {
+          input: data
+        }
       })
       .pipe(
         map(data => data.data?.createUser),

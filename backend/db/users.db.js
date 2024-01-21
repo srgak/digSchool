@@ -68,7 +68,7 @@ class UserDB {
       .find(user => user.email === input.email);
     
     this.#auth.validateUser(input, data, 'Неправильные имя пользователя или пароль');
-    const token = this.#jwt.sign({
+    const accessToken = this.#jwt.sign({
       user: this.#lodash.pick(data, ['id', 'email'])
     }, 'secret', {
       expiresIn: '1m'
@@ -76,7 +76,7 @@ class UserDB {
 
     return {
       id: data.id,
-      token
+      accessToken
     };
   }
 

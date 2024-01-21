@@ -21,7 +21,7 @@ const userAuthorizedType = new GraphQLObjectType({
   name: 'UserAuthorized',
   fields: () => ({
     id: {type: GraphQLID},
-    token: {type: GraphQLString}
+    accessToken: {type: GraphQLString}
   })
 });
 

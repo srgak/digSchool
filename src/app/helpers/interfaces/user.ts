@@ -29,21 +29,23 @@ interface Pupil extends Person {
   lessons?: LessonData[];
 }
 export interface UserData extends Admin, Teacher, Pupil, UserAuth, SimpleObject<unknown> {}
-export interface UserAuthResponse {
+export interface UserAuthResponse extends UserId {
   accessToken: string;
-  user: UserLoginData;
+}
+export interface GraphQLUserAuth {
+  login: UserAuthResponse;
 }
 export interface GraphQLUser {
-  User: UserData;
+  getUser: UserData;
 }
 export interface GraphQLUserList {
-  allUsers: UserData[];
+  getAllUsers: UserData[];
 }
-export interface GraphQLUserRemove {
-  removeUser: UserData;
+export interface GraphQLUserDelete {
+  deleteUser: UserData;
 }
 export interface GraphQLUserUpdate {
-  updateUser: UserData;
+  editUser: UserData;
 }
 export interface GraphQlUserCreate {
   createUser: UserData;

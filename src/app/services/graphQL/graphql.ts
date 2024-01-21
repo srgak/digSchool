@@ -8,7 +8,7 @@ export class GraphQLMain {
     let string = ``;
 
     fields.forEach(item => {
-      string += `${item},`;
+      string += `${item},\n`;
     });
 
     return string;

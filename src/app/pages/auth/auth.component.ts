@@ -6,7 +6,6 @@ import { pageName } from 'src/app/helpers/routes';
 import { ModalService } from 'src/app/services/modal/modal.service';
 import { AccessTokenService } from 'src/app/services/storage/access-token/access-token.service';
 import { AuthForm } from './auth-form';
-import { HttpAuthService } from 'src/app/services/http/auth/http-auth.service';
 import { SYMBOLS_RU_TO_EN } from 'src/app/helpers/tokens/symbols-translate';
 import { SimpleObject } from 'src/app/helpers/interfaces/common';
 import { BREADCRUMBS_URL } from 'src/app/helpers/tokens/breadcrumbs';
@@ -14,6 +13,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/state/app.state';
 import { requestBreadcrumbs } from 'src/app/store/actions/breadcrumbs.action';
 import { UserIdService } from 'src/app/services/storage/user-id/user-id.service';
+import { GraphqlAuthService } from 'src/app/services/graphQL/auth/graphql-auth.service';
 
 @Component({
   templateUrl: './auth.component.html',
@@ -24,7 +24,7 @@ export class AuthComponent extends AuthForm implements FormMain, FormSubmit {
   constructor(
     private router: Router,
     public modal: ModalService,
-    private httpAuth: HttpAuthService,
+    private graphQLAuth: GraphqlAuthService,
     private accessToken: AccessTokenService,
     private userId: UserIdService,
     @Inject(SYMBOLS_RU_TO_EN) public lettersEnToRu: SimpleObject<string>,
@@ -39,7 +39,7 @@ export class AuthComponent extends AuthForm implements FormMain, FormSubmit {
 
   public onSubmit() {
     if(this.form.valid) {
-      this.httpAuth.login(this.form.value)
+      this.graphQLAuth.login(this.form.value)
         .subscribe(this.onSuccess);
     } else {
       this.form.markAllAsTouched();
@@ -47,7 +47,7 @@ export class AuthComponent extends AuthForm implements FormMain, FormSubmit {
   }
 
   private onSuccess = (data: UserAuthResponse): void => {
-    this.userId.prop = data.user.id;
+    this.userId.prop = data.id;
     this.accessToken.prop = data.accessToken;
     this.router.navigateByUrl(pageName.Main);
   }

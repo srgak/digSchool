@@ -2,13 +2,11 @@ import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { forkJoin } from 'rxjs';
 import { UserData } from 'src/app/helpers/interfaces/user';
 import { breadcrumbsProvide } from 'src/app/helpers/providers/breadcrumbs/breadcrumbs';
 import { pageBreadcrumbs, pageName } from 'src/app/helpers/routes';
 import { BREADCRUMBS_URL } from 'src/app/helpers/tokens/breadcrumbs';
 import { GraphqlUsersService } from 'src/app/services/graphQL/users/graphql-users.service';
-import { HttpAuthService } from 'src/app/services/http/auth/http-auth.service';
 import { FormUserModule } from 'src/app/shared/components/forms/form-user/form-user.module';
 import { requestBreadcrumbs } from 'src/app/store/actions/breadcrumbs.action';
 import { AppState } from 'src/app/store/state/app.state';
@@ -28,7 +26,6 @@ import { AppState } from 'src/app/store/state/app.state';
 })
 export class ControlPanelCreateComponent {
   constructor(
-    private httpAuth: HttpAuthService,
     private graphQLUsers: GraphqlUsersService,
     private router: Router,
     @Inject(BREADCRUMBS_URL) private breadcrumbsUrl: string,
@@ -39,13 +36,7 @@ export class ControlPanelCreateComponent {
     }));
   }
   public createUser(data: UserData): void {
-    forkJoin([
-      this.httpAuth.register({
-        email: data.email,
-        password: data.password
-      }),
-      this.graphQLUsers.createUserData(data)
-    ])
+    this.graphQLUsers.createUserData(data)
       .subscribe(() => {
         this.router.navigateByUrl(pageName.ControlPanel);
       });

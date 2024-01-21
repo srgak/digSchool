@@ -59,16 +59,17 @@ export class FormUserLessonComponent extends FormUserLesson implements FormCusto
     this.form.valueChanges.subscribe(value => {
       this.onChange(value);
     });
-    this.form.get('name')?.valueChanges
-      .pipe(
-        switchMap((subject) => this.httpTeachers.getTeachersLesson(subject))
-      )
-      .subscribe(data => {
-        this.teachers = [];
-        data.forEach(item => {
-          this.teachers.push(item.firstName);
-        });
-      })
+    //TODO: переделать логику под новый бэк
+    // this.form.get('name')?.valueChanges
+    //   .pipe(
+    //     switchMap((subject) => this.httpTeachers.getTeachersLesson(subject))
+    //   )
+    //   .subscribe(data => {
+    //     this.teachers = [];
+    //     data.forEach(item => {
+    //       this.teachers.push(item.firstName);
+    //     });
+    //   })
   }
   ngOnDestroy(): void {
     this.onChange(null);
