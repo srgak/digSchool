@@ -5,13 +5,22 @@ const schema = require('./schema/schema');
 const app = express();
 
 app.use(cors());
-app.use('/graphql', graphqlHTTP((req) => {
+app.use('/graphql', graphqlHTTP((req, res) => {
   //TODO: реализация проверки токена
   console.log(req.headers.authorization);
 
   return {
     graphiql: true,
-    schema
+    schema,
+    customFormatErrorFn: err => {
+      const {status} = err.extensions;
+
+      res.status(status);
+
+      return {
+        message: err.message
+      };
+    }
   }
 }));
 

@@ -18,9 +18,12 @@ export class ErrorsHandlerInterceptor implements HttpInterceptor {
     return next.handle(request)
       .pipe(
         catchError((error: HttpErrorResponse) => {
+          const message = req.headers.get('type-request') === 'graphql' 
+            ? error.error.errors[0].message : error.message;
+
           this.handleErrorAuth(error);
           this.handleErrorIdNotFound(request);
-          this.modal.openModal('error', error.message);
+          this.modal.openModal('error', message);
           return throwError(() => error);
         })
       )

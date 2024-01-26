@@ -1,7 +1,8 @@
 import { Provider } from "@angular/core";
-import { InMemoryCache } from "@apollo/client/core";
+import { ApolloLink, InMemoryCache } from "@apollo/client/core";
 import { APOLLO_OPTIONS } from "apollo-angular";
 import { HttpLink } from "apollo-angular/http";
+import { setContext } from '@apollo/client/link/context';
 
 export const apolloProvide: Provider = {
   provide: APOLLO_OPTIONS,
@@ -9,9 +10,16 @@ export const apolloProvide: Provider = {
     cache: new InMemoryCache({
       addTypename: false
     }),
-    link: httpLink.create({
-      uri: 'http://localhost:4000/graphql'
-    })
+    link: ApolloLink.from([
+      setContext(() => ({
+        headers: {
+          'type-request': 'graphql'
+        }
+      })),
+      httpLink.create({
+        uri: 'http://localhost:4000/graphql'
+      }),
+    ])
   }),
   deps: [HttpLink]
 }

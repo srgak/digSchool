@@ -2,6 +2,8 @@ const FileManager = require('./file-manager');
 const Auth = require('./auth');
 const jwt = require('jsonwebtoken');
 const _ = require('lodash');
+const {GraphQLError} = require('graphql');
+const {userNotFound} = require('../errors/errors');
 
 class UserDB {
   #fileManager;
@@ -47,8 +49,18 @@ class UserDB {
   }
 
   getUser(id) {
-    return this.data.users
+    const user = this.data.users
       .find(user => user.id === +id);
+    
+    if(!user) {
+      throw new GraphQLError(userNotFound.message, {
+        extensions: {
+          status: userNotFound.status
+        }
+      });
+    }
+    
+    return user;
   }
 
   createUser(input) {
@@ -74,7 +86,7 @@ class UserDB {
     const data = users
       .find(user => user.email === input.email);
     
-    this.#auth.validateUser(input, data, 'Неправильные имя пользователя или пароль');
+    this.#auth.validateUser(input, data);
     const accessToken = this.#jwt.sign({
       user: this.#lodash.pick(data, ['id', 'email'])
     }, 'secret', {
