@@ -5,8 +5,8 @@ import { FormCustom } from 'src/app/helpers/interfaces/form';
 import { LessonData } from 'src/app/helpers/interfaces/user';
 import { FormUserLesson } from './form-user-lessons';
 import { SelectDataLessonsService } from 'src/app/services/select-data/select-data-lessons/select-data-lessons.service';
-import { HttpTeachersService } from 'src/app/services/http/teachers/http-teachers.service';
 import { validators, valueAccessor } from 'src/app/helpers/providers/custom-control';
+import { GraphqlTeachersService } from 'src/app/services/graphQL/teachers/graphql-teachers.service';
 
 @Component({
   selector: 'app-form-user-lesson',
@@ -34,7 +34,7 @@ export class FormUserLessonComponent extends FormUserLesson implements FormCusto
   public teachers: string[] = [];
 
   constructor(
-    private httpTeachers: HttpTeachersService,
+    private graphQLTeachers: GraphqlTeachersService,
     public lessonsData: SelectDataLessonsService
   ) {
     super();

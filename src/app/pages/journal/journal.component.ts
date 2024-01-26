@@ -7,7 +7,7 @@ import { UserData } from 'src/app/helpers/interfaces/user';
 import { notEmptyList } from 'src/app/helpers/pipes/not-empty-list';
 import { pageName } from 'src/app/helpers/routes';
 import { BREADCRUMBS_URL } from 'src/app/helpers/tokens/breadcrumbs';
-import { HttpPupilsService } from 'src/app/services/http/pupils/http-pupils.service';
+import { GraphqlPupilsService } from 'src/app/services/graphQL/pupils/graphql-pupils.service';
 import { SelectDataClassesService } from 'src/app/services/select-data/select-data-classes/select-data-classes.service';
 import { requestBreadcrumbs } from 'src/app/store/actions/breadcrumbs.action';
 import { AppState } from 'src/app/store/state/app.state';
@@ -21,7 +21,7 @@ export class JournalComponent {
   public pupilsList: Observable<UserData[]>;
   constructor(
     public classData: SelectDataClassesService,
-    public httpPupils: HttpPupilsService,
+    public graphQLPupils: GraphqlPupilsService,
     private router: Router,
     @Inject(BREADCRUMBS_URL) private breadcrumbsUrl: string,
     private store: Store<AppState>
@@ -29,14 +29,14 @@ export class JournalComponent {
     this.store.dispatch(requestBreadcrumbs({
       url: this.breadcrumbsUrl
     }));
-    this.pupilsList = httpPupils.getPupils()
+    this.pupilsList = this.graphQLPupils.getPupils()
       .pipe(
         notEmptyList
       );
   }
 
   public onClassChanged(event: MatSelectChange): void {
-    this.pupilsList = this.httpPupils.getPupilsByClass(event.value)
+    this.pupilsList = this.graphQLPupils.getPupilsByClass(event.value)
       .pipe(
         notEmptyList
       );

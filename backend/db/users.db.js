@@ -38,12 +38,13 @@ class UserDB {
   }
 
   getUserList(filter) {
-    //TODO: переписать - вынести в отдельную функцию
+    //TODO: реализовать фильтрацию по типам "и - and" и "или - or"
     let filteredUsers = this.users;
 
     if(filter) {
-      return filteredUsers
-        .filter(item => item.role === filter.role);
+      Object.keys(filter).forEach(key => {
+        filteredUsers = filteredUsers.filter(item => item[key] === filter[key]);
+      });
     }
     return filteredUsers;
   }

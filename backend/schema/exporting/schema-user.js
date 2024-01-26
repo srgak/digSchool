@@ -52,7 +52,9 @@ const userLoginInput = new GraphQLInputObjectType({
 const userFilterInput = new GraphQLInputObjectType({
   name: 'UsersFilterInput',
   fields: {
-    role: {type: GraphQLString}
+    role: {type: GraphQLString},
+    class: {type: GraphQLString},
+    teachLesson: {type: GraphQLString}
   }
 });
 

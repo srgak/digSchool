@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { HttpPupilsService } from './http-pupils.service';
+import { GraphqlPupilsService } from './graphql-pupils.service';
 
-describe('PupilsService', () => {
-  let service: HttpPupilsService;
+describe('GraphqlPupilsService', () => {
+  let service: GraphqlPupilsService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(HttpPupilsService);
+    service = TestBed.inject(GraphqlPupilsService);
   });
 
   it('should be created', () => {
