@@ -6,17 +6,18 @@
 
 1. Склонировать репозиторий
 2. Сделать npm i
-3. Общий запуск для разработки - npm run start:
-  * запуск клиента (фронта) - npm run front
-  * запуск сервера для rest - npm run server:rest
-  * запуск сервера для graphQL - npm run server:graphql
+3. Запуск проекта:
+  * фронт - в корневой папке выполнить npm run start
+  * бэк - в папке backend выполнить npm run start
 4. После запуска потыкать приложение можно по http://localhost:4200/
 
 ## Тестовые данные для входа
 
-* админ: логин srgak@mail.ru, пароль doshik
-* учитель: логин teacher@mail.ru, пароль test
-* ученик: логин pupil@test.ru, пароль hlebushek
+| Роль | Логин | Пароль |
+| --- | --- | --- |
+| админ | srgak@mail.ru | doshik |
+| учитель | teacher@mail.ru | test |
+| ученик | pupil@test.ru | hlebushek |
 
 ### TODO backend
 - [X] добавить мутацию editUser
