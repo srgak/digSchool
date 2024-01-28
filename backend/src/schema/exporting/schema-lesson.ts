@@ -1,5 +1,4 @@
-const {GraphQLObjectType, GraphQLString, GraphQLInputObjectType} = require('graphql');
-
+import { GraphQLObjectType, GraphQLString, GraphQLInputObjectType } from "graphql";
 
 const lessonType = new GraphQLObjectType({
   name: 'Lesson',
@@ -17,7 +16,7 @@ const lessonInput = new GraphQLInputObjectType({
   }
 });
 
-module.exports = {
+export {
   lessonType,
   lessonInput
 }

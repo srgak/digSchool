@@ -1,5 +1,5 @@
-const {GraphQLObjectType, GraphQLString, GraphQLID, GraphQLList, GraphQLInputObjectType} = require('graphql');
-const {lessonType, lessonInput} = require('./shema-lesson');
+import { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLList, GraphQLInputObjectType } from "graphql";
+import { lessonType, lessonInput } from "./schema-lesson";
 
 const userType = new GraphQLObjectType({
   name: 'User',
@@ -58,10 +58,10 @@ const userFilterInput = new GraphQLInputObjectType({
   }
 });
 
-module.exports = {
+export {
   userType,
   userAuthorizedType,
   userInput,
   userLoginInput,
   userFilterInput
-};
+}

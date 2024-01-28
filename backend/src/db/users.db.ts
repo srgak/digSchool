@@ -1,43 +1,37 @@
-const FileManager = require('./file-manager');
-const Auth = require('./auth');
-const jwt = require('jsonwebtoken');
-const _ = require('lodash');
-const {GraphQLError} = require('graphql');
-const {userNotFound} = require('../errors/errors');
+import FileManager from "./file-manager";
+import Auth from "./auth";
+import * as jwt from 'jsonwebtoken';
+import _ from "lodash";
+import { GraphQLError } from "graphql";
+import { userNotFound } from "../errors/errors";
+import { TotalData, UserAuth, UserAuthResponse, UserData } from "../interfaces/user";
 
 class UserDB {
-  #fileManager;
-  #auth;
-  #jwt;
-  #lodash;
+  private fileManager: FileManager = new FileManager('db.json');
+  private auth: Auth = new Auth();
+  private jwt: typeof jwt = jwt;
+  private lodash: _.LoDashStatic = _;
 
-  constructor() {
-    this.#fileManager = new FileManager('db.json');
-    this.#auth = new Auth();
-    this.#jwt = jwt;
-    this.#lodash = _;
+  get data(): TotalData {
+    return this.fileManager.data;
   }
 
-  get data() {
-    return this.#fileManager.data;
+  set data(value: TotalData) {
+    this.fileManager.data = value;
   }
 
-  set data(value) {
-    this.#fileManager.data = value;
-  }
-
-  get users() {
+  get users(): UserData[] {
     return this.data.users;
   }
 
-  set users(value) {
+  set users(value: UserData[]) {
     const data = this.data;
 
     data.users = value;
     this.data = data;
   }
 
-  getUserList(filter) {
+  getUserList(filter: Record<string, string>): UserData[] {
     //TODO: реализовать фильтрацию по типам "и - and" и "или - or"
     let filteredUsers = this.users;
 
@@ -49,7 +43,7 @@ class UserDB {
     return filteredUsers;
   }
 
-  getUser(id) {
+  getUser(id: string): UserData {
     const user = this.data.users
       .find(user => user.id === +id);
     
@@ -64,12 +58,12 @@ class UserDB {
     return user;
   }
 
-  createUser(input) {
+  createUser(input: UserData): UserData {
     const id = Date.now();
     const newUser = {
       ...input,
       id,
-      password: this.#auth.generatePassword(input.password)
+      password: this.auth.generatePassword(input.password)
     };
     const data = this.data;
 
@@ -82,32 +76,32 @@ class UserDB {
     return newUser;
   }
 
-  login(input) {
+  login(input: UserAuth): UserAuthResponse {
     const {users} = this.data;
     const data = users
       .find(user => user.email === input.email);
     
-    this.#auth.validateUser(input, data);
-    const accessToken = this.#jwt.sign({
-      user: this.#lodash.pick(data, ['id', 'email'])
+    this.auth.validateUser(input, data);
+    const accessToken = this.jwt.sign({
+      user: this.lodash.pick(data, ['id', 'email'])
     }, 'secret', {
       expiresIn: '1m'
     });
 
     return {
-      id: data.id,
+      id: data?.id as number,
       accessToken
     };
   }
 
-  editUser(input) {
+  editUser(input: UserData): UserData {
     const users = this.users;
     let targetUser;
     let targetUserIndex;
 
     input.id = +input.id;
     if('password' in input) {
-      input.password = this.#auth.generatePassword(input.password);
+      input.password = this.auth.generatePassword(input.password);
     }
     targetUser = users.find((user, index) => {
       if(user.id === input.id) {
@@ -117,13 +111,22 @@ class UserDB {
       return false;
     });
     targetUser = {...targetUser, ...input};
+
+    if(!targetUserIndex) {
+      throw new GraphQLError(userNotFound.message, {
+        extensions: {
+          status: userNotFound.status
+        }
+      });
+    }
+
     users.splice(targetUserIndex, 1, targetUser);
     this.users = users;
 
     return targetUser;
   }
 
-  deleteUser(id) {
+  deleteUser(id: string): number {
     const users = this.users;
     const userIndex = users
       .findIndex(user => user.id === +id);
@@ -131,10 +134,10 @@ class UserDB {
     users.splice(userIndex, 1);
     this.users = users;
 
-    return id;
+    return +id;
   }
 }
 
 const userDB = new UserDB();
 
-module.exports = userDB;
+export default userDB;

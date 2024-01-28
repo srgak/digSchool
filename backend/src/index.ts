@@ -1,27 +1,28 @@
-const express = require('express');
-const {graphqlHTTP} = require('express-graphql');
-const cors = require('cors');
-const schema = require('./schema/schema');
+import express from 'express';
+import {graphqlHTTP} from 'express-graphql';
+import cors from 'cors';
+import schema from './schema/schema';
+
 const app = express();
 
 app.use(cors());
-app.use('/graphql', graphqlHTTP((req, res) => {
+app.use('/graphql', (req, res) => {
   //TODO: реализация проверки токена
   console.log(req.headers.authorization);
 
-  return {
+  graphqlHTTP({
     graphiql: true,
     schema,
     customFormatErrorFn: err => {
       const {status} = err.extensions;
 
-      res.status(status);
+      res.status(status as number);
 
       return {
         message: err.message
       };
     }
-  }
-}));
+  })(req, res)
+});
 
 app.listen(4000, () => console.log('start'));

@@ -1,6 +1,6 @@
-const {GraphQLObjectType, GraphQLList, GraphQLID, GraphQLInputObjectType, GraphQLString} = require('graphql');
-const { userType, userFilterInput } = require('./schema-user');
-const userDB = require('../../db/users.db');
+import { GraphQLObjectType, GraphQLList, GraphQLID, } from "graphql";
+import { userType, userFilterInput } from "./schema-user";
+import userDB from "../../db/users.db";
 
 const query = new GraphQLObjectType({
   name: 'Query',
@@ -26,4 +26,4 @@ const query = new GraphQLObjectType({
   }
 });
 
-module.exports = query;
+export default query

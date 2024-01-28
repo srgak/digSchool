@@ -1,14 +1,16 @@
-const incorrectLogin = {
+import { ErrorData } from "../interfaces/error"
+
+const incorrectLogin: ErrorData = {
   message: 'Неправильные имя пользователя или пароль',
   status: 401
 }
 
-const userNotFound = {
+const userNotFound: ErrorData = {
   message: 'Пользователь не найден',
   status: 404
 }
 
-module.exports = {
+export {
   incorrectLogin,
   userNotFound
-};
+}

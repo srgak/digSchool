@@ -1,6 +1,6 @@
-const {GraphQLObjectType, GraphQLID} = require('graphql');
-const {userType, userAuthorizedType, userInput, userLoginInput} = require('./schema-user');
-const userDB = require('../../db/users.db');
+import { GraphQLObjectType, GraphQLID } from "graphql";
+import { userType, userAuthorizedType, userInput, userLoginInput } from "./schema-user";
+import userDB from "../../db/users.db";
 
 const mutation = new GraphQLObjectType({
   name: 'Mutation',
@@ -44,4 +44,4 @@ const mutation = new GraphQLObjectType({
   }
 });
 
-module.exports = mutation;
+export default mutation;
