@@ -1,7 +1,6 @@
 import { InjectionToken } from "@angular/core";
-import { SimpleObject } from "../interfaces/common";
 
-export const SYMBOLS_EN_TO_RU = new InjectionToken<SimpleObject<string>>('Символы для транслитерации на русский', {
+export const SYMBOLS_EN_TO_RU = new InjectionToken<Record<string, string>>('Символы для транслитерации на русский', {
   factory: () => ({
     'q': 'й',
     'w': 'ц',
@@ -38,7 +37,7 @@ export const SYMBOLS_EN_TO_RU = new InjectionToken<SimpleObject<string>>('Сим
     '.': 'ю'
   })
 });
-export const SYMBOLS_RU_TO_EN = new InjectionToken<SimpleObject<string>>('Символы для транслитерации на русский', {
+export const SYMBOLS_RU_TO_EN = new InjectionToken<Record<string, string>>('Символы для транслитерации на русский', {
   factory: () => ({
     'й': 'q',
     'ц': 'w',

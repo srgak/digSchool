@@ -6,7 +6,6 @@ import { FormUser } from './form-user';
 import { SelectDataRolesService } from 'src/app/services/select-data/select-data-roles/select-data-roles.service';
 import { SelectDataLessonsService } from 'src/app/services/select-data/select-data-lessons/select-data-lessons.service';
 import { SYMBOLS_EN_TO_RU, SYMBOLS_RU_TO_EN } from 'src/app/helpers/tokens/symbols-translate';
-import { SimpleObject } from 'src/app/helpers/interfaces/common';
 import { FormControl } from '@angular/forms';
 import { removeEmptyFields } from 'src/app/helpers/remove-emty';
 
@@ -30,8 +29,8 @@ export class FormUserComponent extends FormUser implements FormMain, FormSubmit,
   constructor(
     public rolesData: SelectDataRolesService,
     public lessonsData: SelectDataLessonsService,
-    @Inject(SYMBOLS_EN_TO_RU) public lettersEnToRu: SimpleObject<string>,
-    @Inject(SYMBOLS_RU_TO_EN) public lettersRuToEn: SimpleObject<string>
+    @Inject(SYMBOLS_EN_TO_RU) public lettersEnToRu: Record<string, string>,
+    @Inject(SYMBOLS_RU_TO_EN) public lettersRuToEn: Record<string, string>
   ) {
     super();
   }

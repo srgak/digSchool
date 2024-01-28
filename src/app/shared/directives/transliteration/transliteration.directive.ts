@@ -1,12 +1,11 @@
 import { Directive, HostListener, Input, OnInit } from '@angular/core';
 import { AbstractControl, NgControl } from '@angular/forms';
-import { SimpleObject } from 'src/app/helpers/interfaces/common';
 
 @Directive({
   selector: '[inputTransliteration]'
 })
 export class TransliterationDirective implements OnInit {
-  @Input('inputTransliteration') public lettersData!: SimpleObject<string>;
+  @Input('inputTransliteration') public lettersData!: Record<string, string>;
   @HostListener('input', ['$event']) private translate(event: InputEvent): void {
     const char = event.data || '';
     const value = this.control?.value;

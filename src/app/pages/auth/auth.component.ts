@@ -7,7 +7,6 @@ import { ModalService } from 'src/app/services/modal/modal.service';
 import { AccessTokenService } from 'src/app/services/storage/access-token/access-token.service';
 import { AuthForm } from './auth-form';
 import { SYMBOLS_RU_TO_EN } from 'src/app/helpers/tokens/symbols-translate';
-import { SimpleObject } from 'src/app/helpers/interfaces/common';
 import { BREADCRUMBS_URL } from 'src/app/helpers/tokens/breadcrumbs';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/state/app.state';
@@ -27,7 +26,7 @@ export class AuthComponent extends AuthForm implements FormMain, FormSubmit {
     private graphQLAuth: GraphqlAuthService,
     private accessToken: AccessTokenService,
     private userId: UserIdService,
-    @Inject(SYMBOLS_RU_TO_EN) public lettersEnToRu: SimpleObject<string>,
+    @Inject(SYMBOLS_RU_TO_EN) public lettersEnToRu: Record<string, string>,
     @Inject(BREADCRUMBS_URL) private breadcrumbsUrl: string,
     private store: Store<AppState>
   ) {
