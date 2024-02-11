@@ -1,5 +1,5 @@
 import { GraphQLError } from "graphql";
-import { MarkLesson, MarkInfo, MarksData } from "../interfaces/marks";
+import { MarkLesson, MarkInfo, MarksData, MarkInfoFilter } from "../interfaces/marks";
 import { elementNotFound } from "../errors/errors";
 import { MainDB } from "./main.db";
 import { LessonData } from "../interfaces/lesson";
@@ -46,23 +46,6 @@ class MarkDB extends MainDB {
     this.data = data;
 
     return newMark;
-  }
-
-  public addMarkInfo(markId: string, nameLesson: string, input: MarkInfo): MarkInfo {
-    const marks = this.marks;
-    const marksIndex = marks.findIndex(item => item.id === +markId);
-    const markLessonIndex = marks[marksIndex]?.data.findIndex(item => item.nameLesson === nameLesson);
-
-    if(marksIndex < 0 || markLessonIndex < 0) {
-      throw this.triggerError('not_found');
-    }
-
-    marks[marksIndex]
-      .data[markLessonIndex]
-      .info.push(input);
-    this.marks = marks;
-
-    return input;
   }
 
   public editMarkLessons(markId: string, input: LessonData[]): MarkLesson[] {
@@ -112,6 +95,23 @@ class MarkDB extends MainDB {
   private removeMarkLessons(markList: MarkLesson[], lessonList: string[]): MarkLesson[] {
     return markList
       .filter(item => lessonList.includes(item.nameLesson));
+  }
+
+  public addMarkInfo(input: MarkInfo, filter: MarkInfoFilter): MarkInfo {
+    const marks = this.marks;
+    const marksIndex = marks.findIndex(item => item.id === +filter.markId);
+    const markLessonIndex = marks[marksIndex]?.data.findIndex(item => item.nameLesson === filter.nameLesson);
+
+    if(marksIndex < 0 || markLessonIndex < 0) {
+      throw this.triggerError('not_found');
+    }
+
+    marks[marksIndex]
+      .data[markLessonIndex]
+      .info.push(input);
+    this.marks = marks;
+
+    return input;
   }
 }
 

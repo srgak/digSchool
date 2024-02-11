@@ -12,3 +12,7 @@ export interface MarksData {
   id: number | string;
   data: MarkLesson[];
 }
+export interface MarkInfoFilter {
+  markId: string;
+  nameLesson: string;
+}
