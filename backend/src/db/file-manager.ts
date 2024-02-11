@@ -1,15 +1,15 @@
 import fs from 'fs';
 import { TotalData } from '../interfaces/main';
 
-class FileManager {
-  private fs: typeof fs = fs;
-  private path: string;
+export class FileManager {
+  private readonly fs: typeof fs = fs;
+  private readonly path: string;
 
   constructor(path: string) {
     this.path = path;
   }
 
-  get data(): TotalData {
+  public get data(): TotalData {
     let data = this.fs.readFileSync(
       this.path,
       {
@@ -20,12 +20,10 @@ class FileManager {
     return data ? JSON.parse(data) : {};
   }
 
-  set data(value: TotalData) {
+  public set data(value: TotalData) {
     this.fs.writeFileSync(
       this.path,
       JSON.stringify(value)
     );
   }
 }
-
-export default FileManager;

@@ -1,5 +1,4 @@
 import { GraphQLID, GraphQLInputObjectType, GraphQLInt, GraphQLList, GraphQLObjectType, GraphQLString } from "graphql";
-import { MarkInfo } from "../../interfaces/marks";
 
 export const markType = new GraphQLObjectType({
   name: 'Mark',

@@ -1,10 +1,10 @@
 import { GraphQLError } from "graphql";
 import { TotalData } from "../interfaces/main";
-import FileManager from "./file-manager";
+import { FileManager } from "./file-manager";
 import { errorMapper } from "../helpers/error-mapper";
 
 export abstract class MainDB {
-  protected fileManager: FileManager = new FileManager('db.json');
+  protected readonly fileManager: FileManager = new FileManager('db.json');
 
   protected get data(): TotalData {
     return this.fileManager.data;

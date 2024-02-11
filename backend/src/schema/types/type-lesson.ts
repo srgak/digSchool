@@ -1,6 +1,6 @@
 import { GraphQLObjectType, GraphQLString, GraphQLInputObjectType } from "graphql";
 
-const lessonType = new GraphQLObjectType({
+export const lessonType = new GraphQLObjectType({
   name: 'Lesson',
   fields: () => ({
     name: {type: GraphQLString},
@@ -8,15 +8,10 @@ const lessonType = new GraphQLObjectType({
   })
 });
 
-const lessonInput = new GraphQLInputObjectType({
+export const lessonInput = new GraphQLInputObjectType({
   name: 'LessonInput',
   fields: {
     name: {type: GraphQLString},
     teacher: {type: GraphQLString}
   }
 });
-
-export {
-  lessonType,
-  lessonInput
-}

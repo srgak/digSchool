@@ -1,38 +1,35 @@
-import FileManager from "./file-manager";
-import Auth from "./auth";
+import { Auth } from "./auth";
 import * as jwt from 'jsonwebtoken';
 import _ from "lodash";
-import { GraphQLError } from "graphql";
-import { userNotFound } from "../errors/errors";
 import { UserAuth, UserAuthResponse, UserData } from "../interfaces/user";
 import { TotalData } from "../interfaces/main";
+import { MainDB } from "./main.db";
 
-class UserDB {
-  private fileManager: FileManager = new FileManager('db.json');
-  private auth: Auth = new Auth();
-  private jwt: typeof jwt = jwt;
-  private lodash: _.LoDashStatic = _;
+class UserDB extends MainDB {
+  private readonly auth: Auth = new Auth();
+  private readonly jwt: typeof jwt = jwt;
+  private readonly lodash: _.LoDashStatic = _;
 
-  get data(): TotalData {
+  public get data(): TotalData {
     return this.fileManager.data;
   }
 
-  set data(value: TotalData) {
+  public set data(value: TotalData) {
     this.fileManager.data = value;
   }
 
-  get users(): UserData[] {
+  public get users(): UserData[] {
     return this.data.users;
   }
 
-  set users(value: UserData[]) {
+  public set users(value: UserData[]) {
     const data = this.data;
 
     data.users = value;
     this.data = data;
   }
 
-  getUserList(filter: Record<string, string>): UserData[] {
+  public getUserList(filter: Record<string, string>): UserData[] {
     //TODO: реализовать фильтрацию по типам "и - and" и "или - or"
     let filteredUsers = this.users;
 
@@ -44,22 +41,18 @@ class UserDB {
     return filteredUsers;
   }
 
-  getUser(id: string): UserData {
+  public getItem(id: string): UserData {
     const user = this.data.users
       .find(user => user.id === +id);
     
     if(!user) {
-      throw new GraphQLError(userNotFound.message, {
-        extensions: {
-          status: userNotFound.status
-        }
-      });
+      throw this.triggerError('user_not_found')
     }
     
     return user;
   }
 
-  createUser(input: UserData): UserData {
+  public createItem(input: UserData): UserData {
     const id = Date.now();
     const newUser = {
       ...input,
@@ -77,7 +70,7 @@ class UserDB {
     return newUser;
   }
 
-  login(input: UserAuth): UserAuthResponse {
+  public login(input: UserAuth): UserAuthResponse {
     const {users} = this.data;
     const data = users
       .find(user => user.email === input.email);
@@ -95,7 +88,7 @@ class UserDB {
     };
   }
 
-  editUser(input: UserData): UserData {
+  public editItem(input: UserData): UserData {
     const users = this.users;
     let targetUser;
     let targetUserIndex;
@@ -114,11 +107,7 @@ class UserDB {
     targetUser = {...targetUser, ...input};
 
     if(!targetUserIndex) {
-      throw new GraphQLError(userNotFound.message, {
-        extensions: {
-          status: userNotFound.status
-        }
-      });
+      throw this.triggerError('user_not_found');
     }
 
     users.splice(targetUserIndex, 1, targetUser);
@@ -127,7 +116,7 @@ class UserDB {
     return targetUser;
   }
 
-  deleteUser(id: string): number {
+  public deleteItem(id: string): number {
     const users = this.users;
     const userIndex = users
       .findIndex(user => user.id === +id);
@@ -139,6 +128,4 @@ class UserDB {
   }
 }
 
-const userDB = new UserDB();
-
-export default userDB;
+export const userDB = new UserDB();

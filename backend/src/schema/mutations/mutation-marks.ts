@@ -1,8 +1,8 @@
 import { GraphQLFieldConfig, GraphQLID, GraphQLList, GraphQLString } from "graphql";
-import { markDataInfoInput, markDataInfoType, markDataType, markInput, markType } from "../exporting/schema-mark";
+import { markDataInfoInput, markDataInfoType, markDataType, markInput, markType } from "../types/type-mark";
 import { markDB } from "../../db/marks.db";
-import userDB from "../../db/users.db";
-import { lessonInput } from "../exporting/schema-lesson";
+import { userDB } from "../../db/users.db";
+import { lessonInput } from "../types/type-lesson";
 
 export const createMarks: GraphQLFieldConfig<any, any> = {
   type: markType,
@@ -12,10 +12,10 @@ export const createMarks: GraphQLFieldConfig<any, any> = {
   },
   resolve(parent, args) {
     const mark = markDB.createItem(args.input);
-    const user = userDB.getUser(args.userId);
+    const user = userDB.getItem(args.userId);
 
     user.markId = mark.id;
-    userDB.editUser(user);
+    userDB.editItem(user);
   }
 };
 

@@ -1,9 +1,9 @@
 import { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLList, GraphQLInputObjectType } from "graphql";
-import { lessonType, lessonInput } from "./schema-lesson";
+import { lessonType, lessonInput } from "./type-lesson";
 import { markDB } from "../../db/marks.db";
-import { markType } from "./schema-mark";
+import { markType } from "./type-mark";
 
-const userType = new GraphQLObjectType({
+export const userType = new GraphQLObjectType({
   name: 'User',
   fields: () => ({
     id: {type: GraphQLID},
@@ -25,7 +25,7 @@ const userType = new GraphQLObjectType({
   })
 });
 
-const userAuthorizedType = new GraphQLObjectType({
+export const userAuthorizedType = new GraphQLObjectType({
   name: 'UserAuthorized',
   fields: () => ({
     id: {type: GraphQLID},
@@ -33,7 +33,7 @@ const userAuthorizedType = new GraphQLObjectType({
   })
 });
 
-const userInput = new GraphQLInputObjectType({
+export const userInput = new GraphQLInputObjectType({
   name: 'UserInput',
   fields: {
     id: {type: GraphQLID},
@@ -49,7 +49,7 @@ const userInput = new GraphQLInputObjectType({
   }
 });
 
-const userLoginInput = new GraphQLInputObjectType({
+export const userLoginInput = new GraphQLInputObjectType({
   name: 'UserLogin',
   fields: {
     email: {type: GraphQLString},
@@ -57,7 +57,7 @@ const userLoginInput = new GraphQLInputObjectType({
   }
 });
 
-const userFilterInput = new GraphQLInputObjectType({
+export const userFilterInput = new GraphQLInputObjectType({
   name: 'UsersFilterInput',
   fields: {
     role: {type: GraphQLString},
@@ -65,11 +65,3 @@ const userFilterInput = new GraphQLInputObjectType({
     teachLesson: {type: GraphQLString}
   }
 });
-
-export {
-  userType,
-  userAuthorizedType,
-  userInput,
-  userLoginInput,
-  userFilterInput
-}
