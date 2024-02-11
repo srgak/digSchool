@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { TotalData } from '../interfaces/user';
+import { TotalData } from '../interfaces/main';
 
 class FileManager {
   private fs: typeof fs = fs;

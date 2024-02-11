@@ -5,12 +5,18 @@ const incorrectLogin: ErrorData = {
   status: 401
 }
 
-const userNotFound: ErrorData = {
-  message: 'Пользователь не найден',
+const elementNotFound: ErrorData = {
+  message: 'Елемент не найден',
   status: 404
+}
+
+const userNotFound: ErrorData = {
+  ...elementNotFound,
+  message: 'Пользователь не найден'
 }
 
 export {
   incorrectLogin,
+  elementNotFound,
   userNotFound
 }

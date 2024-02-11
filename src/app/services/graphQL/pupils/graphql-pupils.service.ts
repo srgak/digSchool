@@ -23,7 +23,10 @@ export class GraphqlPupilsService extends GraphQLMain {
               patronymic,
               role,
               class,
-              lessons
+              lessons {
+                name,
+                teacher
+              }
             }
           }
         `

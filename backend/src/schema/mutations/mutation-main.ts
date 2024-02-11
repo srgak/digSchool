@@ -1,6 +1,7 @@
 import { GraphQLObjectType, GraphQLID } from "graphql";
-import { userType, userAuthorizedType, userInput, userLoginInput } from "./schema-user";
+import { userType, userAuthorizedType, userInput, userLoginInput } from "../exporting/schema-user";
 import userDB from "../../db/users.db";
+import { createMarks, addMarkInfo, editMarksLessons } from "./mutation-marks";
 
 const mutation = new GraphQLObjectType({
   name: 'Mutation',
@@ -40,7 +41,10 @@ const mutation = new GraphQLObjectType({
       resolve(parent, args) {
         return userDB.deleteUser(args.id);
       }
-    }
+    },
+    createMarks,
+    addMarkInfo,
+    editMarksLessons
   }
 });
 

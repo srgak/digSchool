@@ -23,9 +23,7 @@ interface Teacher extends Person {
 interface Pupil extends Person {
   class?: string;
   lessons?: LessonData[];
+  markId?: number | string;
 }
 type UserDataAnyValue = string | number | LessonData[] | undefined;
 export interface UserData extends Admin, Teacher, Pupil, UserAuth, Record<string, UserDataAnyValue> {}
-export interface TotalData {
-  users: UserData[];
-}

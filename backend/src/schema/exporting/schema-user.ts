@@ -1,5 +1,7 @@
 import { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLList, GraphQLInputObjectType } from "graphql";
 import { lessonType, lessonInput } from "./schema-lesson";
+import { markDB } from "../../db/marks.db";
+import { markType } from "./schema-mark";
 
 const userType = new GraphQLObjectType({
   name: 'User',
@@ -13,7 +15,13 @@ const userType = new GraphQLObjectType({
     role: {type: GraphQLString},
     class: {type: GraphQLString},
     lessons: {type: new GraphQLList(lessonType)},
-    teachLesson: {type: GraphQLString}
+    teachLesson: {type: GraphQLString},
+    marks: {
+      type: markType,
+      resolve(parent, args) {
+        return markDB.getItem(parent.markId);
+      }
+    }
   })
 });
 

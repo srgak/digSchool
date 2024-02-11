@@ -4,7 +4,8 @@ import * as jwt from 'jsonwebtoken';
 import _ from "lodash";
 import { GraphQLError } from "graphql";
 import { userNotFound } from "../errors/errors";
-import { TotalData, UserAuth, UserAuthResponse, UserData } from "../interfaces/user";
+import { UserAuth, UserAuthResponse, UserData } from "../interfaces/user";
+import { TotalData } from "../interfaces/main";
 
 class UserDB {
   private fileManager: FileManager = new FileManager('db.json');
