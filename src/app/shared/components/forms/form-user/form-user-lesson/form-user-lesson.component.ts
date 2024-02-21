@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, forwardRef } from '@angular/core';
-import { NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors } from '@angular/forms';
-import { Observable, map, switchMap, tap } from 'rxjs';
+import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ValidationErrors } from '@angular/forms';
+import { Observable, map } from 'rxjs';
 import { FormCustom } from 'src/app/helpers/interfaces/form';
 import { LessonData } from 'src/app/helpers/interfaces/user';
 import { FormUserLesson } from './form-user-lessons';
