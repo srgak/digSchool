@@ -1,3 +1,5 @@
+import { MarksData } from "./marks";
+
 export interface UserId {
   id: number;
 }
@@ -25,27 +27,10 @@ interface Teacher extends Person {
 interface Pupil extends Person {
   class?: string;
   lessons?: LessonData[];
+  marks?: MarksData;
 }
-type UserDataAnyValue = string | number | LessonData[] | undefined;
+type UserDataAnyValue = string | number | LessonData[] | MarksData | undefined;
 export interface UserData extends Admin, Teacher, Pupil, UserAuth, Record<string, UserDataAnyValue> {}
 export interface UserAuthResponse extends UserId {
   accessToken: string;
-}
-export interface GraphQLUserAuth {
-  login: UserAuthResponse;
-}
-export interface GraphQLUser {
-  getUser: UserData;
-}
-export interface GraphQLUserList {
-  getUserList: UserData[];
-}
-export interface GraphQLUserDelete {
-  deleteUser: UserData;
-}
-export interface GraphQLUserUpdate {
-  editUser: UserData;
-}
-export interface GraphQlUserCreate {
-  createUser: UserData;
 }

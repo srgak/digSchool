@@ -2,9 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { pageName } from './helpers/routes';
 import { canActivateAuth, canDeactivateAuth } from './guards/authorized/authorized.guard';
-import { userDataResolver } from './resolvers/user-data';
-import { userMarksResolver } from './resolvers/user-marks';
+import { userDataResolver } from './resolvers/users/user-data';
 import { canActivateAdmin, canActivatePupil, canActivateTeacher } from './guards/check-role/check-role.guard';
+import { marksIdResolver } from './resolvers/marks/marks-id';
+import { userPupilsResolver } from './resolvers/users/user-pupils';
+import { userLessonsResolver } from './resolvers/users/user-lessons';
 
 const routes: Routes = [
   {
@@ -46,9 +48,10 @@ const routes: Routes = [
       canActivateAuth,
       canActivatePupil
     ],
-    resolve: [
-      userMarksResolver
-    ]
+    resolve: {
+      lessons: userLessonsResolver,
+      marksId: marksIdResolver
+    }
   },
   {
     path: pageName.Journal,
@@ -57,7 +60,10 @@ const routes: Routes = [
     canActivate: [
       canActivateAuth,
       canActivateTeacher
-    ]
+    ],
+    resolve: {
+      pupils: userPupilsResolver
+    }
   }
 ];
 

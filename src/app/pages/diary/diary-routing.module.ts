@@ -2,6 +2,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { DiaryComponent } from "./diary.component";
 import { NgModule } from "@angular/core";
 import { DiaryMarksComponent } from "./diary-marks/diary-marks.component";
+import { marksLessonResolver } from "src/app/resolvers/marks/marks-lesson";
 
 const routes: Routes = [
   {
@@ -10,7 +11,13 @@ const routes: Routes = [
     children: [
       {
         path: ':id',
-        component: DiaryMarksComponent
+        component: DiaryMarksComponent,
+        resolve: {
+          marks: marksLessonResolver
+        },
+        data: {
+          role: 'pupil'
+        }
       }
     ]
   }

@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { GraphQLMain } from '../graphql';
 import { Observable, map } from 'rxjs';
-import { GraphQLUserList, UserData } from 'src/app/helpers/interfaces/user';
+import { UserData } from 'src/app/helpers/interfaces/user';
 import { gql } from 'apollo-angular';
+import { GraphQLUserList } from 'src/app/helpers/interfaces/graphql';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +27,9 @@ export class GraphqlPupilsService extends GraphQLMain {
               lessons {
                 name,
                 teacher
+              },
+              marks {
+                id
               }
             }
           }
@@ -36,23 +40,29 @@ export class GraphqlPupilsService extends GraphQLMain {
       )
   }
 
-  public getPupilsByClass(className: string): Observable<UserData[]> {
+  public getPupilsByClass(
+    className: string,
+    fields: string[] = [
+      'id',
+      'email',
+      'firstName',
+      'lastName',
+      'patronymic',
+      'role',
+      'class',
+      'lessons {name, teacher}',
+      'marks {id}'
+    ]
+  ): Observable<UserData[]> {
     return this.apollo
       .query<GraphQLUserList>({
         query: gql`
-          query getUserList($class: String) {
+          query getUserList($class: String!) {
             getUserList(filter: {
               role: "pupil",
               class: $class
             }) {
-              id,
-              email,
-              firstName,
-              lastName,
-              patronymic,
-              role,
-              class,
-              lessons
+              ${this.getFieldsString(fields)}
             }
           }
         `,

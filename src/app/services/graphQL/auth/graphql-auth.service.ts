@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { GraphQLMain } from '../graphql';
-import { GraphQLUserAuth, UserAuth, UserAuthResponse } from 'src/app/helpers/interfaces/user';
+import { UserAuth, UserAuthResponse } from 'src/app/helpers/interfaces/user';
 import { Observable, filter, map } from 'rxjs';
 import { gql } from 'apollo-angular';
+import { GraphQLUserAuth } from 'src/app/helpers/interfaces/graphql';
 
 @Injectable({
   providedIn: 'root'

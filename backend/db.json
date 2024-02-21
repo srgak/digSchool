@@ -1,1 +1,62 @@
-{"users":[{"email":"srgak@mail.ru","password":"$2b$10$fmJGEZiJjohTvVHdxkSXIeM/7Hx3sudB39KGNAfpyuoGQB0AtBE/i","firstName":"Админ","lastName":"Админов","patronymic":"Админович","role":"admin","id":1705245808859},{"email":"teacher@mail.ru","password":"$2b$10$ovg0TXD9.akjK.pPUma.Sezl2pMVC09epFaImvErcLWZuxvKpKgxK","firstName":"Татьяна","lastName":"Петрова","patronymic":"Сергеевна","role":"teacher","teachLesson":"Математика","id":1705246100802},{"email":"pupil@test.ru","password":"$2b$10$1l1YWb/R.yPcQnQekYzsQOMATvjhVfgqEyOfvHSMGQHNzjsPguU2q","firstName":"Пётр","lastName":"Петров","patronymic":"Петрович","role":"pupil","class":"5Б","lessons":[{"name":"Математика","teacher":"Татьяна"}],"id":1705246293945,"markId":"3"},{"email":"test1@test.ru","password":"$2b$10$olcc287o1eAL50n/TiKlw.phwqnV/Rjw1bjMvtW0tnh3THHmvGxie","firstName":"Тест1","lastName":"Тестов1","patronymic":"Тестович1","role":"pupil","class":"1А","lessons":[{"name":"Математика","teacher":"Татьяна"}],"id":1705246453385},{"email":"test2@test.ru","password":"$2b$10$WuajpZR37VJq4byNc8Q8CuUWkUTMpJ5MwJ9dLCxUmNq/XRvxj2nEi","firstName":"Тест2","lastName":"Тестов2","patronymic":"Тестович2","role":"pupil","class":"2А","lessons":[{"name":"Математика","teacher":"Татьяна"}],"id":1705250388805}],"marks":[{"id":3,"data":[{"nameLesson":"Математика","info":[{"date":"06.10.2023","value":5,"description":"Тема урока","type":"Ответ у доски"},{"date":"06.10.2023","value":2,"description":"Проверка ДЗ","type":"Домащнее задание"},{"value":4}]},{"nameLesson":"Информатика","info":[{"date":"06.10.2023","value":5,"description":"Тема урока","type":"Контрольная работа"}]}]}]}
+{
+  "users":[
+    {
+      "email":"srgak@mail.ru",
+      "password":"$2b$10$fmJGEZiJjohTvVHdxkSXIeM/7Hx3sudB39KGNAfpyuoGQB0AtBE/i",
+      "firstName":"Админ",
+      "lastName":"Админов",
+      "patronymic":"Админович",
+      "role":"admin",
+      "id":1705245808859
+    },
+    {
+      "email":"teacher@mail.ru",
+      "password":"$2b$10$ovg0TXD9.akjK.pPUma.Sezl2pMVC09epFaImvErcLWZuxvKpKgxK",
+      "firstName":"Татьяна",
+      "lastName":"Петрова",
+      "patronymic":"Сергеевна",
+      "role":"teacher",
+      "teachLesson":"Математика",
+      "id":1705246100802
+    },
+    {
+      "email":"pupil@test.ru",
+      "password":"$2b$10$1l1YWb/R.yPcQnQekYzsQOMATvjhVfgqEyOfvHSMGQHNzjsPguU2q",
+      "firstName":"Пётр",
+      "lastName":"Петров",
+      "patronymic":"Петрович",
+      "role":"pupil",
+      "class":"5Б",
+      "lessons":[
+        {"name":"Математика","teacher":"Татьяна"}, {"name": "Информатика", "teacher": "Хацкер"}
+      ],
+      "id":1705246293945,
+      "markId":"3"
+    },
+    {
+      "email":"test1@test.ru",
+      "password":"$2b$10$olcc287o1eAL50n/TiKlw.phwqnV/Rjw1bjMvtW0tnh3THHmvGxie",
+      "firstName":"Тест1",
+      "lastName":"Тестов1",
+      "patronymic":"Тестович1",
+      "role":"pupil",
+      "class":"1А",
+      "lessons":[{"name":"Математика","teacher":"Татьяна"}],
+      "id":1705246453385,
+      "markId": 0
+    },
+    {
+      "email":"test2@test.ru",
+      "password":"$2b$10$WuajpZR37VJq4byNc8Q8CuUWkUTMpJ5MwJ9dLCxUmNq/XRvxj2nEi",
+      "firstName":"Хацкер",
+      "lastName":"Тестов2",
+      "patronymic":"Тестович2",
+      "role":"teacher",
+      "class":"2А",
+      "teachLesson": "Информатика",
+      "id":1705250388805,
+      "markId": 1
+    }
+  ],
+  "marks":[
+    {"id":3,"data":[{"nameLesson":"Математика","info":[{"date":"06.10.2023","value":5,"description":"Тема урока","type":"Ответ у доски"},{"date":"06.10.2023","value":2,"description":"Проверка ДЗ","type":"Домащнее задание"},{"value":4}]},{"nameLesson":"Информатика","info":[{"date":"06.10.2023","value":5,"description":"Тема урока","type":"Контрольная работа"}]}]}, {"id": 0, "data": []}, {"id": 1, "data": []}]}

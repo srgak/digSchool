@@ -1,9 +1,10 @@
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { map } from 'rxjs';
+import { Observable, map } from 'rxjs';
+import { LessonData } from 'src/app/helpers/interfaces/user';
 import { BREADCRUMBS_URL } from 'src/app/helpers/tokens/breadcrumbs';
-import { MarksDataService } from 'src/app/services/marks/marks.service';
+import { MarksIdService } from 'src/app/services/storage/marks-id/marks-id.service';
 import { requestBreadcrumbs } from 'src/app/store/actions/breadcrumbs.action';
 import { AppState } from 'src/app/store/state/app.state';
 
@@ -13,17 +14,24 @@ import { AppState } from 'src/app/store/state/app.state';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DiaryComponent {
+  public lessons$: Observable<LessonData[]> = this.activeRoute.data.pipe(
+    map(data => data['lessons'] as LessonData[])
+  );
+
   constructor(
     private activeRoute: ActivatedRoute,
-    public marksData: MarksDataService,
+    private marksId: MarksIdService,
     @Inject(BREADCRUMBS_URL) private breadcrumbsUrl: string,
     private store: Store<AppState>
   ) {
     this.store.dispatch(requestBreadcrumbs({
       url: this.breadcrumbsUrl
     }));
-    marksData.data$ = activeRoute.data.pipe(
-      map(data => data['0'])
+    this.activeRoute.data.pipe(
+      map(data => data['marksId'])
     )
+      .subscribe(value => {
+        this.marksId.prop = value;
+      });
   }
 }

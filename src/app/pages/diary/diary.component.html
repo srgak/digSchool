@@ -1,11 +1,11 @@
 <app-tabs-menu>
   <a
     class="button button-active"
-    *ngFor="let item of marksData.data$ | async"
-    [routerLink]="item.nameLesson"
+    *ngFor="let item of lessons$ | async"
+    [routerLink]="item.name"
     routerLinkActive="button-link-active"
   >
-    {{item.nameLesson}}
+    {{item.name}}
   </a>
 
   <router-outlet></router-outlet>

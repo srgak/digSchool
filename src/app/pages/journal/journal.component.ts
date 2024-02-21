@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { MatSelectChange } from '@angular/material/select';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { UserData } from 'src/app/helpers/interfaces/user';
 import { notEmptyList } from 'src/app/helpers/pipes/not-empty-list';
 import { pageName } from 'src/app/helpers/routes';
@@ -20,6 +20,7 @@ import { AppState } from 'src/app/store/state/app.state';
 export class JournalComponent {
   public pupilsList: Observable<UserData[]>;
   constructor(
+    private activeRoute: ActivatedRoute,
     public classData: SelectDataClassesService,
     public graphQLPupils: GraphqlPupilsService,
     private router: Router,
@@ -29,10 +30,9 @@ export class JournalComponent {
     this.store.dispatch(requestBreadcrumbs({
       url: this.breadcrumbsUrl
     }));
-    this.pupilsList = this.graphQLPupils.getPupils()
-      .pipe(
-        notEmptyList
-      );
+    this.pupilsList = this.activeRoute.data.pipe(
+      map(data => data['pupils'])
+    )
   }
 
   public onClassChanged(event: MatSelectChange): void {
@@ -43,6 +43,6 @@ export class JournalComponent {
   }
 
   public onPupilSelected(user: UserData): void {
-    this.router.navigate([`${pageName.Journal}/${pageName.JournalMarks}`, user.id]);
+    this.router.navigate([`${pageName.Journal}/${pageName.JournalMarks}`, user.marks?.id]);
   }
 }

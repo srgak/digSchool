@@ -22,7 +22,7 @@
     <mat-label>Учитель</mat-label>
     <mat-select formControlName="teacher">
       <mat-option
-        *ngFor="let item of teachers"
+        *ngFor="let item of teachers$ | async"
         [value]="item"
       >
         {{item}}

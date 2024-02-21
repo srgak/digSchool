@@ -22,15 +22,17 @@ export const createMarks: GraphQLFieldConfig<any, any> = {
 export const addMarkInfo: GraphQLFieldConfig<any, any> = {
   type: markDataInfoType,
   args: {
+    input: {type: markDataInfoInput},
     markId: {type: GraphQLID},
-    nameLesson: {type: GraphQLString},
-    input: {type: markDataInfoInput}
+    nameLesson: {type: GraphQLString}
   },
   resolve(parent, args) {
     return markDB.addMarkInfo(
-      args.markId,
-      args.nameLesson,
-      args.input
+      args.input,
+      {
+        markId: args.markId,
+        nameLesson: args.nameLesson
+      }
     );
   }
 };

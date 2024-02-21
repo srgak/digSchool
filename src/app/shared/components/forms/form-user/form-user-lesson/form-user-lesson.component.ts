@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, forwardRef } from '@angular/core';
 import { NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors } from '@angular/forms';
-import { switchMap } from 'rxjs';
+import { Observable, map, switchMap, tap } from 'rxjs';
 import { FormCustom } from 'src/app/helpers/interfaces/form';
 import { LessonData } from 'src/app/helpers/interfaces/user';
 import { FormUserLesson } from './form-user-lessons';
@@ -25,13 +25,10 @@ export class FormUserLessonComponent extends FormUserLesson implements FormCusto
     }
   }
   
-  public subjects: string[] = [
-    'Русский язык',
-    'Математика',
-    'Литература',
-    'Информатика'
-  ];
-  public teachers: string[] = [];
+  public teachers$: Observable<string[]> = this.graphQLTeachers.getTeachers(['firstName'])
+    .pipe(
+      map(data => data.map(item => item.firstName))
+    );
 
   constructor(
     private graphQLTeachers: GraphqlTeachersService,
@@ -59,17 +56,6 @@ export class FormUserLessonComponent extends FormUserLesson implements FormCusto
     this.form.valueChanges.subscribe(value => {
       this.onChange(value);
     });
-    //TODO: переделать логику под новый бэк
-    // this.form.get('name')?.valueChanges
-    //   .pipe(
-    //     switchMap((subject) => this.httpTeachers.getTeachersLesson(subject))
-    //   )
-    //   .subscribe(data => {
-    //     this.teachers = [];
-    //     data.forEach(item => {
-    //       this.teachers.push(item.firstName);
-    //     });
-    //   })
   }
   ngOnDestroy(): void {
     this.onChange(null);

@@ -17,10 +17,10 @@ class MarkDB extends MainDB {
   }
 
   public getItem(id: string): MarksData {
-    const mark = this.data.marks
+    const mark = this.marks
       .find(mark => mark.id === +id);
 
-    if(!mark) {
+      if(!mark) {
       throw new GraphQLError(elementNotFound.message, {
         extensions: {
           status: elementNotFound.status
@@ -112,6 +112,22 @@ class MarkDB extends MainDB {
     this.marks = marks;
 
     return input;
+  }
+
+  public getMarksByLesson(id: string, lessonName: string): MarkInfo[] {
+    const mark = this.marks
+      .find(mark => mark.id === +id);
+    const markLesson = mark?.data.find(item => item.nameLesson === lessonName)?.info;
+
+    if(!markLesson) {
+      throw new GraphQLError(elementNotFound.message, {
+        extensions: {
+          status: elementNotFound.status
+        }
+      })
+    }
+
+    return markLesson;
   }
 }
 

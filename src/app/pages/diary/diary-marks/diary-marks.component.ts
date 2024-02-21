@@ -1,10 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, map, switchMap } from 'rxjs';
-import { MarkValue } from 'src/app/helpers/interfaces/marks';
-import { notEmptyList } from 'src/app/helpers/pipes/not-empty-list';
-import { MarksDataService } from 'src/app/services/marks/marks.service';
+import { MarkInfo } from 'backend/src/interfaces/marks';
+import { Observable, map } from 'rxjs';
 import { TableMarksModule } from 'src/app/shared/components/tables/table-marks/table-marks.module';
 
 @Component({
@@ -18,22 +16,18 @@ import { TableMarksModule } from 'src/app/shared/components/tables/table-marks/t
   ]
 })
 export class DiaryMarksComponent {
-  public currentMarks!: Observable<MarkValue[] | string>;
   public columnList: string[] = [
     'date',
     'value',
     'type',
     'description'
   ];
+  public marks$: Observable<MarkInfo[]> = this.activeRoute.data
+    .pipe(
+      map(data => data['marks'])
+    );
+
   constructor(
-    private activeRoute: ActivatedRoute,
-    public marksData: MarksDataService
-  ) {
-    marksData.currentMarks$ = activeRoute.params
-      .pipe(
-        map(data => data['id']),
-        switchMap(data => marksData.getCurrentMarks(data)),
-        notEmptyList
-      )
-  }
+    private activeRoute: ActivatedRoute
+  ) {}
 }

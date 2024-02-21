@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MarksService } from './marks.service';
+import { GraphqlMarksService } from './graphql-marks.service';
 
-describe('MarksService', () => {
-  let service: MarksService;
+describe('GraphqlMarksService', () => {
+  let service: GraphqlMarksService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(MarksService);
+    service = TestBed.inject(GraphqlMarksService);
   });
 
   it('should be created', () => {

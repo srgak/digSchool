@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 import { GraphQLMain } from '../graphql';
-import { GraphQLUser, GraphQLUserDelete, GraphQLUserList, GraphQLUserUpdate, GraphQlUserCreate, UserData, UserId } from 'src/app/helpers/interfaces/user';
+import { UserData, UserId } from 'src/app/helpers/interfaces/user';
 import { Observable, filter, map } from 'rxjs';
 import { gql } from 'apollo-angular';
+import { LessonData } from 'backend/src/interfaces/lesson';
+import { GraphQLUser, GraphQLUserDelete, GraphQLUserList, GraphQLUserUpdate, GraphQlUserCreate } from 'src/app/helpers/interfaces/graphql';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GraphqlUsersService extends GraphQLMain {
-  private getUserData(id: number, fields: string[]): Observable<UserData> {
+  public getUserData(id: number, fields: string[]): Observable<UserData> {
     return this.apollo
       .query<GraphQLUser>({
         query: gql`
@@ -33,7 +35,8 @@ export class GraphqlUsersService extends GraphQLMain {
       'firstName',
       'lastName',
       'patronymic',
-      'role'
+      'role',
+      'teachLesson'
     ];
 
     return this.getUserData(id, fields);
@@ -141,6 +144,19 @@ export class GraphqlUsersService extends GraphQLMain {
         map(data => data.data?.createUser),
         filter(data => Boolean(data)),
         map(data => data as UserData)
+      )
+  }
+
+  public getUserDataLessons(id: number): Observable<LessonData[]> {
+    const fields = [
+      'lessons {name, teacher}'
+    ];
+
+    return this.getUserData(id, fields)
+      .pipe(
+        map(data => data.lessons),
+        filter(data => Boolean(data)),
+        map(data => data as LessonData[])
       )
   }
 }
