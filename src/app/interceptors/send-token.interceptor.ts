@@ -9,7 +9,7 @@ export class TokenInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const request = req.clone({
-      headers: req.headers.set('Authorization', `Bearer ${this.accessToken.prop}`)
+      headers: req.headers.set('Authorization', `${this.accessToken.prop}`)
     });
 
     return next.handle(request);

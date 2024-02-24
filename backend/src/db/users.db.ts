@@ -79,7 +79,7 @@ class UserDB extends MainDB {
     const accessToken = this.jwt.sign({
       user: this.lodash.pick(data, ['id', 'email'])
     }, 'secret', {
-      expiresIn: '1m'
+      expiresIn: '1h'
     });
 
     return {

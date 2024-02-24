@@ -14,3 +14,8 @@ export const userNotFound: ErrorData = {
   ...elementNotFound,
   message: 'Пользователь не найден'
 }
+
+export const invalidToken: ErrorData = {
+  message: 'Некорректный токен',
+  status: 401
+}

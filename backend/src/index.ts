@@ -1,14 +1,28 @@
 import express from 'express';
-import {graphqlHTTP} from 'express-graphql';
+import { graphqlHTTP } from 'express-graphql';
 import cors from 'cors';
 import { schema } from './schema/schema';
+import * as jwt from 'jsonwebtoken';
+import { invalidToken } from './errors/errors';
 
 const app = express();
 
 app.use(cors());
 app.use('/graphql', (req, res) => {
-  //TODO: реализация проверки токена
-  console.log(req.headers.authorization);
+  const jsonwebtoken = jwt;
+  const {authorization} = req.headers;
+
+  if(authorization) {
+    try {
+      jsonwebtoken.verify(authorization, 'secret');
+    } catch {
+      const {status, message} = invalidToken;
+
+      return res.status(status).send({
+        message
+      });
+    }
+  }
 
   graphqlHTTP({
     graphiql: true,
