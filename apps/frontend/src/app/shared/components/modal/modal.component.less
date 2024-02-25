@@ -1,0 +1,31 @@
+:host {
+  @apply
+    fixed
+    w-full
+    h-full
+    flex
+    justify-center
+    items-center
+    top-0
+    left-0;
+  background: rgba(0, 0, 0, .7);
+  backdrop-filter: blur(10px);
+}
+.modal {
+  @apply
+    w-full
+    p-20
+    rounded-10
+    bg-active-4
+    text-active-2
+    relative;
+  max-width: 700px;
+  &__close {
+    @apply
+      absolute
+      right-0
+      w-40
+      h-40;
+    bottom: calc(100% + 10px);
+  }
+}

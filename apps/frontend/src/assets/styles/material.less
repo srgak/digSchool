@@ -1,0 +1,127 @@
+:root {
+  --mat-form-field-container-height: 100%;
+  --mat-form-field-error-text-color: #F22738;
+  --mdc-filled-text-field-container-color: rgba(0, 0, 0, 0.08);
+  --mat-table-header-headline-color: #FEFFFF;
+  --mat-table-row-item-label-text-color: #FEFFFF;
+  --mat-table-row-item-label-text-size: 18px;
+  --mat-table-header-headline-size: 18px;
+  --mat-select-panel-background-color: rgba(0,31,48,.75);
+  --mat-option-hover-state-layer-color: #133840;
+  --mat-table-background-color: rgba(0, 31, 48, 0.75);
+}
+.mdc-text-field {
+  padding: 10px !important;
+  overflow: visible !important;
+  background: rgba(0,0,0,.08);
+  border: 1px solid hsla(0,0%,100%,.5);
+  border-radius: 10px !important;
+  &.mdc-text-field--invalid {
+    border-color: #F22738;
+  }
+}
+.mat-mdc-form-field-input-control.mat-mdc-form-field-input-control {
+  text-overflow: ellipsis;
+}
+.mat-mdc-form-field-input-control.mat-mdc-form-field-input-control[type='password'] {
+  width: calc(100% - 35px);
+  letter-spacing: 5px;
+  &::placeholder {
+    letter-spacing: normal;
+  }
+}
+.mdc-text-field--filled .mdc-floating-label--float-above {
+  transform: translateY(calc(-50% - 105%)) scale(0.75) !important;
+}
+.mat-mdc-form-field-error-wrapper {
+  padding: 0 !important;
+}
+.mdc-line-ripple::before {
+  border: none !important;
+}
+.mat-mdc-form-field-error {
+  @apply
+    text-14;
+}
+.mat-mdc-form-field-subscript-wrapper {
+  height: 0;
+  &:has(.mat-mdc-form-field-error-wrapper) {
+    height: auto;
+  }
+}
+.mat-mdc-text-field-wrapper {
+  flex: none !important;
+}
+
+.cdk-overlay-container, .cdk-global-overlay-wrapper {
+  pointer-events: none;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+.cdk-overlay-container {
+  position: fixed;
+  z-index: 1000;
+}
+.cdk-overlay-connected-position-bounding-box {
+  position: absolute;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  min-width: 1px;
+  min-height: 1px;
+}
+.cdk-overlay-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 1000;
+  pointer-events: auto;
+  -webkit-tap-highlight-color: transparent;
+  transition: opacity .4s cubic-bezier(.25,.8,.25,1);
+  opacity: 0;
+}
+.cdk-overlay-transparent-backdrop {
+  transition: visibility 1ms linear,opacity 1ms linear;
+  visibility: hidden;
+  opacity: 1;
+}
+.cdk-overlay-backdrop.cdk-overlay-backdrop-showing {
+  opacity: 1;
+}
+.cdk-overlay-transparent-backdrop.cdk-overlay-backdrop-showing {
+  opacity: 0;
+  visibility: visible;
+}
+.cdk-overlay-connected-position-bounding-box {
+  position: absolute;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  min-width: 1px;
+  min-height: 1px;
+}
+.cdk-overlay-pane {
+  position: absolute;
+  pointer-events: auto;
+  box-sizing: border-box;
+  z-index: 1000;
+  display: flex;
+  max-width: 100%;
+  max-height: 100%;
+}
+.mdc-menu-surface {
+  backdrop-filter: blur(10px);
+}
+
+.mdc-data-table__cell, .mdc-data-table__header-cell {
+  border-bottom: 1px solid hsla(0,0%,100%,.5);
+}
+.mdc-data-table__row {
+  background: none !important;
+  cursor: pointer;
+  &:hover {
+    background: #00000059 !important;
+    backdrop-filter: blur(10px);
+  }
+}
