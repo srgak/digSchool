@@ -17,37 +17,38 @@ import { GraphqlAuthService } from '../../services/graphQL/auth/graphql-auth.ser
 @Component({
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AuthComponent extends AuthForm implements FormMain, FormSubmit {
   constructor(
-    private router: Router,
+    private readonly router: Router,
     public modal: ModalService,
-    private graphQLAuth: GraphqlAuthService,
-    private accessToken: AccessTokenService,
-    private userId: UserIdService,
+    private readonly graphQLAuth: GraphqlAuthService,
+    private readonly accessToken: AccessTokenService,
+    private readonly userId: UserIdService,
     @Inject(SYMBOLS_RU_TO_EN) public lettersEnToRu: Record<string, string>,
-    @Inject(BREADCRUMBS_URL) private breadcrumbsUrl: string,
-    private store: Store<AppState>
+    @Inject(BREADCRUMBS_URL) private readonly breadcrumbsUrl: string,
+    private readonly store: Store<AppState>,
   ) {
     super();
-    this.store.dispatch(requestBreadcrumbs({
-      url: this.breadcrumbsUrl
-    }));
+    this.store.dispatch(
+      requestBreadcrumbs({
+        url: this.breadcrumbsUrl,
+      }),
+    );
   }
 
-  public onSubmit() {
-    if(this.form.valid) {
-      this.graphQLAuth.login(this.form.value)
-        .subscribe(this.onSuccess);
+  public onSubmit(): void {
+    if (this.form.valid) {
+      this.graphQLAuth.login(this.form.value).subscribe(this.onSuccess);
     } else {
       this.form.markAllAsTouched();
     }
   }
 
-  private onSuccess = (data: UserAuthResponse): void => {
+  private readonly onSuccess = (data: UserAuthResponse): void => {
     this.userId.prop = data.id;
     this.accessToken.prop = data.accessToken;
     this.router.navigateByUrl(pageName.Main);
-  }
+  };
 }

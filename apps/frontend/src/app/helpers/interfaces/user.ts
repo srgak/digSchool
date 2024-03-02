@@ -1,4 +1,4 @@
-import { MarksData } from "./marks";
+import { MarksData } from './marks';
 
 export interface UserId {
   id: number;
@@ -8,7 +8,7 @@ export interface UserAuth {
   password: string;
 }
 export interface UserLoginData extends UserAuth, UserId {}
-export interface UserAuthForm extends UserAuth {}
+export type UserAuthForm = UserAuth;
 
 export interface LessonData {
   name: string;
@@ -20,7 +20,7 @@ interface Person extends UserId {
   patronymic: string;
   role: string;
 }
-interface Admin extends Person {}
+type Admin = Person;
 interface Teacher extends Person {
   teachLesson?: string;
 }
@@ -30,7 +30,12 @@ interface Pupil extends Person {
   marks?: MarksData;
 }
 type UserDataAnyValue = string | number | LessonData[] | MarksData | undefined;
-export interface UserData extends Admin, Teacher, Pupil, UserAuth, Record<string, UserDataAnyValue> {}
+export interface UserData
+  extends Admin,
+    Teacher,
+    Pupil,
+    UserAuth,
+    Record<string, UserDataAnyValue> {}
 export interface UserAuthResponse extends UserId {
   accessToken: string;
 }

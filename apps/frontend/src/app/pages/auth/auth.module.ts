@@ -9,20 +9,16 @@ import { TransliterationModule } from '../../shared/directives/transliteration/t
 import { breadcrumbsProvide } from '../../helpers/providers/breadcrumbs/breadcrumbs';
 import { pageBreadcrumbs } from '../../helpers/routes';
 
-
-
 @NgModule({
   declarations: [AuthComponent],
   imports: [
-    CommonModule,
     AuthRoutingModule,
-    ReactiveFormsModule,
+    CommonModule,
     MatInputModule,
     PasswordModule,
-    TransliterationModule
+    ReactiveFormsModule,
+    TransliterationModule,
   ],
-  providers: [
-    breadcrumbsProvide(pageBreadcrumbs.auth)
-  ]
+  providers: [breadcrumbsProvide(pageBreadcrumbs.auth)],
 })
-export class AuthModule { }
+export class AuthModule {}

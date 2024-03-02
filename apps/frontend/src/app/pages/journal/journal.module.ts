@@ -10,8 +10,6 @@ import { TablePupilsModule } from '../../shared/components/tables/table-pupils/t
 import { breadcrumbsProvide } from '../../helpers/providers/breadcrumbs/breadcrumbs';
 import { pageBreadcrumbs } from '../../helpers/routes';
 
-
-
 @NgModule({
   declarations: [JournalComponent],
   imports: [
@@ -20,11 +18,8 @@ import { pageBreadcrumbs } from '../../helpers/routes';
     MatFormFieldModule,
     MatSelectModule,
     ReactiveFormsModule,
-    TablePupilsModule
+    TablePupilsModule,
   ],
-  providers: [
-    SelectDataClassesService,
-    breadcrumbsProvide(pageBreadcrumbs.journal)
-  ]
+  providers: [SelectDataClassesService, breadcrumbsProvide(pageBreadcrumbs.journal)],
 })
-export class JournalModule { }
+export class JournalModule {}

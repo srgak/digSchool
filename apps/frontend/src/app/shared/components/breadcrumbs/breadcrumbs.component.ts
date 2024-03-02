@@ -5,7 +5,7 @@ import { BreadcrumbItem } from '../../../helpers/interfaces/breadcrumbs';
   selector: 'app-breadcrumbs',
   templateUrl: './breadcrumbs.component.html',
   styleUrls: ['./breadcrumbs.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BreadcrumbsComponent {
   @Input() public list!: BreadcrumbItem[];

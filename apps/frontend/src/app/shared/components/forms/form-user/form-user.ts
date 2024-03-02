@@ -1,10 +1,10 @@
-import { inject } from "@angular/core";
-import { FormArray, FormControl, FormGroup } from "@angular/forms";
-import { FormMain } from "../../../../helpers/interfaces/form";
-import { ValidatorsService } from "../../../../services/validators/validators.service";
+import { inject } from '@angular/core';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { FormMain } from '../../../../helpers/interfaces/form';
+import { ValidatorsService } from '../../../../services/validators/validators.service';
 
 export class FormUser implements FormMain {
-  private validators = inject(ValidatorsService);
+  private readonly validators = inject(ValidatorsService);
   public form: FormGroup = new FormGroup({
     email: new FormControl(null, [this.validators.validateRequired, this.validators.validateEmail]),
     password: new FormControl(null, [this.validators.validateRequired]),
@@ -14,7 +14,7 @@ export class FormUser implements FormMain {
     role: new FormControl(null, [this.validators.validateRequired]),
     class: new FormControl(null, [this.validators.validateRequired]),
     lessons: new FormArray([], [this.validators.validateRequired]),
-    teachLesson: new FormControl(null, [this.validators.validateRequired])
+    teachLesson: new FormControl(null, [this.validators.validateRequired]),
   });
 
   public get email(): FormControl {
@@ -45,10 +45,8 @@ export class FormUser implements FormMain {
     return this.form.get('teachLesson') as FormControl;
   }
   public set isEdit(value: boolean) {
-    if(value) {
-      this.password.removeValidators([
-        this.validators.validateRequired
-      ]);
+    if (value) {
+      this.password.removeValidators([this.validators.validateRequired]);
     }
   }
 }

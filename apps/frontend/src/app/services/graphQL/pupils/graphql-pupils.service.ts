@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { GraphQLMain } from '../graphql';
-import { Observable, map } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { UserData } from '../../../helpers/interfaces/user';
 import { gql } from 'apollo-angular';
 import { GraphQLUserList } from '../../../helpers/interfaces/graphql';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class GraphqlPupilsService extends GraphQLMain {
   public getPupils(): Observable<UserData[]> {
@@ -14,30 +14,26 @@ export class GraphqlPupilsService extends GraphQLMain {
       .query<GraphQLUserList>({
         query: gql`
           {
-            getUserList(filter: {
-              role: "pupil"
-            }) {
-              id,
-              email,
-              firstName,
-              lastName,
-              patronymic,
-              role,
-              class,
+            getUserList(filter: { role: "pupil" }) {
+              id
+              email
+              firstName
+              lastName
+              patronymic
+              role
+              class
               lessons {
-                name,
+                name
                 teacher
-              },
+              }
               marks {
                 id
               }
             }
           }
-        `
+        `,
       })
-      .pipe(
-        map(data => data.data.getUserList)
-      )
+      .pipe(map((data) => data.data.getUserList));
   }
 
   public getPupilsByClass(
@@ -51,8 +47,8 @@ export class GraphqlPupilsService extends GraphQLMain {
       'role',
       'class',
       'lessons {name, teacher}',
-      'marks {id}'
-    ]
+      'marks {id}',
+    ],
   ): Observable<UserData[]> {
     return this.apollo
       .query<GraphQLUserList>({
@@ -67,11 +63,9 @@ export class GraphqlPupilsService extends GraphQLMain {
           }
         `,
         variables: {
-          class: className
-        }
+          class: className,
+        },
       })
-      .pipe(
-        map(data => data.data.getUserList)
-      )
+      .pipe(map((data) => data.data.getUserList));
   }
 }

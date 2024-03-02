@@ -14,27 +14,22 @@ import { SelectDataLessonsService } from '../../../../services/select-data/selec
 import { PasswordModule } from '../../../directives/password/password.module';
 import { TransliterationModule } from '../../../directives/transliteration/transliteration.module';
 
-
-
 @NgModule({
   declarations: [FormUserComponent],
   imports: [
     CommonModule,
-    ReactiveFormsModule,
+    FormListModule,
+    FormUserClassModule,
+    FormUserLessonModule,
+    MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    MatButtonModule,
-    FormUserClassModule,
-    FormUserLessonModule,
-    FormListModule,
     PasswordModule,
-    TransliterationModule
+    ReactiveFormsModule,
+    TransliterationModule,
   ],
   exports: [FormUserComponent],
-  providers: [
-    SelectDataRolesService,
-    SelectDataLessonsService
-  ]
+  providers: [SelectDataLessonsService, SelectDataRolesService],
 })
-export class FormUserModule { }
+export class FormUserModule {}

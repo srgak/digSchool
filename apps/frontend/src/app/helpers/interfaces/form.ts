@@ -1,4 +1,4 @@
-import { ControlValueAccessor, FormControl, FormGroup, Validator } from "@angular/forms";
+import { ControlValueAccessor, FormControl, FormGroup, Validator } from '@angular/forms';
 
 export interface FormMain {
   form: FormGroup;

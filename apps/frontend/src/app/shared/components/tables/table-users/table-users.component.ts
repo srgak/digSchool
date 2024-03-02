@@ -6,14 +6,10 @@ import { UserData } from '../../../../helpers/interfaces/user';
   selector: 'app-table-users',
   templateUrl: './table-users.component.html',
   styleUrls: ['./table-users.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TableUsersComponent implements TableMain {
   @Input() public data!: UserData[];
-  @Output() public onSelect: EventEmitter<UserData> = new EventEmitter();
-  public columnList: string[] = [
-    'id',
-    'fio',
-    'role'
-  ];
+  @Output() public readonly onSelect: EventEmitter<UserData> = new EventEmitter();
+  public columnList: string[] = ['id', 'fio', 'role'];
 }

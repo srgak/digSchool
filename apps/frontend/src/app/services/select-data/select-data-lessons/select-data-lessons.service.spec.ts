@@ -7,7 +7,7 @@ describe('SelectDataLessonsService', () => {
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
-      providers: [SelectDataLessonsService]
+      providers: [SelectDataLessonsService],
     });
 
     service = TestBed.inject(SelectDataLessonsService);
@@ -17,6 +17,6 @@ describe('SelectDataLessonsService', () => {
     expect(service).toBeTruthy();
   });
   it('Проверить наличие предметов', () => {
-    expect(service.list.length).toBeTruthy()
+    expect(service.list.length).toBeTruthy();
   });
 });

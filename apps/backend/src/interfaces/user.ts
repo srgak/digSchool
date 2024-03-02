@@ -1,4 +1,4 @@
-import { LessonData } from "./lesson";
+import { LessonData } from './lesson';
 
 export interface UserAuth {
   email: string;
@@ -16,7 +16,7 @@ interface Person extends UserId {
   patronymic: string;
   role: string;
 }
-interface Admin extends Person {}
+type Admin = Person;
 interface Teacher extends Person {
   teachLesson?: string;
 }
@@ -26,4 +26,9 @@ interface Pupil extends Person {
   markId?: number | string;
 }
 type UserDataAnyValue = string | number | LessonData[] | undefined;
-export interface UserData extends Admin, Teacher, Pupil, UserAuth, Record<string, UserDataAnyValue> {}
+export interface UserData
+  extends Admin,
+    Teacher,
+    Pupil,
+    UserAuth,
+    Record<string, UserDataAnyValue> {}

@@ -7,10 +7,9 @@ interface FIO {
 }
 
 @Pipe({
-  name: 'surnameNP'
+  name: 'surnameNP',
 })
 export class SurnameNPPipe implements PipeTransform {
-
   transform(value: FIO): string {
     return `${value.lastName} ${value.firstName[0]}. ${value.patronymic[0]}.`;
   }

@@ -3,7 +3,7 @@ import { StorageProperty } from '../../../helpers/interfaces/storage';
 import { UserData } from '../../../helpers/interfaces/user';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserDataService implements StorageProperty {
   public get prop(): UserData {

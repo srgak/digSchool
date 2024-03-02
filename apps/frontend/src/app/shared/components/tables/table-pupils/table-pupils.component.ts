@@ -6,13 +6,10 @@ import { UserData } from '../../../../helpers/interfaces/user';
   selector: 'app-table-pupils',
   templateUrl: './table-pupils.component.html',
   styleUrls: ['./table-pupils.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TablePupilsComponent implements TableMain {
   @Input() public data!: UserData[];
-  @Output() public onSelect: EventEmitter<UserData> = new EventEmitter();
-  public columnList: string[] = [
-    'fio',
-    'class'
-  ];
+  @Output() public readonly onSelect: EventEmitter<UserData> = new EventEmitter();
+  public columnList: string[] = ['fio', 'class'];
 }

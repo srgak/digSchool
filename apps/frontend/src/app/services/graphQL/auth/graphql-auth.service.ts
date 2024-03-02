@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { GraphQLMain } from '../graphql';
 import { UserAuth, UserAuthResponse } from '../../../helpers/interfaces/user';
-import { Observable, filter, map } from 'rxjs';
+import { filter, map, Observable } from 'rxjs';
 import { gql } from 'apollo-angular';
 import { GraphQLUserAuth } from '../../../helpers/interfaces/graphql';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class GraphqlAuthService extends GraphQLMain {
   public login(data: UserAuth): Observable<UserAuthResponse> {
@@ -15,19 +15,19 @@ export class GraphqlAuthService extends GraphQLMain {
         mutation: gql`
           mutation login($input: UserLogin) {
             login(input: $input) {
-              id,
+              id
               accessToken
             }
           }
         `,
         variables: {
-          input: data
-        }
+          input: data,
+        },
       })
       .pipe(
-        map(data => data.data?.login),
-        filter(data => Boolean(data)),
-        map(data => data as UserAuthResponse)
-      )
+        map((data) => data.data?.login),
+        filter((data) => Boolean(data)),
+        map((data) => data as UserAuthResponse),
+      );
   }
 }

@@ -1,5 +1,5 @@
-import { MarkValue } from "./marks";
-import { UserAuthResponse, UserData } from "./user";
+import { MarkValue } from './marks';
+import { UserAuthResponse, UserData } from './user';
 
 export interface GraphQLUserAuth {
   login: UserAuthResponse;

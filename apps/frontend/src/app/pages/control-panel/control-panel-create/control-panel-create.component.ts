@@ -16,29 +16,25 @@ import { AppState } from '../../../store/state/app.state';
   styleUrls: ['./control-panel-create.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [
-    FormUserModule,
-    MatButtonModule
-  ],
-  providers: [
-    breadcrumbsProvide(pageBreadcrumbs.controlPanelCreate)
-  ]
+  imports: [FormUserModule, MatButtonModule],
+  providers: [breadcrumbsProvide(pageBreadcrumbs.controlPanelCreate)],
 })
 export class ControlPanelCreateComponent {
   constructor(
-    private graphQLUsers: GraphqlUsersService,
-    private router: Router,
-    @Inject(BREADCRUMBS_URL) private breadcrumbsUrl: string,
-    private store: Store<AppState>
+    private readonly graphQLUsers: GraphqlUsersService,
+    private readonly router: Router,
+    @Inject(BREADCRUMBS_URL) private readonly breadcrumbsUrl: string,
+    private readonly store: Store<AppState>,
   ) {
-    this.store.dispatch(requestBreadcrumbs({
-      url: this.breadcrumbsUrl
-    }));
+    this.store.dispatch(
+      requestBreadcrumbs({
+        url: this.breadcrumbsUrl,
+      }),
+    );
   }
   public createUser(data: UserData): void {
-    this.graphQLUsers.createUserData(data)
-      .subscribe(() => {
-        this.router.navigateByUrl(pageName.ControlPanel);
-      });
+    this.graphQLUsers.createUserData(data).subscribe(() => {
+      this.router.navigateByUrl(pageName.ControlPanel);
+    });
   }
 }

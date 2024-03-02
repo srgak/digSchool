@@ -10,20 +10,14 @@ export class FileManager {
   }
 
   public get data(): TotalData {
-    let data = this.fs.readFileSync(
-      this.path,
-      {
-        encoding: 'utf-8'
-      }
-    );
+    const data = this.fs.readFileSync(this.path, {
+      encoding: 'utf-8',
+    });
 
     return data ? JSON.parse(data) : {};
   }
 
   public set data(value: TotalData) {
-    this.fs.writeFileSync(
-      this.path,
-      JSON.stringify(value)
-    );
+    this.fs.writeFileSync(this.path, JSON.stringify(value));
   }
 }

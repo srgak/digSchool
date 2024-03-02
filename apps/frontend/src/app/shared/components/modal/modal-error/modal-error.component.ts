@@ -7,9 +7,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   styleUrls: ['./modal-error.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [
-    CommonModule
-  ]
+  imports: [CommonModule],
 })
 export class ModalErrorComponent {
   @Input() public data!: string;

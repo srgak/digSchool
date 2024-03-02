@@ -10,23 +10,21 @@ import { validators, valueAccessor } from '../../../../../helpers/providers/cust
   templateUrl: './form-user-class.component.html',
   styleUrls: ['./form-user-class.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [
-    valueAccessor(FormUserClassComponent),
-    validators(FormUserClassComponent)
-  ]
+  providers: [valueAccessor(FormUserClassComponent), validators(FormUserClassComponent)],
 })
-export class FormUserClassComponent extends FormUserClass implements ControlCustom, OnInit, OnDestroy {
+export class FormUserClassComponent
+  extends FormUserClass
+  implements ControlCustom, OnInit, OnDestroy
+{
   @Input() set touched(flag: boolean) {
-    if(flag) {
+    if (flag) {
       this.control.markAsTouched();
     }
   }
-  private onChange(_: string | null) {};
-  private onTouch() {};
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  private onChange(_: string | null): void {}
 
-  constructor(
-    public classesData: SelectDataClassesService
-  ) {
+  constructor(public classesData: SelectDataClassesService) {
     super();
   }
   writeValue(obj: string): void {
@@ -35,15 +33,14 @@ export class FormUserClassComponent extends FormUserClass implements ControlCust
   registerOnChange(fn: any): void {
     this.onChange = fn;
   }
-  registerOnTouched(fn: any): void {
-    this.onTouch = fn;
-  }
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  registerOnTouched(_: any): void {}
   validate(): ValidationErrors | null {
-    return this.control.valid ? null : {required: ''}
+    return this.control.valid ? null : { required: '' };
   }
 
   ngOnInit(): void {
-    this.control.valueChanges.subscribe(value => {
+    this.control.valueChanges.subscribe((value) => {
       this.onChange(value);
     });
   }

@@ -1,6 +1,6 @@
-import { GraphQLObjectType } from "graphql";
-import { createUser, login, editUser, deleteUser } from "./mutation-users";
-import { createMarks, addMarkInfo, editMarksLessons } from "./mutation-marks";
+import { GraphQLObjectType } from 'graphql';
+import { createUser, deleteUser, editUser, login } from './mutation-users';
+import { addMarkInfo, createMarks, editMarksLessons } from './mutation-marks';
 
 export const mutation = new GraphQLObjectType({
   name: 'Mutation',
@@ -11,6 +11,6 @@ export const mutation = new GraphQLObjectType({
     deleteUser,
     createMarks,
     addMarkInfo,
-    editMarksLessons
-  }
+    editMarksLessons,
+  },
 });

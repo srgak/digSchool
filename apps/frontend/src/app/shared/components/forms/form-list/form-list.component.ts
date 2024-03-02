@@ -1,14 +1,20 @@
-import { AfterContentInit, ChangeDetectionStrategy, Component, ContentChild, Input, OnDestroy } from '@angular/core';
+import {
+  AfterContentInit,
+  ChangeDetectionStrategy,
+  Component,
+  ContentChild,
+  OnDestroy,
+} from '@angular/core';
 import { FormArray, FormArrayName, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-form-list',
   templateUrl: './form-list.component.html',
   styleUrls: ['./form-list.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormListComponent implements AfterContentInit, OnDestroy {
-  @ContentChild(FormArrayName) private arrayName!: FormArrayName;
+  @ContentChild(FormArrayName) private readonly arrayName!: FormArrayName;
   public array!: FormArray;
 
   public remove(): void {
@@ -21,10 +27,11 @@ export class FormListComponent implements AfterContentInit, OnDestroy {
 
   ngAfterContentInit(): void {
     this.array = this.arrayName.control;
-    if(!this.array.length) this.add();
+
+    if (!this.array.length) this.add();
   }
   ngOnDestroy(): void {
-    for(let i = 0; i < this.array.length; i++) {
+    for (let i = 0; i < this.array.length; i++) {
       this.remove();
     }
   }

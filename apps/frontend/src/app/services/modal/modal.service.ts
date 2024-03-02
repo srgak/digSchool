@@ -4,23 +4,25 @@ import { ModalAuthComponent } from '../../shared/components/modal/modal-auth/mod
 import { ModalErrorComponent } from '../../shared/components/modal/modal-error/modal-error.component';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ModalService {
-  public isOpen: boolean = false;
-  private componentData: ModalData[] = [
+  public isOpen = false;
+  private readonly componentData: ModalData[] = [
     {
       component: ModalAuthComponent,
-      name: 'auth'
+      name: 'auth',
     },
     {
       component: ModalErrorComponent,
-      name: 'error'
-    }
+      name: 'error',
+    },
   ];
   public openModal(name: string, data?: unknown): void {
-    this.currenctModal = this.componentData.find(item => item.name === name);
-    if(this.currenctModal && data) this.currenctModal.data = data;
+    this.currenctModal = this.componentData.find((item) => item.name === name);
+
+    if (this.currenctModal && data) this.currenctModal.data = data;
+
     this.isOpen = true;
   }
   public currenctModal?: ModalData;

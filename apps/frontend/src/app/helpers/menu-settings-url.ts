@@ -1,5 +1,5 @@
 export const getMenuSettingsUrl = (role: string): string => {
-  switch(role) {
+  switch (role) {
     case 'pupil':
       return '/assets/data/menu-data-pupil.json';
     case 'teacher':
@@ -7,4 +7,4 @@ export const getMenuSettingsUrl = (role: string): string => {
     default:
       return '/assets/data/menu-data-admin.json';
   }
-}
+};

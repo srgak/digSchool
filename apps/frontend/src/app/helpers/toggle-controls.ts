@@ -1,12 +1,12 @@
-import { FormGroup } from "@angular/forms";
+import { FormGroup } from '@angular/forms';
 
 interface Data {
-  [key: string]: string[]
+  [key: string]: string[];
 }
 
 export class ToggleControls {
-  private form: FormGroup;
-  private data: Data;
+  private readonly form: FormGroup;
+  private readonly data: Data;
 
   constructor(form: FormGroup, data: Data) {
     this.form = form;
@@ -14,9 +14,9 @@ export class ToggleControls {
   }
 
   public toggle(value: string): void {
-    Object.keys(this.data).forEach(item => {
-      this.data[item].forEach(control => {
-        if(value !== item) {
+    Object.keys(this.data).forEach((item) => {
+      this.data[item].forEach((control) => {
+        if (value !== item) {
           this.form.get(control)?.disable();
           this.form.get(control)?.markAsUntouched();
         } else {

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { StorageProperty } from '../../../helpers/interfaces/storage';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MarksIdService implements StorageProperty {
   public get prop(): number {

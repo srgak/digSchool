@@ -1,4 +1,15 @@
-import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, Output, ViewChild, ViewContainerRef } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  Output,
+  ViewChild,
+  ViewContainerRef,
+} from '@angular/core';
 import { BodyScroll } from '../../../helpers/body-scroll';
 import { ModalData } from '../../../helpers/interfaces/modal';
 import { AdComponent } from '../../../helpers/interfaces/ad-components';
@@ -9,20 +20,16 @@ import { toggleModal } from './modal.animation';
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [
-    toggleModal
-  ]
+  animations: [toggleModal],
 })
 export class ModalComponent extends BodyScroll implements AfterViewInit, OnDestroy {
-  @ViewChild('dynamic', { read: ViewContainerRef }) private viewRef!: ViewContainerRef;
+  @ViewChild('dynamic', { read: ViewContainerRef }) private readonly viewRef!: ViewContainerRef;
   @Input() public componentData?: ModalData;
-  @Output() public onClose: EventEmitter<void> = new EventEmitter();
+  @Output() public readonly onClose: EventEmitter<void> = new EventEmitter();
 
-  public animationState: string = 'hide';
+  public animationState = 'hide';
 
-  constructor(
-    private cdr: ChangeDetectorRef
-  ) {
+  constructor(private readonly cdr: ChangeDetectorRef) {
     super();
   }
   public close(): void {
@@ -32,8 +39,10 @@ export class ModalComponent extends BodyScroll implements AfterViewInit, OnDestr
 
   ngAfterViewInit(): void {
     this.viewRef.clear();
-    if(this.componentData) {
+
+    if (this.componentData) {
       const component = this.viewRef.createComponent<AdComponent>(this.componentData.component);
+
       component.instance.data = this.componentData.data;
       this.lockScroll();
       this.animationState = 'show';

@@ -6,17 +6,9 @@ import { UserInfoModule } from '../../shared/components/user-info/user-info.modu
 import { breadcrumbsProvide } from '../../helpers/providers/breadcrumbs/breadcrumbs';
 import { pageBreadcrumbs } from '../../helpers/routes';
 
-
-
 @NgModule({
   declarations: [MainComponent],
-  imports: [
-    CommonModule,
-    MainRoutingModule,
-    UserInfoModule
-  ],
-  providers: [
-    breadcrumbsProvide(pageBreadcrumbs.main)
-  ]
+  imports: [CommonModule, MainRoutingModule, UserInfoModule],
+  providers: [breadcrumbsProvide(pageBreadcrumbs.main)],
 })
-export class MainModule { }
+export class MainModule {}

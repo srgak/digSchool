@@ -6,7 +6,7 @@ export const enum pageName {
   ControlPanelCreate = 'create',
   Diary = 'diary',
   Journal = 'journal',
-  JournalMarks = 'marks'
+  JournalMarks = 'marks',
 }
 export const enum pageBreadcrumbs {
   auth = 'assets/data/breadcrumbs/auth.json',
@@ -16,5 +16,5 @@ export const enum pageBreadcrumbs {
   controlPanelCreate = 'assets/data/breadcrumbs/control-panel-create.json',
   diary = 'assets/data/breadcrumbs/diary.json',
   journal = 'assets/data/breadcrumbs/journal.json',
-  journalMarks = 'assets/data/breadcrumbs/journal-marks.json'
+  journalMarks = 'assets/data/breadcrumbs/journal-marks.json',
 }

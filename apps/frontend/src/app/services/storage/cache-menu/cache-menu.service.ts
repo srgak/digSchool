@@ -3,7 +3,7 @@ import { MenuData } from '../../../helpers/interfaces/menu';
 import { StorageProperty } from '../../../helpers/interfaces/storage';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CacheMenuService implements StorageProperty {
   get prop(): Map<string, MenuData> {
@@ -20,9 +20,9 @@ export class CacheMenuService implements StorageProperty {
   public getTarget(target: string): MenuData | null {
     const data = this.prop;
 
-    return !data.size ? null : (data.get(target) || null);
+    return !data.size ? null : data.get(target) || null;
   }
-  public setTarget(value: {name: string; list: MenuData}): void {
+  public setTarget(value: { name: string; list: MenuData }): void {
     const data = this.prop;
 
     data.set(value.name, value.list);

@@ -7,7 +7,7 @@ describe('SelectDataRolesService', () => {
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
-      providers: [SelectDataRolesService]
+      providers: [SelectDataRolesService],
     });
 
     service = TestBed.inject(SelectDataRolesService);
@@ -18,5 +18,5 @@ describe('SelectDataRolesService', () => {
   });
   it('Проверить наличие параметров', () => {
     expect(service.list.length).toBeTruthy();
-  })
+  });
 });

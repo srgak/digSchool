@@ -7,7 +7,7 @@ describe('ModalService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [ModalService]
+      providers: [ModalService],
     });
     service = TestBed.inject(ModalService);
   });

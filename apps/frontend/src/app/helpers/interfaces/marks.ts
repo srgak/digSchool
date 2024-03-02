@@ -1,4 +1,4 @@
-import { UserId } from "./user";
+import { UserId } from './user';
 
 export interface MarkValue {
   date: Date;

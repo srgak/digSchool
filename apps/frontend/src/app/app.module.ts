@@ -20,30 +20,26 @@ import { MenuEffect } from './store/effects/menu.effect';
 import { ApolloModule } from 'apollo-angular';
 import { apolloProvide } from './helpers/providers/apollo';
 
-
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
-    BrowserModule,
+    ApolloModule,
     AppRoutingModule,
+    BreadcrumbsModule,
     BrowserAnimationsModule,
+    BrowserModule,
     HttpClientModule,
     MenuModule,
     ModalModule,
-    BrowserAnimationsModule,
-    BreadcrumbsModule,
     StoreModule.forRoot(appReducers),
     EffectsModule.forRoot([BreadcrumbsEffect, MenuEffect]),
     !environments.production ? StoreDevtoolsModule.instrument() : [],
-    ApolloModule
   ],
   providers: [
     interceptorProvide(TokenInterceptor),
     interceptorProvide(ErrorsHandlerInterceptor),
-    apolloProvide
+    apolloProvide,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

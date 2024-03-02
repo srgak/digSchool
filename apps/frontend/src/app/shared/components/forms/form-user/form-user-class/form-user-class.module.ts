@@ -7,20 +7,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { SelectDataClassesService } from '../../../../../services/select-data/select-data-classes/select-data-classes.service';
 
-
-
 @NgModule({
   declarations: [FormUserClassComponent],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule
-  ],
+  imports: [CommonModule, MatFormFieldModule, MatInputModule, MatSelectModule, ReactiveFormsModule],
   exports: [FormUserClassComponent],
-  providers: [
-    SelectDataClassesService
-  ]
+  providers: [SelectDataClassesService],
 })
-export class FormUserClassModule { }
+export class FormUserClassModule {}

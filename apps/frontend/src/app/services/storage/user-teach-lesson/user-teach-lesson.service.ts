@@ -1,19 +1,19 @@
-import { Injectable, inject } from '@angular/core';
-import { StorageProperty } from 'src/app/helpers/interfaces/storage';
+import { inject, Injectable } from '@angular/core';
 import { UserDataService } from '../user-data/user-data.service';
+import { StorageProperty } from '../../../helpers/interfaces/storage';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserTeachLessonService implements StorageProperty {
-  private userData: UserDataService = inject(UserDataService);
+  private readonly userData: UserDataService = inject(UserDataService);
   public get prop(): string {
     return this.userData.prop.teachLesson || '';
   }
   public set prop(value: string) {
     this.userData.prop = {
       ...this.userData.prop,
-      teachLesson: value
+      teachLesson: value,
     };
   }
 }

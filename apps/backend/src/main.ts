@@ -9,18 +9,17 @@ const app = express();
 
 app.use(cors());
 app.use('/graphql', (req, res) => {
-  console.log('req');
   const jsonwebtoken = jwt;
-  const {authorization} = req.headers;
+  const { authorization } = req.headers;
 
-  if(authorization) {
+  if (authorization) {
     try {
       jsonwebtoken.verify(authorization, 'secret');
     } catch {
-      const {status, message} = invalidToken;
+      const { status, message } = invalidToken;
 
       return res.status(status).send({
-        message
+        message,
       });
     }
   }
@@ -28,16 +27,17 @@ app.use('/graphql', (req, res) => {
   graphqlHTTP({
     graphiql: true,
     schema,
-    customFormatErrorFn: err => {
-      const {status} = err.extensions;
+    customFormatErrorFn: (err) => {
+      const { status } = err.extensions;
 
       res.status(status as number);
 
       return {
-        message: err.message
+        message: err.message,
       };
-    }
-  })(req, res)
+    },
+  })(req, res);
 });
 
+// eslint-disable-next-line no-console
 app.listen(4000, () => console.log('start'));

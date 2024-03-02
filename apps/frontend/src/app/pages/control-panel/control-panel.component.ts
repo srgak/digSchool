@@ -12,19 +12,21 @@ import { AppState } from '../../store/state/app.state';
 @Component({
   templateUrl: './control-panel.component.html',
   styleUrls: ['./control-panel.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ControlPanelComponent {
   public userList: Observable<UserData[]> = this.graphQLUsers.getUserList();
   constructor(
-    private router: Router,
-    private graphQLUsers: GraphqlUsersService,
-    @Inject(BREADCRUMBS_URL) private breadcrumbsUrl: string,
-    private store: Store<AppState>
+    private readonly router: Router,
+    private readonly graphQLUsers: GraphqlUsersService,
+    @Inject(BREADCRUMBS_URL) private readonly breadcrumbsUrl: string,
+    private readonly store: Store<AppState>,
   ) {
-    this.store.dispatch(requestBreadcrumbs({
-      url: this.breadcrumbsUrl
-    }));
+    this.store.dispatch(
+      requestBreadcrumbs({
+        url: this.breadcrumbsUrl,
+      }),
+    );
   }
   public editUser(user: UserData): void {
     this.router.navigate([`${pageName.ControlPanel}/${pageName.ControlPanelEdit}`, user.id]);

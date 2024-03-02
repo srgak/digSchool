@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ValidationErrors } from '@angular/forms';
-import { Observable, map } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { FormCustom } from '../../../../../helpers/interfaces/form';
 import { LessonData } from '../../../../../helpers/interfaces/user';
 import { FormUserLesson } from './form-user-lessons';
@@ -13,47 +13,45 @@ import { GraphqlTeachersService } from '../../../../../services/graphQL/teachers
   templateUrl: './form-user-lesson.component.html',
   styleUrls: ['./form-user-lesson.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [
-    valueAccessor(FormUserLessonComponent),
-    validators(FormUserLessonComponent)
-  ]
+  providers: [valueAccessor(FormUserLessonComponent), validators(FormUserLessonComponent)],
 })
-export class FormUserLessonComponent extends FormUserLesson implements FormCustom, OnInit, OnDestroy {
+export class FormUserLessonComponent
+  extends FormUserLesson
+  implements FormCustom, OnInit, OnDestroy
+{
   @Input() set touched(flag: boolean) {
-    if(flag) {
+    if (flag) {
       this.form.markAllAsTouched();
     }
   }
-  
-  public teachers$: Observable<string[]> = this.graphQLTeachers.getTeachers(['firstName'])
-    .pipe(
-      map(data => data.map(item => item.firstName))
-    );
+
+  public teachers$: Observable<string[]> = this.graphQLTeachers
+    .getTeachers(['firstName'])
+    .pipe(map((data) => data.map((item) => item.firstName)));
 
   constructor(
-    private graphQLTeachers: GraphqlTeachersService,
-    public lessonsData: SelectDataLessonsService
+    private readonly graphQLTeachers: GraphqlTeachersService,
+    public lessonsData: SelectDataLessonsService,
   ) {
     super();
   }
 
-  private onChange(_: LessonData | null) {};
-  private onTouch() {}
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  private onChange(_: LessonData | null): void {}
   writeValue(obj: LessonData): void {
     this.form.patchValue(obj);
   }
   registerOnChange(fn: any): void {
     this.onChange = fn;
   }
-  registerOnTouched(fn: any): void {
-    this.onTouch = fn;
-  }
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  registerOnTouched(_: any): void {}
   validate(): ValidationErrors | null {
-    return this.form.valid ? null : {required: ''}
+    return this.form.valid ? null : { required: '' };
   }
 
   ngOnInit(): void {
-    this.form.valueChanges.subscribe(value => {
+    this.form.valueChanges.subscribe((value) => {
       this.onChange(value);
     });
   }

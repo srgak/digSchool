@@ -3,7 +3,7 @@ import { BreadcrumbItem } from '../../../helpers/interfaces/breadcrumbs';
 import { StorageProperty } from '../../../helpers/interfaces/storage';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CacheBreadcrumbsService implements StorageProperty {
   public get prop(): Map<string, BreadcrumbItem[]> {
@@ -20,9 +20,9 @@ export class CacheBreadcrumbsService implements StorageProperty {
   public getTarget(target: string): BreadcrumbItem[] | null {
     const data = this.prop;
 
-    return !data.size ? null : (data.get(target) || null);
+    return !data.size ? null : data.get(target) || null;
   }
-  public setTarget(value: {name: string; list: BreadcrumbItem[]}): void {
+  public setTarget(value: { name: string; list: BreadcrumbItem[] }): void {
     const data = this.prop;
 
     data.set(value.name, value.list);

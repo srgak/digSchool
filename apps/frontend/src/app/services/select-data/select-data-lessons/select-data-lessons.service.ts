@@ -6,31 +6,31 @@ export class SelectDataLessonsService implements SelectData {
   public readonly list: SelectItem[] = [
     {
       name: 'Математика',
-      value: 'Математика'
+      value: 'Математика',
     },
     {
       name: 'Русский язык',
-      value: 'Русский язык'
+      value: 'Русский язык',
     },
     {
       name: 'Литература',
-      value: 'Литература'
+      value: 'Литература',
     },
     {
       name: 'Информатика',
-      value: 'Информатика'
+      value: 'Информатика',
     },
     {
       name: 'Физика',
-      value: 'Физика'
+      value: 'Физика',
     },
     {
       name: 'Химия',
-      value: 'Химимя'
+      value: 'Химимя',
     },
     {
       name: 'Английския язык',
-      value: 'Английский язык'
-    }
+      value: 'Английский язык',
+    },
   ];
 }

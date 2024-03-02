@@ -1,25 +1,25 @@
-import { Provider } from "@angular/core";
-import { ApolloLink, InMemoryCache } from "@apollo/client/core";
-import { APOLLO_OPTIONS } from "apollo-angular";
-import { HttpLink } from "apollo-angular/http";
+import { Provider } from '@angular/core';
+import { ApolloLink, InMemoryCache } from '@apollo/client/core';
+import { APOLLO_OPTIONS } from 'apollo-angular';
+import { HttpLink } from 'apollo-angular/http';
 import { setContext } from '@apollo/client/link/context';
 
 export const apolloProvide: Provider = {
   provide: APOLLO_OPTIONS,
   useFactory: (httpLink: HttpLink) => ({
     cache: new InMemoryCache({
-      addTypename: false
+      addTypename: false,
     }),
     link: ApolloLink.from([
       setContext(() => ({
         headers: {
-          'type-request': 'graphql'
-        }
+          'type-request': 'graphql',
+        },
       })),
       httpLink.create({
-        uri: 'http://localhost:4000/graphql'
+        uri: 'http://localhost:4000/graphql',
       }),
-    ])
+    ]),
   }),
-  deps: [HttpLink]
-}
+  deps: [HttpLink],
+};

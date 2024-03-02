@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { MenuItem } from '../../../../helpers/interfaces/menu';
 
 @Directive({
-  selector: '[uiMenuLogout]'
+  selector: '[uiMenuLogout]',
 })
 export class MenuLogoutDirective extends MenuButton implements OnInit {
   @Input('uiMenuLogout') override data!: MenuItem;
@@ -12,9 +12,7 @@ export class MenuLogoutDirective extends MenuButton implements OnInit {
     localStorage.clear();
     this.router.navigateByUrl(this.data.link);
   }
-  constructor(
-    private router: Router
-  ) {
+  constructor(private readonly router: Router) {
     super();
   }
   ngOnInit(): void {

@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Inject,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { FormMain, FormSubmit } from '../../../../helpers/interfaces/form';
 import { UserData } from '../../../../helpers/interfaces/user';
 import { ToggleControls } from '../../../../helpers/toggle-controls';
@@ -13,30 +21,30 @@ import { removeEmptyFields } from '../../../../helpers/remove-emty';
   selector: 'app-form-user',
   templateUrl: './form-user.component.html',
   styleUrls: ['./form-user.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormUserComponent extends FormUser implements FormMain, FormSubmit, OnInit {
   @Input() public data?: UserData;
   @Input() public set isEditable(value: boolean) {
     this.isEdit = value;
-  };
-  @Output() public onComplete: EventEmitter<UserData> = new EventEmitter();
+  }
+  @Output() public readonly onComplete: EventEmitter<UserData> = new EventEmitter();
 
-  private toggleControls: ToggleControls = new ToggleControls(this.form, {
+  private readonly toggleControls: ToggleControls = new ToggleControls(this.form, {
     pupil: ['class', 'lessons'],
-    teacher: ['teachLesson']
+    teacher: ['teachLesson'],
   });
   constructor(
     public rolesData: SelectDataRolesService,
     public lessonsData: SelectDataLessonsService,
     @Inject(SYMBOLS_EN_TO_RU) public lettersEnToRu: Record<string, string>,
-    @Inject(SYMBOLS_RU_TO_EN) public lettersRuToEn: Record<string, string>
+    @Inject(SYMBOLS_RU_TO_EN) public lettersRuToEn: Record<string, string>,
   ) {
     super();
   }
 
   public onSubmit(): void {
-    if(this.form.valid) {
+    if (this.form.valid) {
       const data = removeEmptyFields<UserData>(this.form.value);
 
       this.onComplete.emit(data);
@@ -46,18 +54,18 @@ export class FormUserComponent extends FormUser implements FormMain, FormSubmit,
   }
   private initArray(data: unknown[]): void {
     data.forEach(() => {
-      this.lessons.push(
-        new FormControl(null)
-      );
+      this.lessons.push(new FormControl(null));
     });
   }
 
   ngOnInit(): void {
-    this.role?.valueChanges.subscribe(value => {
+    this.role?.valueChanges.subscribe((value) => {
       this.toggleControls.toggle(value);
     });
-    if(this.data) {
-      if(this.data.lessons) this.initArray(this.data.lessons);
+
+    if (this.data) {
+      if (this.data.lessons) this.initArray(this.data.lessons);
+
       this.form.patchValue(this.data);
     }
   }

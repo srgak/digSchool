@@ -4,8 +4,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   selector: 'app-tabs-menu',
   templateUrl: './tabs-menu.component.html',
   styleUrls: ['./tabs-menu.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TabsMenuComponent {
-  
-}
+export class TabsMenuComponent {}

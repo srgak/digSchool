@@ -8,9 +8,8 @@ describe('ModalAuthComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ModalAuthComponent ]
-    })
-    .compileComponents();
+      declarations: [ModalAuthComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ModalAuthComponent);
     component = fixture.componentInstance;

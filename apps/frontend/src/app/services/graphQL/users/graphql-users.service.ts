@@ -1,12 +1,18 @@
 import { Injectable } from '@angular/core';
 import { GraphQLMain } from '../graphql';
 import { LessonData, UserData, UserId } from '../../../helpers/interfaces/user';
-import { Observable, filter, map } from 'rxjs';
+import { filter, map, Observable } from 'rxjs';
 import { gql } from 'apollo-angular';
-import { GraphQLUser, GraphQLUserDelete, GraphQLUserList, GraphQLUserUpdate, GraphQlUserCreate } from '../../../helpers/interfaces/graphql';
+import {
+  GraphQLUser,
+  GraphQlUserCreate,
+  GraphQLUserDelete,
+  GraphQLUserList,
+  GraphQLUserUpdate,
+} from '../../../helpers/interfaces/graphql';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class GraphqlUsersService extends GraphQLMain {
   public getUserData(id: number, fields: string[]): Observable<UserData> {
@@ -20,23 +26,14 @@ export class GraphqlUsersService extends GraphQLMain {
           }
         `,
         variables: {
-          id: id
-        }
+          id: id,
+        },
       })
-      .pipe(
-        map(data => data.data.getUser)
-      )
+      .pipe(map((data) => data.data.getUser));
   }
 
   public getUserDataBadge(id: number): Observable<UserData> {
-    const fields = [
-      'id',
-      'firstName',
-      'lastName',
-      'patronymic',
-      'role',
-      'teachLesson'
-    ];
+    const fields = ['id', 'firstName', 'lastName', 'patronymic', 'role', 'teachLesson'];
 
     return this.getUserData(id, fields);
   }
@@ -51,7 +48,7 @@ export class GraphqlUsersService extends GraphQLMain {
       'role',
       'class',
       'lessons {name, teacher}',
-      'teachLesson'
+      'teachLesson',
     ];
 
     return this.getUserData(id, fields);
@@ -63,18 +60,16 @@ export class GraphqlUsersService extends GraphQLMain {
         query: gql`
           {
             getUserList {
-              id,
-              firstName,
-              lastName,
-              patronymic,
+              id
+              firstName
+              lastName
+              patronymic
               role
             }
           }
-        `
+        `,
       })
-      .pipe(
-        map(data => data.data.getUserList)
-      )
+      .pipe(map((data) => data.data.getUserList));
   }
 
   public deleteUserData(id: number): Observable<UserId> {
@@ -86,76 +81,65 @@ export class GraphqlUsersService extends GraphQLMain {
           }
         `,
         variables: {
-          id: id
-        }
+          id: id,
+        },
       })
       .pipe(
-        map(data => data.data?.deleteUser),
-        filter(data => Boolean(data)),
-        map(data => data as UserId)
-      )
+        map((data) => data.data?.deleteUser),
+        filter((data) => Boolean(data)),
+        map((data) => data as UserId),
+      );
   }
 
   public editUserData(data: UserData): Observable<UserData> {
     return this.apollo
       .mutate<GraphQLUserUpdate>({
         mutation: gql`
-          mutation editUser(
-            $input: UserInput
-          ) {
-            editUser(
-              input: $input
-            ) {
+          mutation editUser($input: UserInput) {
+            editUser(input: $input) {
               id
             }
           }
         `,
         variables: {
-          input: data
-        }
+          input: data,
+        },
       })
       .pipe(
-        map(data => data.data?.editUser),
-        filter(data => Boolean(data)),
-        map(data => data as UserData)
-      )
+        map((data) => data.data?.editUser),
+        filter((data) => Boolean(data)),
+        map((data) => data as UserData),
+      );
   }
 
   public createUserData(data: UserData): Observable<UserData> {
     return this.apollo
       .mutate<GraphQlUserCreate>({
         mutation: gql`
-          mutation createUser(
-            $input: UserInput
-          ) {
-            createUser(
-              input: $input
-            ) {
+          mutation createUser($input: UserInput) {
+            createUser(input: $input) {
               id
             }
           }
         `,
         variables: {
-          input: data
-        }
+          input: data,
+        },
       })
       .pipe(
-        map(data => data.data?.createUser),
-        filter(data => Boolean(data)),
-        map(data => data as UserData)
-      )
+        map((data) => data.data?.createUser),
+        filter((data) => Boolean(data)),
+        map((data) => data as UserData),
+      );
   }
 
   public getUserDataLessons(id: number): Observable<LessonData[]> {
-    const fields = [
-      'lessons {name, teacher}'
-    ];
+    const fields = ['lessons {name, teacher}'];
 
-    return this.getUserData(id, fields)
-      .pipe(
-        map(data => data.lessons),
-        filter(data => Boolean(data)),
-        map(data => data as LessonData[])
-      )
+    return this.getUserData(id, fields).pipe(
+      map((data) => data.lessons),
+      filter((data) => Boolean(data)),
+      map((data) => data as LessonData[]),
+    );
   }
 }

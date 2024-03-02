@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable, map } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { LessonData } from '../../helpers/interfaces/user';
 import { BREADCRUMBS_URL } from '../../helpers/tokens/breadcrumbs';
 import { MarksIdService } from '../../services/storage/marks-id/marks-id.service';
@@ -11,27 +11,26 @@ import { AppState } from '../../store/state/app.state';
 @Component({
   templateUrl: './diary.component.html',
   styleUrls: ['./diary.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DiaryComponent {
   public lessons$: Observable<LessonData[]> = this.activeRoute.data.pipe(
-    map(data => data['lessons'] as LessonData[])
+    map((data) => data['lessons'] as LessonData[]),
   );
 
   constructor(
-    private activeRoute: ActivatedRoute,
-    private marksId: MarksIdService,
-    @Inject(BREADCRUMBS_URL) private breadcrumbsUrl: string,
-    private store: Store<AppState>
+    private readonly activeRoute: ActivatedRoute,
+    private readonly marksId: MarksIdService,
+    @Inject(BREADCRUMBS_URL) private readonly breadcrumbsUrl: string,
+    private readonly store: Store<AppState>,
   ) {
-    this.store.dispatch(requestBreadcrumbs({
-      url: this.breadcrumbsUrl
-    }));
-    this.activeRoute.data.pipe(
-      map(data => data['marksId'])
-    )
-      .subscribe(value => {
-        this.marksId.prop = value;
-      });
+    this.store.dispatch(
+      requestBreadcrumbs({
+        url: this.breadcrumbsUrl,
+      }),
+    );
+    this.activeRoute.data.pipe(map((data) => data['marksId'])).subscribe((value) => {
+      this.marksId.prop = value;
+    });
   }
 }

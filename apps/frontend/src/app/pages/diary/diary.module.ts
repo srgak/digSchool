@@ -6,17 +6,9 @@ import { TabsMenuModule } from '../../shared/components/tabs-menu/tabs-menu.modu
 import { breadcrumbsProvide } from '../../helpers/providers/breadcrumbs/breadcrumbs';
 import { pageBreadcrumbs } from '../../helpers/routes';
 
-
-
 @NgModule({
   declarations: [DiaryComponent],
-  imports: [
-    CommonModule,
-    DiaryRoutingModule,
-    TabsMenuModule
-  ],
-  providers: [
-    breadcrumbsProvide(pageBreadcrumbs.diary)
-  ]
+  imports: [CommonModule, DiaryRoutingModule, TabsMenuModule],
+  providers: [breadcrumbsProvide(pageBreadcrumbs.diary)],
 })
-export class DiaryModule { }
+export class DiaryModule {}

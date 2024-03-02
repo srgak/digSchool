@@ -8,19 +8,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { breadcrumbsProvide } from '../../helpers/providers/breadcrumbs/breadcrumbs';
 import { pageBreadcrumbs } from '../../helpers/routes';
 
-
-
 @NgModule({
   declarations: [ControlPanelComponent],
   imports: [
     CommonModule,
     ControlPanelRoutingModule,
+    MatButtonModule,
     MatTableModule,
     TableUsersModule,
-    MatButtonModule
   ],
-  providers: [
-    breadcrumbsProvide(pageBreadcrumbs.controlPanel)
-  ]
+  providers: [breadcrumbsProvide(pageBreadcrumbs.controlPanel)],
 })
-export class ControlPanelModule { }
+export class ControlPanelModule {}

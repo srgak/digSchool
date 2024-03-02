@@ -4,7 +4,7 @@ import { MenuData } from '../../../helpers/interfaces/menu';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class HttpMenuService extends HttpMain {
   public getMenu(urlRequest: string): Observable<MenuData> {

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuData, MenuItem } from '../../../../helpers/interfaces/menu';
 import { pageName } from '../../../../helpers/routes';
@@ -9,19 +9,19 @@ import { UserDataService } from '../../../../services/storage/user-data/user-dat
   selector: 'app-menu-list',
   templateUrl: './menu-list.component.html',
   styleUrls: ['./menu-list.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MenuListComponent {
   @Input() public menuData!: MenuData | null;
   public menuLogout: MenuItem = {
     name: 'Выход',
     link: pageName.Auth,
-    img: '/assets/img/icons/logout.svg'
+    img: '/assets/img/icons/logout.svg',
   };
   constructor(
-    private router: Router,
-    private accessToken: AccessTokenService,
-    private userData: UserDataService
+    private readonly router: Router,
+    private readonly accessToken: AccessTokenService,
+    private readonly userData: UserDataService,
   ) {}
 
   public logOut(): void {

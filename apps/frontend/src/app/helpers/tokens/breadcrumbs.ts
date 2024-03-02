@@ -1,3 +1,5 @@
-import { InjectionToken } from "@angular/core";
+import { InjectionToken } from '@angular/core';
 
-export const BREADCRUMBS_URL = new InjectionToken<string>('Ссылка для получения данных хлебных крошек');
+export const BREADCRUMBS_URL = new InjectionToken<string>(
+  'Ссылка для получения данных хлебных крошек',
+);

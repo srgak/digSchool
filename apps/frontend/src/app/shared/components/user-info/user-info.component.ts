@@ -7,7 +7,7 @@ import { pipeValObj } from '../../../helpers/pipes/value-object';
   selector: 'app-user-info',
   templateUrl: './user-info.component.html',
   styleUrls: ['./user-info.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserInfoComponent implements OnInit {
   @Input() public data!: Observable<UserData>;
@@ -18,21 +18,9 @@ export class UserInfoComponent implements OnInit {
   public role$!: Observable<string>;
 
   ngOnInit(): void {
-    this.firstName$ = this.data
-      .pipe(
-        pipeValObj('firstName')
-      );
-    this.lastName$ = this.data
-      .pipe(
-        pipeValObj('lastName')
-      )
-    this.patronymic$ = this.data
-      .pipe(
-        pipeValObj('patronymic')
-      )
-    this.role$ = this.data
-      .pipe(
-        pipeValObj('role')
-      )
+    this.firstName$ = this.data.pipe(pipeValObj('firstName'));
+    this.lastName$ = this.data.pipe(pipeValObj('lastName'));
+    this.patronymic$ = this.data.pipe(pipeValObj('patronymic'));
+    this.role$ = this.data.pipe(pipeValObj('role'));
   }
 }

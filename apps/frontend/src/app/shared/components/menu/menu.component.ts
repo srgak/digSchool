@@ -11,19 +11,21 @@ import { requestMenu } from '../../../store/actions/menu.action';
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MenuComponent {
-  public isOpen: boolean = false;
+  public isOpen = false;
   public menuList$: Observable<MenuData | null> = this.store.select(menuSelector);
 
   constructor(
-    private userRole: UserRoleService,
-    private store: Store<AppState>
+    private readonly userRole: UserRoleService,
+    private readonly store: Store<AppState>,
   ) {
-    this.store.dispatch(requestMenu({
-      role: this.userRole.prop
-    }));
+    this.store.dispatch(
+      requestMenu({
+        role: this.userRole.prop,
+      }),
+    );
   }
 
   public toggleMenu(): void {

@@ -6,15 +6,15 @@ export class SelectDataRolesService implements SelectData {
   public readonly list: SelectItem[] = [
     {
       name: 'Администратор',
-      value: 'admin'
+      value: 'admin',
     },
     {
       name: 'Ученик',
-      value: 'pupil'
+      value: 'pupil',
     },
     {
       name: 'Учитель',
-      value: 'teacher'
-    }
+      value: 'teacher',
+    },
   ];
 }

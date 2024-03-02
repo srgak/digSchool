@@ -1,14 +1,14 @@
-import { BreadcrumbsState, initialBreadcrumbsState } from "./breadcrumbs.state";
-import { MenuState, initialMenuState } from "./menu.state";
+import { BreadcrumbsState, initialBreadcrumbsState } from './breadcrumbs.state';
+import { initialMenuState, MenuState } from './menu.state';
 
 export interface AppState {
   breadcrumbs: BreadcrumbsState;
-  menu: MenuState
+  menu: MenuState;
 }
 
 export const initialAppState: AppState = {
   breadcrumbs: initialBreadcrumbsState,
-  menu: initialMenuState
+  menu: initialMenuState,
 };
 
 export function getInitialState(): AppState {

@@ -1,9 +1,9 @@
-import { Auth } from "./auth";
+import { Auth } from './auth';
 import * as jwt from 'jsonwebtoken';
-import _ from "lodash";
-import { UserAuth, UserAuthResponse, UserData } from "../interfaces/user";
-import { TotalData } from "../interfaces/main";
-import { MainDB } from "./main.db";
+import _ from 'lodash';
+import { UserAuth, UserAuthResponse, UserData } from '../interfaces/user';
+import { TotalData } from '../interfaces/main';
+import { MainDB } from './main.db';
 
 class UserDB extends MainDB {
   private readonly auth: Auth = new Auth();
@@ -23,7 +23,7 @@ class UserDB extends MainDB {
   }
 
   public set users(value: UserData[]) {
-    const data = this.data;
+    const { data } = this;
 
     data.users = value;
     this.data = data;
@@ -33,22 +33,22 @@ class UserDB extends MainDB {
     //TODO: реализовать фильтрацию по типам "и - and" и "или - or"
     let filteredUsers = this.users;
 
-    if(filter) {
-      Object.keys(filter).forEach(key => {
-        filteredUsers = filteredUsers.filter(item => item[key] === filter[key]);
+    if (filter) {
+      Object.keys(filter).forEach((key) => {
+        filteredUsers = filteredUsers.filter((item) => item[key] === filter[key]);
       });
     }
+
     return filteredUsers;
   }
 
   public getItem(id: string): UserData {
-    const user = this.data.users
-      .find(user => user.id === +id);
-    
-    if(!user) {
-      throw this.triggerError('user_not_found')
+    const user = this.data.users.find((user) => user.id === +id);
+
+    if (!user) {
+      throw this.triggerError('user_not_found');
     }
-    
+
     return user;
   }
 
@@ -57,13 +57,14 @@ class UserDB extends MainDB {
     const newUser = {
       ...input,
       id,
-      password: this.auth.generatePassword(input.password)
+      password: this.auth.generatePassword(input.password),
     };
-    const data = this.data;
+    const { data } = this;
 
-    if(!data.users) {
+    if (!data.users) {
       data.users = [];
     }
+
     data.users.push(newUser);
     this.data = data;
 
@@ -71,42 +72,49 @@ class UserDB extends MainDB {
   }
 
   public login(input: UserAuth): UserAuthResponse {
-    const {users} = this.data;
-    const data = users
-      .find(user => user.email === input.email);
-    
+    const { users } = this.data;
+    const data = users.find((user) => user.email === input.email);
+
     this.auth.validateUser(input, data);
-    const accessToken = this.jwt.sign({
-      user: this.lodash.pick(data, ['id', 'email'])
-    }, 'secret', {
-      expiresIn: '1h'
-    });
+    const accessToken = this.jwt.sign(
+      {
+        user: this.lodash.pick(data, ['id', 'email']),
+      },
+      'secret',
+      {
+        expiresIn: '1h',
+      },
+    );
 
     return {
       id: data?.id as number,
-      accessToken
+      accessToken,
     };
   }
 
   public editItem(input: UserData): UserData {
-    const users = this.users;
+    const { users } = this;
     let targetUser;
     let targetUserIndex;
 
     input.id = +input.id;
-    if('password' in input) {
+
+    if ('password' in input) {
       input.password = this.auth.generatePassword(input.password);
     }
+
     targetUser = users.find((user, index) => {
-      if(user.id === input.id) {
+      if (user.id === input.id) {
         targetUserIndex = index;
+
         return true;
       }
+
       return false;
     });
-    targetUser = {...targetUser, ...input};
+    targetUser = { ...targetUser, ...input };
 
-    if(!targetUserIndex) {
+    if (!targetUserIndex) {
       throw this.triggerError('user_not_found');
     }
 
@@ -117,9 +125,8 @@ class UserDB extends MainDB {
   }
 
   public deleteItem(id: string): number {
-    const users = this.users;
-    const userIndex = users
-      .findIndex(user => user.id === +id);
+    const { users } = this;
+    const userIndex = users.findIndex((user) => user.id === +id);
 
     users.splice(userIndex, 1);
     this.users = users;
