@@ -105,9 +105,8 @@
     }
   },
   "lint-staged": {
-    "*.ts": [
-      "npm run lint",
-      "git add"
+    "./**/*.ts": [
+      "npm run lint"
     ]
   }
 }
