@@ -100,13 +100,8 @@
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npx lint-staged"
-    }
-  },
   "lint-staged": {
-    "*.ts": [
+    "*/src/**.ts": [
       "npm run lint"
     ]
   }
