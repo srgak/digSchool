@@ -6,7 +6,7 @@
     "front:start": "nx serve frontend",
     "back:start": "nx serve backend",
     "start": "nx run-many --parallel --target=serve --projects=frontend,backend",
-    "lint": "nx run-many -t lint --projects=frontend,backend",
+    "lint": "nx run-many -t lint --projects=frontend,backend --no-error-on-unmatched-pattern",
     "prepare": "husky"
   },
   "private": true,
@@ -101,7 +101,7 @@
     "zone.js": "~0.14.3"
   },
   "lint-staged": {
-    "./**/*.ts": [
+    "*.ts": [
       "npm run lint"
     ]
   }
