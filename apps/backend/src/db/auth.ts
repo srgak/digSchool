@@ -12,7 +12,6 @@ export class Auth {
   }
 
   public validateUser(inputUser: UserAuth, dbUser?: UserData): void {
-    console.log(123);
     const isValid = dbUser ? this.bcrypt.compareSync(inputUser.password, dbUser.password) : false;
     if (!isValid) {
       throw new GraphQLError(incorrectLogin.message, null, null, null, null, null, {
