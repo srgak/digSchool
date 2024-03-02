@@ -6,7 +6,8 @@
     "front:start": "nx serve frontend",
     "back:start": "nx serve backend",
     "start": "nx run-many --parallel --target=serve --projects=frontend,backend",
-    "lint": "nx run-many -t lint --projects=frontend,backend"
+    "lint": "nx run-many -t lint --projects=frontend,backend",
+    "prepare": "husky"
   },
   "private": true,
   "devDependencies": {
