@@ -101,7 +101,7 @@
     "zone.js": "~0.14.3"
   },
   "lint-staged": {
-    "*/src/**.ts": [
+    "./**/*.ts": [
       "npm run lint"
     ]
   }
