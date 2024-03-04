@@ -65,7 +65,7 @@
 - [x] заменить SimpleObject на Record<T, U>
 - [ ] переделать интерфейс дневника для ученика
 - [ ] переделать нитерфейс журнала для учителя
-- [ ] пофиксить ошибку с меню после авторизации
+- [x] пофиксить ошибку с меню после авторизации
 - [ ] сделать схему работы всей логики
 - [ ] добавить stylelinter
 
@@ -180,4 +180,98 @@ It will show tasks that you can run with Nx.
       "data": []
     }
   ]
+```
+
+#### Черновик №2 - хлебные крошки
+
+##### Первичная логика запроса
+
+```typescript
+app.get('/breadcrumbs/:pageName', (req, res) => {
+  res.send(req.params);
+});
+```
+
+##### Формат данных
+
+```json
+"breadcrumbs": [
+  {
+    "pageName": "auth",
+    "list": [
+      {
+        "name": "Авторизация"
+      }
+    ]
+  },
+  {
+    "pageName": "control-panel-create",
+    "list": [
+      {
+        "name": "Панель управления",
+        "link": "control-panel"
+      },
+      {
+        "name": "Создание"
+      }
+    ]
+  },
+  {
+    "pageName": "control-panel-edit",
+    "list": [
+      {
+        "name": "Панель управления",
+        "link": "control-panel"
+      },
+      {
+        "name": "Редактирование"
+      }
+    ]
+  },
+  {
+    "pageName": "control-panel",
+    "list": [
+      {
+        "name": "Панель управления"
+      }
+    ]
+  },
+  {
+    "pageName": "diary",
+    "list": [
+      {
+        "name": "Дневник"
+      }
+    ]
+  },
+  {
+    "pageName": "journal-marks",
+    "list": [
+      {
+        "name": "Журнал",
+        "link": "journal"
+      },
+      {
+        "name": "Оценки",
+        "link": "marks"
+      }
+    ]
+  },
+  {
+    "pageName": "journal",
+    "list": [
+      {
+        "name": "Журнал"
+      }
+    ]
+  },
+  {
+    "pageName": "main",
+    "list": [
+      {
+        "name": "Главная"
+      }
+    ]
+  }
+]
 ```
