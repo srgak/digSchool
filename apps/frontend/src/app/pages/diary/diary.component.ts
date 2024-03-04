@@ -2,11 +2,11 @@ import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { map, Observable } from 'rxjs';
-import { LessonData } from '../../helpers/interfaces/user';
 import { BREADCRUMBS_URL } from '../../helpers/tokens/breadcrumbs';
 import { MarksIdService } from '../../services/storage/marks-id/marks-id.service';
 import { requestBreadcrumbs } from '../../store/actions/breadcrumbs.action';
 import { AppState } from '../../store/state/app.state';
+import { LessonData } from 'libs/api-interfaces/src';
 
 @Component({
   templateUrl: './diary.component.html',

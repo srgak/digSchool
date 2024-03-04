@@ -8,7 +8,6 @@ import {
   Output,
 } from '@angular/core';
 import { FormMain, FormSubmit } from '../../../../helpers/interfaces/form';
-import { UserData } from '../../../../helpers/interfaces/user';
 import { ToggleControls } from '../../../../helpers/toggle-controls';
 import { FormUser } from './form-user';
 import { SelectDataRolesService } from '../../../../services/select-data/select-data-roles/select-data-roles.service';
@@ -16,6 +15,7 @@ import { SelectDataLessonsService } from '../../../../services/select-data/selec
 import { SYMBOLS_EN_TO_RU, SYMBOLS_RU_TO_EN } from '../../../../helpers/tokens/symbols-translate';
 import { FormControl } from '@angular/forms';
 import { removeEmptyFields } from '../../../../helpers/remove-emty';
+import { UserData } from 'libs/api-interfaces/src';
 
 @Component({
   selector: 'app-form-user',

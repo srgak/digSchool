@@ -4,7 +4,7 @@ import { map, Observable } from 'rxjs';
 import { GraphqlUsersService } from '../users/graphql-users.service';
 import { gql } from 'apollo-angular';
 import { GraphQLMarksInfoList } from '../../../helpers/interfaces/graphql';
-import { MarksData, MarkValue } from '../../../helpers/interfaces/marks';
+import { MarkInfo, MarksData } from 'libs/api-interfaces/src';
 
 @Injectable({
   providedIn: 'root',
@@ -22,7 +22,7 @@ export class GraphqlMarksService extends GraphQLMain {
     return this.graphQLUser.getUserData(userId, data).pipe(map((data) => data.marks as MarksData));
   }
 
-  public getMarksByLesson(markId: number, lessonName: string): Observable<MarkValue[]> {
+  public getMarksByLesson(markId: number, lessonName: string): Observable<MarkInfo[]> {
     return this.apollo
       .query<GraphQLMarksInfoList>({
         query: gql`

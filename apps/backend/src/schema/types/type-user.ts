@@ -8,7 +8,7 @@ import {
 import { lessonInput, lessonType } from './type-lesson';
 import { markDB } from '../../db/marks.db';
 import { markType } from './type-mark';
-import { MarksData } from '../../interfaces/marks';
+import { MarksData } from 'libs/api-interfaces/src';
 
 export const userType = new GraphQLObjectType({
   name: 'User',

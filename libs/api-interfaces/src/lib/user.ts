@@ -1,4 +1,5 @@
 import { LessonData } from './lesson';
+import { MarksData } from './marks';
 
 export interface UserAuth {
   email: string;
@@ -24,8 +25,9 @@ interface Pupil extends Person {
   class?: string;
   lessons?: LessonData[];
   markId?: number | string;
+  marks?: MarksData;
 }
-type UserDataAnyValue = string | number | LessonData[] | undefined;
+type UserDataAnyValue = string | number | LessonData[] | MarksData | undefined;
 export interface UserData
   extends Admin,
     Teacher,

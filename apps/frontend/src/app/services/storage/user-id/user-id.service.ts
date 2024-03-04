@@ -8,7 +8,7 @@ import { StorageProperty } from '../../../helpers/interfaces/storage';
 export class UserIdService implements StorageProperty {
   private readonly userData: UserDataService = inject(UserDataService);
   public get prop(): number {
-    return this.userData.prop.id;
+    return +this.userData.prop.id;
   }
   public set prop(value: number) {
     this.userData.prop = {

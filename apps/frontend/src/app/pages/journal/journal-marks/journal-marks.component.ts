@@ -9,7 +9,7 @@ import { BREADCRUMBS_URL } from '../../../helpers/tokens/breadcrumbs';
 import { TableMarksModule } from '../../../shared/components/tables/table-marks/table-marks.module';
 import { requestBreadcrumbs } from '../../../store/actions/breadcrumbs.action';
 import { AppState } from '../../../store/state/app.state';
-import { MarkValue } from '../../../helpers/interfaces/marks';
+import { MarkInfo } from 'libs/api-interfaces/src';
 
 @Component({
   templateUrl: './journal-marks.component.html',
@@ -20,7 +20,7 @@ import { MarkValue } from '../../../helpers/interfaces/marks';
   providers: [breadcrumbsProvide(pageBreadcrumbs.journalMarks)],
 })
 export class JournalMarksComponent {
-  public marks$: Observable<MarkValue[]> = this.activateRoute.data.pipe(
+  public marks$: Observable<MarkInfo[]> = this.activateRoute.data.pipe(
     map((data) => data['marks']),
   );
 

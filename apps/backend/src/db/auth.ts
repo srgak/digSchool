@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 import { GraphQLError } from 'graphql';
-import { UserAuth, UserData } from '../interfaces/user';
 import { incorrectLogin } from '../errors/errors';
+import { UserAuth, UserData } from 'libs/api-interfaces/src';
 
 export class Auth {
   private readonly bcrypt: typeof bcrypt = bcrypt;

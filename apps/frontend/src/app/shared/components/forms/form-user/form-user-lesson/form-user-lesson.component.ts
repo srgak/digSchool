@@ -2,11 +2,12 @@ import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@a
 import { ValidationErrors } from '@angular/forms';
 import { map, Observable } from 'rxjs';
 import { FormCustom } from '../../../../../helpers/interfaces/form';
-import { LessonData } from '../../../../../helpers/interfaces/user';
+// import { LessonData } from '../../../../../helpers/interfaces/user';
 import { FormUserLesson } from './form-user-lessons';
 import { SelectDataLessonsService } from '../../../../../services/select-data/select-data-lessons/select-data-lessons.service';
 import { validators, valueAccessor } from '../../../../../helpers/providers/custom-control';
 import { GraphqlTeachersService } from '../../../../../services/graphQL/teachers/graphql-teachers.service';
+import { LessonData } from 'libs/api-interfaces/src';
 
 @Component({
   selector: 'app-form-user-lesson',

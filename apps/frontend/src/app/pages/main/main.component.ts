@@ -2,10 +2,10 @@ import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { map, Observable } from 'rxjs';
-import { UserData } from '../../helpers/interfaces/user';
 import { BREADCRUMBS_URL } from '../../helpers/tokens/breadcrumbs';
 import { requestBreadcrumbs } from '../../store/actions/breadcrumbs.action';
 import { AppState } from '../../store/state/app.state';
+import { UserData } from 'libs/api-interfaces/src';
 
 @Component({
   templateUrl: './main.component.html',

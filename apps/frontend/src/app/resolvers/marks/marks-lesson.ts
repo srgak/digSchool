@@ -4,11 +4,11 @@ import { Observable } from 'rxjs';
 import { MarksIdService } from '../../services/storage/marks-id/marks-id.service';
 import { GraphqlMarksService } from '../../services/graphQL/marks/graphql-marks.service';
 import { UserDataService } from '../../services/storage/user-data/user-data.service';
-import { MarkValue } from '../../helpers/interfaces/marks';
+import { MarkInfo } from 'libs/api-interfaces/src';
 
-export const marksLessonResolver: ResolveFn<MarkValue[]> = (
+export const marksLessonResolver: ResolveFn<MarkInfo[]> = (
   route: ActivatedRouteSnapshot,
-): Observable<MarkValue[]> => {
+): Observable<MarkInfo[]> => {
   const data: Map<string, string | number> = new Map();
 
   switch (route.data['role']) {

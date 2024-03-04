@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { MarkValue } from '../../../../helpers/interfaces/marks';
 import { TableMain } from '../../../../helpers/interfaces/table';
+import { MarkInfo } from 'libs/api-interfaces/src';
 
 @Component({
   selector: 'app-table-marks',
@@ -9,7 +9,7 @@ import { TableMain } from '../../../../helpers/interfaces/table';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TableMarksComponent implements TableMain {
-  @Input() public data!: MarkValue[];
-  @Output() public readonly onSelect: EventEmitter<MarkValue> = new EventEmitter();
+  @Input() public data!: MarkInfo[];
+  @Output() public readonly onSelect: EventEmitter<MarkInfo> = new EventEmitter();
   public columnList: string[] = ['date', 'value', 'type', 'description'];
 }

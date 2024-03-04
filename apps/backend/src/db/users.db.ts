@@ -1,9 +1,9 @@
 import { Auth } from './auth';
 import * as jwt from 'jsonwebtoken';
 import _ from 'lodash';
-import { UserAuth, UserAuthResponse, UserData } from '../interfaces/user';
 import { TotalData } from '../interfaces/main';
 import { MainDB } from './main.db';
+import { UserAuth, UserAuthResponse, UserData } from 'libs/api-interfaces/src';
 
 class UserDB extends MainDB {
   private readonly auth: Auth = new Auth();

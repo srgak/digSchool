@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { UserData } from '../../../helpers/interfaces/user';
 import { pipeValObj } from '../../../helpers/pipes/value-object';
+import { UserData } from 'libs/api-interfaces/src';
 
 @Component({
   selector: 'app-user-info',

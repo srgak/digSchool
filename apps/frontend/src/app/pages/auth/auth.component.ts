@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormMain, FormSubmit } from '../../helpers/interfaces/form';
-import { UserAuthResponse } from '../../helpers/interfaces/user';
 import { pageName } from '../../helpers/routes';
 import { ModalService } from '../../services/modal/modal.service';
 import { AccessTokenService } from '../../services/storage/access-token/access-token.service';
@@ -13,6 +12,7 @@ import { AppState } from '../../store/state/app.state';
 import { requestBreadcrumbs } from '../../store/actions/breadcrumbs.action';
 import { UserIdService } from '../../services/storage/user-id/user-id.service';
 import { GraphqlAuthService } from '../../services/graphQL/auth/graphql-auth.service';
+import { UserAuthResponse } from 'libs/api-interfaces/src';
 
 @Component({
   templateUrl: './auth.component.html',
@@ -47,7 +47,7 @@ export class AuthComponent extends AuthForm implements FormMain, FormSubmit {
   }
 
   private readonly onSuccess = (data: UserAuthResponse): void => {
-    this.userId.prop = data.id;
+    this.userId.prop = +data.id;
     this.accessToken.prop = data.accessToken;
     this.router.navigateByUrl(pageName.Main);
   };

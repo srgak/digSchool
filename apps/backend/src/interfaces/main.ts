@@ -1,5 +1,4 @@
-import { MarksData } from './marks';
-import { UserData } from './user';
+import { MarksData, UserData } from 'libs/api-interfaces/src';
 
 export interface TotalData {
   users: UserData[];

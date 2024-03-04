@@ -3,7 +3,7 @@ import { MatSelectChange } from '@angular/material/select';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { map, Observable } from 'rxjs';
-import { UserData } from '../../helpers/interfaces/user';
+// import { UserData } from '../../helpers/interfaces/user';
 import { notEmptyList } from '../../helpers/pipes/not-empty-list';
 import { pageName } from '../../helpers/routes';
 import { BREADCRUMBS_URL } from '../../helpers/tokens/breadcrumbs';
@@ -11,6 +11,7 @@ import { GraphqlPupilsService } from '../../services/graphQL/pupils/graphql-pupi
 import { SelectDataClassesService } from '../../services/select-data/select-data-classes/select-data-classes.service';
 import { requestBreadcrumbs } from '../../store/actions/breadcrumbs.action';
 import { AppState } from '../../store/state/app.state';
+import { UserData } from 'libs/api-interfaces/src';
 
 @Component({
   templateUrl: './journal.component.html',

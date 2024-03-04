@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { TableMain } from '../../../../helpers/interfaces/table';
-import { UserData } from '../../../../helpers/interfaces/user';
+import { UserData } from 'libs/api-interfaces/src';
 
 @Component({
   selector: 'app-table-users',

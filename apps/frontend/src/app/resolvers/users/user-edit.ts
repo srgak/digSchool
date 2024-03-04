@@ -1,8 +1,8 @@
 import { ActivatedRouteSnapshot, ResolveFn } from '@angular/router';
-import { UserData } from '../../helpers/interfaces/user';
 import { inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { GraphqlUsersService } from '../../services/graphQL/users/graphql-users.service';
+import { UserData } from 'libs/api-interfaces/src';
 
 export const userEditResolver: ResolveFn<UserData> = (
   route: ActivatedRouteSnapshot,

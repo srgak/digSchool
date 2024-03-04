@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { StorageProperty } from '../../../helpers/interfaces/storage';
-import { UserData } from '../../../helpers/interfaces/user';
+import { UserData } from 'libs/api-interfaces/src';
 
 @Injectable({
   providedIn: 'root',

@@ -1,5 +1,4 @@
-import { MarkValue } from './marks';
-import { UserAuthResponse, UserData } from './user';
+import { MarkInfo, UserAuthResponse, UserData } from 'libs/api-interfaces/src';
 
 export interface GraphQLUserAuth {
   login: UserAuthResponse;
@@ -20,5 +19,5 @@ export interface GraphQlUserCreate {
   createUser: UserData;
 }
 export interface GraphQLMarksInfoList {
-  getMarksByLesson: MarkValue[];
+  getMarksByLesson: MarkInfo[];
 }

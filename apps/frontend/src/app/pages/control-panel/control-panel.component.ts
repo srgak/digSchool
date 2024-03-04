@@ -2,12 +2,12 @@ import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { UserData } from '../../helpers/interfaces/user';
 import { pageName } from '../../helpers/routes';
 import { BREADCRUMBS_URL } from '../../helpers/tokens/breadcrumbs';
 import { GraphqlUsersService } from '../../services/graphQL/users/graphql-users.service';
 import { requestBreadcrumbs } from '../../store/actions/breadcrumbs.action';
 import { AppState } from '../../store/state/app.state';
+import { UserData } from 'libs/api-interfaces/src';
 
 @Component({
   templateUrl: './control-panel.component.html',

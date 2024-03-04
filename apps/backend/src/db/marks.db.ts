@@ -1,8 +1,13 @@
 import { GraphQLError } from 'graphql';
-import { MarkInfo, MarkInfoFilter, MarkLesson, MarksData } from '../interfaces/marks';
 import { elementNotFound } from '../errors/errors';
 import { MainDB } from './main.db';
-import { LessonData } from '../interfaces/lesson';
+import {
+  LessonData,
+  MarkInfo,
+  MarkInfoFilter,
+  MarkLesson,
+  MarksData,
+} from 'libs/api-interfaces/src';
 
 class MarkDB extends MainDB {
   public get marks(): MarksData[] {

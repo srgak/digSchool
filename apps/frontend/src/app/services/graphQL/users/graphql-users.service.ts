@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { GraphQLMain } from '../graphql';
-import { LessonData, UserData, UserId } from '../../../helpers/interfaces/user';
 import { filter, map, Observable } from 'rxjs';
 import { gql } from 'apollo-angular';
 import {
@@ -10,6 +9,7 @@ import {
   GraphQLUserList,
   GraphQLUserUpdate,
 } from '../../../helpers/interfaces/graphql';
+import { LessonData, UserData, UserId } from 'libs/api-interfaces/src';
 
 @Injectable({
   providedIn: 'root',
