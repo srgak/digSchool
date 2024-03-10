@@ -1,4 +1,4 @@
-import { BreadcrumbItem } from '../../helpers/interfaces/breadcrumbs';
+import { BreadcrumbItem } from 'libs/api-interfaces/src';
 
 export interface BreadcrumbsState {
   list: BreadcrumbItem[] | null;

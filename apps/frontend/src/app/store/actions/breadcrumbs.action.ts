@@ -3,7 +3,7 @@ import { BreadcrumbsState } from '../state/breadcrumbs.state';
 
 export const requestBreadcrumbs = createAction(
   '[BREADCRUMBS] request breadcrumbs',
-  props<{ url: string }>(),
+  props<{ pageName: string }>(),
 );
 export const getBreadcrumbs = createAction(
   '[BREADCRUMBS] get breadcrumbs',

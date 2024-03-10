@@ -11,14 +11,14 @@ export class BreadcrumbsEffect {
     this.actions$.pipe(
       ofType(requestBreadcrumbs),
       exhaustMap((data) => {
-        const cache = this.cacheBreadcrumbs.getTarget(data.url);
+        const cache = this.cacheBreadcrumbs.getTarget(data.pageName);
 
         return cache
           ? of(cache)
-          : this.httpBreadcrumbs.getBreadcrumbs(data.url).pipe(
+          : this.httpBreadcrumbs.getBreadcrumbs(data.pageName).pipe(
               tap((response) => {
                 this.cacheBreadcrumbs.setTarget({
-                  name: data.url,
+                  name: data.pageName,
                   list: response,
                 });
               }),

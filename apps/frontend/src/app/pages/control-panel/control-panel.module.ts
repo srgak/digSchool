@@ -5,8 +5,8 @@ import { ControlPanelRoutingModule } from './control-panel-routing';
 import { MatTableModule } from '@angular/material/table';
 import { TableUsersModule } from '../../shared/components/tables/table-users/table-users.module';
 import { MatButtonModule } from '@angular/material/button';
-import { breadcrumbsProvide } from '../../helpers/providers/breadcrumbs/breadcrumbs';
-import { pageBreadcrumbs } from '../../helpers/routes';
+import { pageName } from '../../helpers/routes';
+import { pageNameProvide } from '../../helpers/providers/page-name';
 
 @NgModule({
   declarations: [ControlPanelComponent],
@@ -17,6 +17,6 @@ import { pageBreadcrumbs } from '../../helpers/routes';
     MatTableModule,
     TableUsersModule,
   ],
-  providers: [breadcrumbsProvide(pageBreadcrumbs.controlPanel)],
+  providers: [pageNameProvide(pageName.ControlPanel)],
 })
 export class ControlPanelModule {}

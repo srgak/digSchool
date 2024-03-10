@@ -1,7 +1,8 @@
 import { GraphQLError } from 'graphql';
 import { TotalData } from '../interfaces/main';
 import { FileManager } from './file-manager';
-import { errorMapper } from '../helpers/error-mapper';
+import { errorMapperQL, errorMapperREST } from '../helpers/error-mapper';
+import { ErrorData } from '../interfaces/error';
 
 export abstract class MainDB {
   protected readonly fileManager: FileManager = new FileManager(`${__dirname}/assets/db.json`);
@@ -22,7 +23,7 @@ export abstract class MainDB {
 
   public deleteItem?(input: unknown): number;
 
-  protected triggerError(type: string): GraphQLError {
-    return errorMapper(type);
+  protected triggerError(type: string, isRest = false): GraphQLError | ErrorData {
+    return isRest ? errorMapperREST(type) : errorMapperQL(type);
   }
 }

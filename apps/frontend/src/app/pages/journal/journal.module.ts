@@ -7,8 +7,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { SelectDataClassesService } from '../../services/select-data/select-data-classes/select-data-classes.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TablePupilsModule } from '../../shared/components/tables/table-pupils/table-pupils.module';
-import { breadcrumbsProvide } from '../../helpers/providers/breadcrumbs/breadcrumbs';
-import { pageBreadcrumbs } from '../../helpers/routes';
+import { pageName } from '../../helpers/routes';
+import { pageNameProvide } from '../../helpers/providers/page-name';
 
 @NgModule({
   declarations: [JournalComponent],
@@ -20,6 +20,6 @@ import { pageBreadcrumbs } from '../../helpers/routes';
     ReactiveFormsModule,
     TablePupilsModule,
   ],
-  providers: [SelectDataClassesService, breadcrumbsProvide(pageBreadcrumbs.journal)],
+  providers: [SelectDataClassesService, pageNameProvide(pageName.Journal)],
 })
 export class JournalModule {}

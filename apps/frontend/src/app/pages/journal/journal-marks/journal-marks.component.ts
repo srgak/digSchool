@@ -3,13 +3,13 @@ import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { map, Observable } from 'rxjs';
-import { breadcrumbsProvide } from '../../../helpers/providers/breadcrumbs/breadcrumbs';
-import { pageBreadcrumbs } from '../../../helpers/routes';
-import { BREADCRUMBS_URL } from '../../../helpers/tokens/breadcrumbs';
+import { pageName } from '../../../helpers/routes';
 import { TableMarksModule } from '../../../shared/components/tables/table-marks/table-marks.module';
 import { requestBreadcrumbs } from '../../../store/actions/breadcrumbs.action';
 import { AppState } from '../../../store/state/app.state';
 import { MarkInfo } from 'libs/api-interfaces/src';
+import { pageNameProvide } from '../../../helpers/providers/page-name';
+import { PAGE_NAME } from '../../../helpers/tokens/page-name.token';
 
 @Component({
   templateUrl: './journal-marks.component.html',
@@ -17,7 +17,7 @@ import { MarkInfo } from 'libs/api-interfaces/src';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [CommonModule, TableMarksModule],
-  providers: [breadcrumbsProvide(pageBreadcrumbs.journalMarks)],
+  providers: [pageNameProvide(pageName.JournalMarks)],
 })
 export class JournalMarksComponent {
   public marks$: Observable<MarkInfo[]> = this.activateRoute.data.pipe(
@@ -26,12 +26,12 @@ export class JournalMarksComponent {
 
   constructor(
     private readonly activateRoute: ActivatedRoute,
-    @Inject(BREADCRUMBS_URL) private readonly breadcrumbsUrl: string,
+    @Inject(PAGE_NAME) private readonly page: string,
     private readonly store: Store<AppState>,
   ) {
     this.store.dispatch(
       requestBreadcrumbs({
-        url: this.breadcrumbsUrl,
+        pageName: this.page,
       }),
     );
   }

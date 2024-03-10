@@ -1,27 +1,19 @@
 <header class="header">
-  <div class="container">
-    Тут должен быть логотип
-  </div>
+  <div class="container">Тут должен быть логотип</div>
 </header>
 <main class="wrapper">
   <div class="container">
     <app-breadcrumbs
       *ngIf="breadcrumbs$ | async as breadcrumbs"
-      [list]="breadcrumbs"
-    ></app-breadcrumbs>
+      [list]="breadcrumbs"></app-breadcrumbs>
     <router-outlet></router-outlet>
   </div>
 </main>
 <footer class="footer">
-  <div class="container">
-    power by Angular
-  </div>
+  <div class="container">power by Angular</div>
 </footer>
-<app-menu
-  *ngIf="accessToken.prop"
-></app-menu>
+<app-menu *ngIf="accessToken.prop"></app-menu>
 <app-modal
-  *ngIf="modal.isOpen"
+  *ngIf="modal.isOpen$ | async"
   [componentData]="modal.currenctModal"
-  (onClose)="modal.isOpen = false"
-></app-modal>
+  (onClose)="modal.closeModal()"></app-modal>

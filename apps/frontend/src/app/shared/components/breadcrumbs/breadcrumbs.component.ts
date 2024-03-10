@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { BreadcrumbItem } from '../../../helpers/interfaces/breadcrumbs';
+import { BreadcrumbItem } from 'libs/api-interfaces/src';
 
 @Component({
   selector: 'app-breadcrumbs',

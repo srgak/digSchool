@@ -3,6 +3,7 @@ import { ApolloLink, InMemoryCache } from '@apollo/client/core';
 import { APOLLO_OPTIONS } from 'apollo-angular';
 import { HttpLink } from 'apollo-angular/http';
 import { setContext } from '@apollo/client/link/context';
+import { environments } from 'apps/frontend/src/environments/environments';
 
 export const apolloProvide: Provider = {
   provide: APOLLO_OPTIONS,
@@ -17,7 +18,7 @@ export const apolloProvide: Provider = {
         },
       })),
       httpLink.create({
-        uri: 'http://localhost:4000/graphql',
+        uri: `${environments.apiUrl}graphql`,
       }),
     ]),
   }),

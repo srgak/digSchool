@@ -6,8 +6,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { PasswordModule } from '../../shared/directives/password/password.module';
 import { TransliterationModule } from '../../shared/directives/transliteration/transliteration.module';
-import { breadcrumbsProvide } from '../../helpers/providers/breadcrumbs/breadcrumbs';
-import { pageBreadcrumbs } from '../../helpers/routes';
+import { pageNameProvide } from '../../helpers/providers/page-name';
+import { pageName } from '../../helpers/routes';
 
 @NgModule({
   declarations: [AuthComponent],
@@ -19,6 +19,6 @@ import { pageBreadcrumbs } from '../../helpers/routes';
     ReactiveFormsModule,
     TransliterationModule,
   ],
-  providers: [breadcrumbsProvide(pageBreadcrumbs.auth)],
+  providers: [pageNameProvide(pageName.Auth)],
 })
 export class AuthModule {}

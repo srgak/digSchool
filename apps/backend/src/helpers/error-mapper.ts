@@ -1,7 +1,8 @@
 import { GraphQLError } from 'graphql';
-import { elementNotFound, userNotFound } from '../errors/errors';
+import { defaultError, elementNotFound, userNotFound } from '../errors/errors';
+import { ErrorData } from '../interfaces/error';
 
-export const errorMapper = (type: string): GraphQLError => {
+export const errorMapperQL = (type: string): GraphQLError => {
   switch (type) {
     case 'not_found': {
       return new GraphQLError(elementNotFound.message, null, null, null, null, null, {
@@ -15,6 +16,20 @@ export const errorMapper = (type: string): GraphQLError => {
     }
     default: {
       return new GraphQLError('ошибка');
+    }
+  }
+};
+
+export const errorMapperREST = (type: string): ErrorData => {
+  switch (type) {
+    case 'not_found': {
+      return elementNotFound;
+    }
+    case 'user_not_found': {
+      return userNotFound;
+    }
+    default: {
+      return defaultError;
     }
   }
 };

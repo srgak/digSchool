@@ -10,7 +10,7 @@ import { ModalService } from '../services/modal/modal.service';
 import { catchError, Observable, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { AccessTokenService } from '../services/storage/access-token/access-token.service';
-import { pageName } from '../helpers/routes';
+import { routeName } from '../helpers/routes';
 
 @Injectable()
 export class ErrorsHandlerInterceptor implements HttpInterceptor {
@@ -37,7 +37,7 @@ export class ErrorsHandlerInterceptor implements HttpInterceptor {
 
   private handleErrorAuth(error: HttpErrorResponse): void {
     if (error.status === 401) {
-      this.router.navigateByUrl(pageName.Auth);
+      this.router.navigateByUrl(routeName.Auth);
       this.accessToken.remove();
     }
   }

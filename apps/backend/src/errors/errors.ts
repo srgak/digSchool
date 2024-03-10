@@ -1,5 +1,10 @@
 import { ErrorData } from '../interfaces/error';
 
+export const defaultError: ErrorData = {
+  message: 'ошибка',
+  status: 0,
+};
+
 export const incorrectLogin: ErrorData = {
   message: 'Неправильные имя пользователя или пароль',
   status: 401,

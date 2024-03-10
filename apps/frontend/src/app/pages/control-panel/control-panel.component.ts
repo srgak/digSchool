@@ -2,12 +2,12 @@ import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { pageName } from '../../helpers/routes';
-import { BREADCRUMBS_URL } from '../../helpers/tokens/breadcrumbs';
+import { routeName } from '../../helpers/routes';
 import { GraphqlUsersService } from '../../services/graphQL/users/graphql-users.service';
 import { requestBreadcrumbs } from '../../store/actions/breadcrumbs.action';
 import { AppState } from '../../store/state/app.state';
 import { UserData } from 'libs/api-interfaces/src';
+import { PAGE_NAME } from '../../helpers/tokens/page-name.token';
 
 @Component({
   templateUrl: './control-panel.component.html',
@@ -19,16 +19,16 @@ export class ControlPanelComponent {
   constructor(
     private readonly router: Router,
     private readonly graphQLUsers: GraphqlUsersService,
-    @Inject(BREADCRUMBS_URL) private readonly breadcrumbsUrl: string,
+    @Inject(PAGE_NAME) private readonly page: string,
     private readonly store: Store<AppState>,
   ) {
     this.store.dispatch(
       requestBreadcrumbs({
-        url: this.breadcrumbsUrl,
+        pageName: this.page,
       }),
     );
   }
   public editUser(user: UserData): void {
-    this.router.navigate([`${pageName.ControlPanel}/${pageName.ControlPanelEdit}`, user.id]);
+    this.router.navigate([`${routeName.ControlPanel}/${routeName.ControlPanelEdit}`, user.id]);
   }
 }

@@ -4,6 +4,7 @@ import cors from 'cors';
 import { schema } from './schema/schema';
 import * as jwt from 'jsonwebtoken';
 import { invalidToken } from './errors/errors';
+import { breadcrumbsDB } from './db/breadcrumbs.db';
 
 const app = express();
 
@@ -37,6 +38,17 @@ app.use('/graphql', (req, res) => {
       };
     },
   })(req, res);
+});
+app.get('/breadcrumbs/:pageName', (req, res) => {
+  try {
+    res.send(breadcrumbsDB.getItem(req.params.pageName));
+  } catch (error) {
+    const { status, message } = error;
+
+    res.status(status).send({
+      message,
+    });
+  }
 });
 
 // eslint-disable-next-line no-console

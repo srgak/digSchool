@@ -3,15 +3,14 @@ import { MatSelectChange } from '@angular/material/select';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { map, Observable } from 'rxjs';
-// import { UserData } from '../../helpers/interfaces/user';
 import { notEmptyList } from '../../helpers/pipes/not-empty-list';
-import { pageName } from '../../helpers/routes';
-import { BREADCRUMBS_URL } from '../../helpers/tokens/breadcrumbs';
+import { routeName } from '../../helpers/routes';
 import { GraphqlPupilsService } from '../../services/graphQL/pupils/graphql-pupils.service';
 import { SelectDataClassesService } from '../../services/select-data/select-data-classes/select-data-classes.service';
 import { requestBreadcrumbs } from '../../store/actions/breadcrumbs.action';
 import { AppState } from '../../store/state/app.state';
 import { UserData } from 'libs/api-interfaces/src';
+import { PAGE_NAME } from '../../helpers/tokens/page-name.token';
 
 @Component({
   templateUrl: './journal.component.html',
@@ -25,12 +24,12 @@ export class JournalComponent {
     public classData: SelectDataClassesService,
     public graphQLPupils: GraphqlPupilsService,
     private readonly router: Router,
-    @Inject(BREADCRUMBS_URL) private readonly breadcrumbsUrl: string,
+    @Inject(PAGE_NAME) private readonly page: string,
     private readonly store: Store<AppState>,
   ) {
     this.store.dispatch(
       requestBreadcrumbs({
-        url: this.breadcrumbsUrl,
+        pageName: this.page,
       }),
     );
     this.pupilsList = this.activeRoute.data.pipe(map((data) => data['pupils']));
@@ -41,6 +40,6 @@ export class JournalComponent {
   }
 
   public onPupilSelected(user: UserData): void {
-    this.router.navigate([`${pageName.Journal}/${pageName.JournalMarks}`, user.marks?.id]);
+    this.router.navigate([`${routeName.Journal}/${routeName.JournalMarks}`, user.marks?.id]);
   }
 }

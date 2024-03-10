@@ -1,7 +1,7 @@
 import { RouterModule, Routes } from '@angular/router';
 import { JournalComponent } from './journal.component';
 import { NgModule } from '@angular/core';
-import { pageName } from '../../helpers/routes';
+import { routeName } from '../../helpers/routes';
 import { JournalMarksComponent } from './journal-marks/journal-marks.component';
 import { marksLessonResolver } from '../../resolvers/marks/marks-lesson';
 
@@ -12,7 +12,7 @@ const routes: Routes = [
     component: JournalComponent,
   },
   {
-    path: `${pageName.JournalMarks}/:id`,
+    path: `${routeName.JournalMarks}/:id`,
     pathMatch: 'full',
     component: JournalMarksComponent,
     resolve: {

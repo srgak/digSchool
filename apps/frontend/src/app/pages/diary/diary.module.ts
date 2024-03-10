@@ -3,12 +3,12 @@ import { CommonModule } from '@angular/common';
 import { DiaryComponent } from './diary.component';
 import { DiaryRoutingModule } from './diary-routing.module';
 import { TabsMenuModule } from '../../shared/components/tabs-menu/tabs-menu.module';
-import { breadcrumbsProvide } from '../../helpers/providers/breadcrumbs/breadcrumbs';
-import { pageBreadcrumbs } from '../../helpers/routes';
+import { pageName } from '../../helpers/routes';
+import { pageNameProvide } from '../../helpers/providers/page-name';
 
 @NgModule({
   declarations: [DiaryComponent],
   imports: [CommonModule, DiaryRoutingModule, TabsMenuModule],
-  providers: [breadcrumbsProvide(pageBreadcrumbs.diary)],
+  providers: [pageNameProvide(pageName.Diary)],
 })
 export class DiaryModule {}

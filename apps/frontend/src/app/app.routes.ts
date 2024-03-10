@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { pageName } from './helpers/routes';
+import { routeName } from './helpers/routes';
 import { canActivateAuth, canDeactivateAuth } from './guards/authorized/authorized.guard';
 import { userDataResolver } from './resolvers/users/user-data';
 import {
@@ -16,17 +16,17 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: pageName.Main,
+    redirectTo: routeName.Main,
   },
   {
-    path: pageName.Auth,
+    path: routeName.Auth,
     pathMatch: 'full',
     loadChildren: () => import('./pages/auth/auth.module').then((m) => m.AuthModule),
     title: 'Авторизация',
     canActivate: [canDeactivateAuth],
   },
   {
-    path: pageName.Main,
+    path: routeName.Main,
     pathMatch: 'full',
     loadChildren: () => import('./pages/main/main.module').then((m) => m.MainModule),
     title: 'Главная панель',
@@ -34,14 +34,14 @@ const routes: Routes = [
     resolve: [userDataResolver],
   },
   {
-    path: pageName.ControlPanel,
+    path: routeName.ControlPanel,
     loadChildren: () =>
       import('./pages/control-panel/control-panel.module').then((m) => m.ControlPanelModule),
     canActivate: [canActivateAuth, canActivateAdmin],
     title: 'Панель управления',
   },
   {
-    path: pageName.Diary,
+    path: routeName.Diary,
     loadChildren: () => import('./pages/diary/diary.module').then((m) => m.DiaryModule),
     title: 'Дневник',
     canActivate: [canActivateAuth, canActivatePupil],
@@ -51,7 +51,7 @@ const routes: Routes = [
     },
   },
   {
-    path: pageName.Journal,
+    path: routeName.Journal,
     loadChildren: () => import('./pages/journal/journal.module').then((m) => m.JournalModule),
     title: 'Журнал',
     canActivate: [canActivateAuth, canActivateTeacher],

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuData, MenuItem } from '../../../../helpers/interfaces/menu';
-import { pageName } from '../../../../helpers/routes';
+import { routeName } from '../../../../helpers/routes';
 import { AccessTokenService } from '../../../../services/storage/access-token/access-token.service';
 import { UserDataService } from '../../../../services/storage/user-data/user-data.service';
 
@@ -15,7 +15,7 @@ export class MenuListComponent {
   @Input() public menuData!: MenuData | null;
   public menuLogout: MenuItem = {
     name: 'Выход',
-    link: pageName.Auth,
+    link: routeName.Auth,
     img: '/assets/img/icons/logout.svg',
   };
   constructor(
@@ -27,6 +27,6 @@ export class MenuListComponent {
   public logOut(): void {
     this.accessToken.remove();
     this.userData.remove();
-    this.router.navigateByUrl(pageName.Auth);
+    this.router.navigateByUrl(routeName.Auth);
   }
 }

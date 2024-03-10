@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { BreadcrumbItem } from '../../../helpers/interfaces/breadcrumbs';
 import { StorageProperty } from '../../../helpers/interfaces/storage';
+import { BreadcrumbItem } from 'libs/api-interfaces/src';
 
 @Injectable({
   providedIn: 'root',
