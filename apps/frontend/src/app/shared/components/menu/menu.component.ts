@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { MenuData } from '../../../helpers/interfaces/menu';
 import { menuSelector } from '../../../store/selectors/menu.selector';
 import { UserRoleService } from '../../../services/storage/user-role/user-role.service';
 import { AppState } from '../../../store/state/app.state';
 import { requestMenu } from '../../../store/actions/menu.action';
+import { MenuItem } from 'libs/api-interfaces/src';
 
 @Component({
   selector: 'app-menu',
@@ -15,7 +15,7 @@ import { requestMenu } from '../../../store/actions/menu.action';
 })
 export class MenuComponent {
   public isOpen = false;
-  public menuList$: Observable<MenuData | null> = this.store.select(menuSelector);
+  public menuList$: Observable<MenuItem[] | null> = this.store.select(menuSelector);
 
   constructor(
     private readonly userRole: UserRoleService,

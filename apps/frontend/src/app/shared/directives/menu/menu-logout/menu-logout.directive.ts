@@ -1,7 +1,7 @@
 import { Directive, HostListener, Input, OnInit } from '@angular/core';
 import { MenuButton } from '../menu-button';
 import { Router } from '@angular/router';
-import { MenuItem } from '../../../../helpers/interfaces/menu';
+import { MenuItem } from 'libs/api-interfaces/src';
 
 @Directive({
   selector: '[uiMenuLogout]',

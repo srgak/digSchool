@@ -1,7 +1,7 @@
-import { MenuData } from '../../helpers/interfaces/menu';
+import { MenuItem } from 'libs/api-interfaces/src';
 
 export interface MenuState {
-  payload: MenuData | null;
+  payload: MenuItem[] | null;
 }
 
 export const initialMenuState: MenuState = {

@@ -1,5 +1,5 @@
 import { ElementRef, inject, Renderer2 } from '@angular/core';
-import { MenuItem } from '../../../helpers/interfaces/menu';
+import { MenuItem } from 'libs/api-interfaces/src';
 
 export abstract class MenuButton {
   abstract data: MenuItem;

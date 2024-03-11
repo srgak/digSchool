@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { MenuData, MenuItem } from '../../../../helpers/interfaces/menu';
 import { routeName } from '../../../../helpers/routes';
 import { AccessTokenService } from '../../../../services/storage/access-token/access-token.service';
 import { UserDataService } from '../../../../services/storage/user-data/user-data.service';
+import { MenuItem } from 'libs/api-interfaces/src';
 
 @Component({
   selector: 'app-menu-list',
@@ -12,7 +12,7 @@ import { UserDataService } from '../../../../services/storage/user-data/user-dat
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MenuListComponent {
-  @Input() public menuData!: MenuData | null;
+  @Input() public menuData!: MenuItem[] | null;
   public menuLogout: MenuItem = {
     name: 'Выход',
     link: routeName.Auth,

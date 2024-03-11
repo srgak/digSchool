@@ -183,5 +183,52 @@
         }
       ]
     }
+  ],
+  "menu": [
+    {
+      "role": "admin",
+      "list": [
+        {
+          "name": "Главная",
+          "link": "dashboard",
+          "img": "/assets/img/icons/home.svg"
+        },
+        {
+          "name": "Панель управления пользователями",
+          "link": "control-panel",
+          "img": "/assets/img/icons/control-panel.svg"
+        }
+      ]
+    },
+    {
+      "role": "pupil",
+      "list": [
+        {
+          "name": "Главная",
+          "link": "dashboard",
+          "img": "/assets/img/icons/home.svg"
+        },
+        {
+          "name": "Дневник",
+          "link": "diary",
+          "img": "/assets/img/icons/diary.svg"
+        }
+      ]
+    },
+    {
+      "role": "teacher",
+      "list": [
+        {
+          "name": "Главная",
+          "link": "dashboard",
+          "img": "/assets/img/icons/home.svg"
+        },
+        {
+          "name": "Журнал",
+          "link": "journal",
+          "img": "/assets/img/icons/magazine.svg"
+        }
+      ]
+    }
   ]
 }

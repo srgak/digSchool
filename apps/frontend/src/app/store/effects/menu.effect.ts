@@ -4,23 +4,22 @@ import { getMenu, requestMenu } from '../actions/menu.action';
 import { exhaustMap, map, of, switchMap, tap } from 'rxjs';
 import { CacheMenuService } from '../../services/storage/cache-menu/cache-menu.service';
 import { HttpMenuService } from '../../services/http/menu/http-menu.service';
-import { menuUrl } from '../../helpers/menu';
 
 @Injectable()
 export class MenuEffect {
   private readonly loadMenu$ = createEffect(() =>
     this.actions$.pipe(
       ofType(requestMenu),
-      map((data) => menuUrl[data.role]),
-      exhaustMap((url) => {
-        const cache = this.cacheMenu.getTarget(url);
+      map((data) => data.role),
+      exhaustMap((role) => {
+        const cache = this.cacheMenu.getTarget(role);
 
         return cache
           ? of(cache)
-          : this.httpMenu.getMenu(url).pipe(
+          : this.httpMenu.getMenu(role).pipe(
               tap((response) => {
                 this.cacheMenu.setTarget({
-                  name: url,
+                  name: role,
                   list: response,
                 });
               }),
