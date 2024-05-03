@@ -13,7 +13,9 @@ import { PAGE_NAME } from '../../helpers/tokens/page-name.token';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MainComponent {
-  public userData: Observable<UserData> = this.activateRoute.data.pipe(map((data) => data['0']));
+  public userData$: Observable<UserData> = this.activateRoute.data.pipe(
+    map(({ userData }) => userData as UserData),
+  );
   constructor(
     public activateRoute: ActivatedRoute,
     @Inject(PAGE_NAME) private readonly page: string,

@@ -31,7 +31,9 @@ const routes: Routes = [
     loadChildren: () => import('./pages/main/main.module').then((m) => m.MainModule),
     title: 'Главная панель',
     canActivate: [canActivateAuth],
-    resolve: [userDataResolver],
+    resolve: {
+      userData: userDataResolver,
+    },
   },
   {
     path: routeName.ControlPanel,

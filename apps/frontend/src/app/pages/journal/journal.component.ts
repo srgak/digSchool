@@ -18,9 +18,11 @@ import { PAGE_NAME } from '../../helpers/tokens/page-name.token';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class JournalComponent {
-  public pupilsList: Observable<UserData[]>;
+  public pupilsList$: Observable<UserData[]> = this.activateRoute.data.pipe(
+    map(({ pupils }) => pupils as UserData[]),
+  );
   constructor(
-    private readonly activeRoute: ActivatedRoute,
+    private readonly activateRoute: ActivatedRoute,
     public classData: SelectDataClassesService,
     public graphQLPupils: GraphqlPupilsService,
     private readonly router: Router,
@@ -32,11 +34,10 @@ export class JournalComponent {
         pageName: this.page,
       }),
     );
-    this.pupilsList = this.activeRoute.data.pipe(map((data) => data['pupils']));
   }
 
   public onClassChanged(event: MatSelectChange): void {
-    this.pupilsList = this.graphQLPupils.getPupilsByClass(event.value).pipe(notEmptyList);
+    this.pupilsList$ = this.graphQLPupils.getPupilsByClass(event.value).pipe(notEmptyList);
   }
 
   public onPupilSelected(user: UserData): void {

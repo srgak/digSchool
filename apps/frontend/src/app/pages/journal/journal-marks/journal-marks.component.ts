@@ -21,7 +21,7 @@ import { PAGE_NAME } from '../../../helpers/tokens/page-name.token';
 })
 export class JournalMarksComponent {
   public marks$: Observable<MarkInfo[]> = this.activateRoute.data.pipe(
-    map((data) => data['marks']),
+    map(({ marks }) => marks as MarkInfo[]),
   );
 
   constructor(

@@ -14,12 +14,12 @@ import { PAGE_NAME } from '../../helpers/tokens/page-name.token';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DiaryComponent {
-  public lessons$: Observable<LessonData[]> = this.activeRoute.data.pipe(
-    map((data) => data['lessons'] as LessonData[]),
+  public lessons$: Observable<LessonData[]> = this.activateRoute.data.pipe(
+    map(({ lessons }) => lessons as LessonData[]),
   );
 
   constructor(
-    private readonly activeRoute: ActivatedRoute,
+    private readonly activateRoute: ActivatedRoute,
     private readonly marksId: MarksIdService,
     @Inject(PAGE_NAME) private readonly page: string,
     private readonly store: Store<AppState>,
@@ -29,7 +29,7 @@ export class DiaryComponent {
         pageName: this.page,
       }),
     );
-    this.activeRoute.data.pipe(map((data) => data['marksId'])).subscribe((value) => {
+    this.activateRoute.data.pipe(map(({ marksId }) => marksId as number)).subscribe((value) => {
       this.marksId.prop = value;
     });
   }

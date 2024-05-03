@@ -2,25 +2,17 @@
 <!-- возможно придётся сделать полноценный фильтр -->
 <mat-form-field>
   <mat-label>Класс</mat-label>
-  <mat-select
-    (selectionChange)="onClassChanged($event)"
-  >
-    <mat-option
-      *ngFor="let item of classData.list"
-      [value]="item.value"
-    >
-      {{item.name}}
+  <mat-select (selectionChange)="onClassChanged($event)">
+    <mat-option *ngFor="let item of classData.list" [value]="item.value">
+      {{ item.name }}
     </mat-option>
   </mat-select>
 </mat-form-field>
 <!-- общая таблица со всеми учениками -->
 <app-table-pupils
-  *ngIf="pupilsList | async as list; else notFound"
+  *ngIf="pupilsList$ | async as list; else notFound"
   [data]="list"
-  (onSelect)="onPupilSelected($event)"
-></app-table-pupils>
-<ng-template #notFound>
-  Не найдено
-</ng-template>
+  (onSelect)="onPupilSelected($event)"></app-table-pupils>
+<ng-template #notFound> Не найдено </ng-template>
 
 <!-- при выборе ученика отправить на страницу с его оценками -->
